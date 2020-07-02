@@ -1,0 +1,1405 @@
+
+$(document).ready(function() {
+  $(function() {
+
+    function isIE() {
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) // If Internet Explorer, return version number
+        {
+            $("body").addClass('IE')
+            return true
+        }
+        else  // If another browser, return 0
+        {
+            console.log('otherbrowser');
+        }
+
+        return false;
+    }
+
+    $('.scroll-top').on('click', function() {
+      $('html, body').animate({ scrollTop: 0 }, 1000);
+    })
+    $('.scroll-down').on('click', function() {
+      $('html, body').animate({ scrollTop: $('.headline-section').offset().top }, 1000);
+    })
+    var BrowserDetect = {
+      init: function() {
+        this.browser = this.searchString(this.dataBrowser) || "Other";
+        this.version = this.searchVersion(navigator.userAgent) || this.searchVersion(navigator.appVersion) || "Unknown";
+      },
+      searchString: function(data) {
+        for (var i = 0; i < data.length; i++) {
+          var dataString = data[i].string;
+          this.versionSearchString = data[i].subString;
+          if (dataString.indexOf(data[i].subString) !== -1) {
+            return data[i].identity;
+          }
+        }
+      },
+      searchVersion: function(dataString) {
+        var index = dataString.indexOf(this.versionSearchString);
+        if (index === -1) {
+          return;
+        }
+
+        var rv = dataString.indexOf("rv:");
+        if (this.versionSearchString === "Trident" && rv !== -1) {
+          return parseFloat(dataString.substring(rv + 3));
+        } else {
+          return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
+        }
+      },
+
+      dataBrowser: [
+        { string: navigator.userAgent, subString: "Edge", identity: "MS Edge" },
+        { string: navigator.userAgent, subString: "MSIE", identity: "Explorer" },
+        { string: navigator.userAgent, subString: "Trident", identity: "Explorer" },
+        { string: navigator.userAgent, subString: "Firefox", identity: "Firefox" },
+        { string: navigator.userAgent, subString: "Opera", identity: "Opera" },
+        { string: navigator.userAgent, subString: "OPR", identity: "Opera" },
+        { string: navigator.userAgent, subString: "Chrome", identity: "Chrome" },
+        { string: navigator.userAgent, subString: "Safari", identity: "Safari" }
+      ]
+    };
+
+    BrowserDetect.init();
+
+    var bv = BrowserDetect.browser;
+    if (bv == "Chrome") {
+      $("body").addClass("chrome");
+    } else if (bv == "MS Edge") {
+      $("body").addClass("edge");
+    } else if (bv == "Explorer") {
+      $("body").addClass("ie");
+      if (BrowserDetect.version < 11) {
+        alert("Votre navigateur est obsolète, nous vous conseillons de naviguer sous chrome ou firefox")
+      }
+    } else if (bv == "Firefox") {
+      $("body").addClass("Firefox");
+    } else if (bv == "Safari") {
+      $("body").addClass("Safari");
+    }
+
+    $('.collection-list').each(function() {
+      var classes = $(this).attr('class')
+      classes = classes.split(' ')
+      var datasort;
+      classes.forEach(function(clss) {
+        if (clss.indexOf("home") >= 0) {
+          datasort = clss.replace(/[^\d.,]+/, '');
+        }
+      })
+      $(this).attr('data-sort', datasort)
+    })
+
+
+    $('.ui-tabs-anchor').click(function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      if ($(this).parents('.easytabs-content-item').hasClass('easytabs-active')) {
+        $(this).parents('.easytabs-content-item').removeClass('easytabs-active');
+        $(this).parents('.easytabs-content-item').find('.easytabs-content-holder').slideUp();
+      } else {
+        $(this).parents('.easytabs-content-item').addClass('easytabs-active');
+        $('.easytabs-content-holder').not($(this).parents('.easytabs-content-item').find('.easytabs-content-holder')).slideUp();
+        $(this).parents('.easytabs-content-item').find('.easytabs-content-holder').slideDown();
+      }
+    })
+
+
+    jQuery.fn.sortDivs = function sortDivs() {
+      $("> div", this[0]).sort(dec_sort).appendTo(this[0]);
+      function dec_sort(a, b) { return ($(b).data("sort")) < ($(a).data("sort")) ? 1 : -1; }
+    }
+
+    setTimeout(function() {
+      $('.image-with-text-overlay-section.under-menu .banner .image-element__wrap, .image-with-text-overlay-section.under-menu .banner').css('height', ($('.preheader.closed .container').height() + 130) + 'px');
+      $(".collection-list-container").sortDivs()
+    }, 100);
+
+    $(window).resize(function() {
+      $('.image-with-text-overlay-section.under-menu .banner .image-element__wrap, .image-with-text-overlay-section.under-menu .banner').css('height', ($('.preheader.closed .container').height() + 130) + 'px');
+    });
+
+    // if ($('.relais-map').length > 0) {
+    // }
+    if ($(window).width() > 768) {
+      $('.collection-list-container.slider').flickity('destroy');
+      $('.gallery-slider.slider').flickity('destroy');
+      $('.reviews-list-container.slider').flickity('destroy');
+
+      $(window).scroll(function() {
+        if ($(document).scrollTop() > 25) {
+          $('.top_bar').css({ 'position': 'fixed', 'top': '0px' });
+        } else {
+          $('.top_bar').css({ 'position': 'relative' });
+        }
+      });
+    } else {
+      $('.homepage .image-with-text').each(function() {
+        if ($('.description p', this).text().length > 210) {
+          $('.description p', this).css({
+            'height': '130px',
+            'overflow': 'hidden'
+          })
+          $('.description', this).append('<p class="dots" style="margin: 0">...</p><br><div class="voirplus"><u>voir plus</u></div>')
+        }
+      })
+      $('.voirplus').click(function() {
+        $(this).parent().find('p').css({
+          'height': 'initial',
+          'overflow': 'initial'
+        })
+        $(this, '.dots').fadeOut();
+      })
+      $('.icon-cart, .mini_cart').click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        location.href = "/cart"
+      })
+    }
+
+    $('.clear-active-filter').on('click', function() {
+      window.location.href = window.location.href.match(/^.+(\/)/)[0];
+    });
+
+    $("#checkout").click(function(e) {
+      e.preventDefault()
+      postZapietID();
+      // postCheckout();
+
+
+    });
+    // var cook = JSON.parse(Cookies.get('dlvy'))
+    // $('#cart_form').find('#storePickupApp .checkoutMethod:last-child').click()
+    // $('#cart_form').find('#storePickupApp #location_'+cook.pickup_id).click()
+    // DELIVERY FORM
+    // prevent key enter submit
+    $('form input').keydown(function(e) {
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // set variables
+    {% assign hour_min = settings.change_day_hour | split: ':' %}
+
+    var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    var days_fr = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+    var delivery_hour_limit = new Date();
+    var json_data_loc;
+    var json_data;
+    var textual_day;
+
+    var closed_days = "{{ settings.closed_days }}".split(',');
+
+    delivery_hour_limit.setHours({{ hour_min | first }});
+    delivery_hour_limit.setMinutes({{ hour_min | last }});
+    delivery_hour_limit.setMilliseconds(0);
+
+    var expire = new Date();
+    expire.setHours(0,0,1,0);
+    expire.setDate(expire.getDate() + 1)
+    expire = new Date(expire)
+
+    var d = new Date();
+    // const today = new Date()
+    // const tomorrow = new Date(today)
+    // tomorrow.setDate(tomorrow.getDate() + 1)
+    var currentTime = d;
+    var n = d.getDay();
+    var is_closed = false;
+
+
+    var textual_close_day = days[n];
+    var formated_curentTime = currentTime.toLocaleDateString('FR').split('').filter(function(v) {return v.charCodeAt() != 8206 }).join('')
+    formated_curentTime = formated_curentTime.match(/\d*[\/]*/g).filter(function(v) {return v.charCodeAt() != "" }).join('')
+    console.log(formated_curentTime);
+    console.log("zzzzzzzzzzzzzzzz");
+    var expr = /\d+/g;
+    var parts = formated_curentTime.match(expr);
+    formated_curentTime = parts.join('/')
+    console.log(formated_curentTime);
+    if (closed_days.includes(textual_close_day) || closed_days.includes( formated_curentTime )) {
+      var is_closed = true;
+    }
+    console.log(is_closed);
+
+
+    if (delivery_hour_limit > d) {
+      var not_today = false;
+    } else {
+      (n == 6) ? n = 0: n = n + 1
+      currentTime.setDate(currentTime.getDate() + 1);
+      var not_today = true;
+    }
+    textual_day = days[n];
+
+    // if closed_day
+    // set it for tomorrow if it past deliveryHourLimit
+    // set it the next day if its closed day
+
+    while (closed_days.includes(textual_day) || closed_days.includes(currentTime.toLocaleDateString().split('').filter(function(v) {return v.charCodeAt() != 8206 }).join('') )) {
+      currentTime.setDate(currentTime.getDate() + 1);
+      (n == 6) ? n = 0: n = n + 1
+      textual_day = days[n];
+      not_today = true;
+
+    }
+
+    // today date 'yyyy-mm-dd'
+    var today_date = currentTime.toLocaleDateString('FR').split('').filter(function(v) {return v.charCodeAt() != 8206 }).join('').split('/').reverse().join('-');
+
+    var getNextDlvDay = function(dlv) {
+      var d_day;
+      console.log("getNextDlvDay" + d_day);
+      // reorder start day in array
+      days_from_today = days.slice(days.indexOf(textual_day) + 1, 7);
+      days_before_today = days.slice(0, days.indexOf(textual_day));
+      days_before_today.forEach(function(day) {
+        days_from_today.push(day);
+      });
+      console.log(days_from_today);
+
+      // for each next days see if there is delivery
+      days_from_today.every(function(day) {
+        console.log("every" + day);
+        var dlv_enabled = dlv[day].slots.enabled;
+        var is_blackout_day = dlv[day].blackout_dates.includes(today_date);
+        if (dlv_enabled && !is_blackout_day) {
+          d_day = day
+          return d_day;
+        }
+      })
+      // return the index of the day
+      console.log(days.indexOf(d_day));
+      return days.indexOf(d_day)
+
+    }
+
+
+    // DELIVERY
+
+    // when change of input radio
+    $('#dlv_choice input[type="radio"]').on('change',function() {
+
+      if ($("#velo").is(':checked')) {
+        $('#zip_validator').slideDown();
+      } else {
+        $('#zip_validator').slideUp();
+      }
+      if ($("#retrait").is(':checked')) {
+        $('.retrait').slideDown();
+        if (isIE() == false ) {
+          setTimeout(function() {
+            window.dispatchEvent(new Event('resize'));
+          }, 501);
+        } else {
+
+        }
+
+      } else {
+        $('.retrait').slideUp();
+      }
+      if ($("#entreprise").is(':checked')) {
+        $('.entreprise').slideDown();
+      } else {
+        $('.entreprise').slideUp();
+      }
+      $('#no_dlv, #no_today, #dlv_ok_today').hide();
+
+      var dlvy = {
+        mode: false,
+        slot_id: false,
+        day: false,
+        code_postal: false,
+        valid: false,
+        pickup_id: null,
+        delivery_location_id: null
+      }
+      Cookies.set('dlvy', dlvy, {expires: expire})
+    });
+
+
+    // VELO CHOICE
+    // when typing in velo zip code
+    $('#zip_velo').keyup(function() {
+      if ($(this).val().length == 5) {
+        $('#zip_btn_velo').attr('disabled', false)
+      } else {
+        $('#zip_btn_velo').attr('disabled', true)
+      }
+      $('#no_dlv, #no_today, #dlv_ok_today').hide();
+    })
+
+
+    // When i validate a zip in velo
+    $('#zip_btn_velo').click(function() {
+      var zip_code = $('#zip_velo').val();
+
+      // call zapiet
+      $.ajax({
+        method: "POST",
+        url: "https://api.zapiet.com/v4.0/delivery/locations?shop=mes-voisins-producteurs2.myshopify.com",
+        data: { "geoSearchQuery": zip_code, "shop": "mes-voisins-producteurs2.myshopify.com" },
+        dataType: 'json',
+        success: function(useremail) {console.log( useremail );},
+        error: function(xhr, status, err) {},
+        complete: function(xhr, status) {
+
+
+          if (status === 'error' || !xhr.responseText) {
+            // if error, no delivery in your town
+            $('#no_dlv').fadeIn();
+          } else {
+            json_data = JSON.parse(xhr.responseText);
+            console.log(json_data);
+            console.log("______________");
+            $('#zip_velo').attr('data-delivery-location-id', json_data.id)
+            $('#zip_velo').attr("data-custom_attribute_1", json_data.custom_attribute_1)
+            $('#zip_velo').attr("data-company_name", json_data.company_name)
+
+            var dlv_enabled = json_data.delivery[textual_day].slots.enabled;
+            var is_blackout_day = json_data.delivery[textual_day].blackout_dates.includes(today_date);
+console.log(is_blackout_day + "is_blackout_day");
+console.log(json_data.delivery[textual_day].blackout_dates);
+
+            if (dlv_enabled && !is_blackout_day) {
+              // if delivery is okay today
+              //
+              var dadate = new Date
+                $('#dlv_ok_today p').text("{{ settings.dlv_ok_today }}" +" " + days_fr[days.indexOf(textual_day)]  + ' (' + currentTime.toLocaleDateString('FR') + ')' );
+
+              // if (days[dadate.getDay()] == textual_day) {
+              //   $('#dlv_ok_today p').append(" aujourd'hui");
+              // } else {
+              //   $('#dlv_ok_today p').text("{{ settings.dlv_ok_today }}" +" " + days_fr[days.indexOf(textual_day)]  + ' (' + currentTime.toLocaleDateString('FR') + ')' );
+              // }
+              $('#dlv_ok_today').fadeIn();
+            } else {
+              // if delivery is not okay today give the next available day
+
+              var next_available_dlv_day = getNextDlvDay(json_data.delivery);
+
+              if (next_available_dlv_day == -1) {
+                $('.next_dlv_day').text(' ' + 'dans quelques jours')
+              } else {
+                $('.next_dlv_day').text(' ' + days_fr[next_available_dlv_day])
+              }
+              $('#no_today').fadeIn();
+            }
+          }
+        }
+      })
+    })
+
+
+    // RETRAIT CHOICE
+    // same for zip retrait
+    $('#zip_retrait').keyup(function() {
+      if ($(this).val().length == 5) {
+        $('#zip_btn_retrait').attr('disabled', false)
+      } else {
+        $('#zip_btn_retrait').attr('disabled', true)
+      }
+
+    })
+
+    // Set marker object
+    var geojson = {
+      type: 'FeatureCollection',
+      features: []
+    }
+
+
+    // function get map + zapiet call
+    var call_pickup = function() {
+      $.ajax({
+        method: "POST",
+        url: "https://api.zapiet.com/v4.0/pickup/locations?shop=mes-voisins-producteurs2.myshopify.com",
+        data: { "shop": "mes-voisins-producteurs2.myshopify.com" },
+        dataType: 'json',
+        success: function(useremail) {
+          var uu = useremail
+          console.log(uu);
+        },
+        error: function(xhr, status, err) {},
+        complete: function(xhr, status) {
+          if (status === 'error' || !xhr.responseText) {
+            // if error, no delivery in your town
+          } else {
+            json_data_loc = JSON.parse(xhr.responseText);
+            var pickup_today = []
+            $('#entreprise-select').append('<option value="" disabled selected>Faites votre choix</option>')
+            $('#loc-select').append('<option value="" disabled selected>Faites votre choix</option>')
+            json_data_loc.locations.forEach(function(loc) {
+              if (!loc.opening_hours[textual_day].closed) {
+                pickup_today.push(loc);
+                console.log(loc.company_name);
+                if (loc.company_name.includes('personnel')) {
+
+                  var single_entreprise = '<option value="' + loc.id + '"'
+                  single_entreprise += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
+                  single_entreprise += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
+                  single_entreprise += ' data-slot-interval="' + 30 + '"'
+                  single_entreprise += ' data-addr1="' + loc.address_line_1 + '"'
+                  single_entreprise += ' data-addr2="' + loc.address_line_2 + '"'
+                  single_entreprise += ' data-city="' + loc.city + '"'
+                  single_entreprise += ' data-zip="' + loc.postal_code + '"'
+                  single_entreprise += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
+                  single_entreprise += ' data-company_name="' + loc.company_name + '"'
+                  single_entreprise += '>' + loc.company_name + '</option>'
+
+                  $('#entreprise-select').append(single_entreprise)
+                } else {
+                  var single_loc = '<option value="' + loc.id + '"'
+                  single_loc += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
+                  single_loc += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
+                  single_loc += ' data-slot-interval="' + 30 + '"'
+                  single_loc += ' data-addr1="' + loc.address_line_1 + '"'
+                  single_loc += ' data-addr2="' + loc.address_line_2 + '"'
+                  single_loc += ' data-city="' + loc.city + '"'
+                  single_loc += ' data-zip="' + loc.postal_code + '"'
+                  single_loc += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
+                  single_loc += ' data-company_name="' + loc.company_name + '"'
+                  single_loc += '>' + loc.company_name + '</option>'
+                  $('#loc-select').append(single_loc)
+                }
+                geojson.features.push({ id: loc.id, type: 'Feature', geometry: { type: 'Point', coordinates: [loc.longitude, loc.latitude] }, properties: { title: loc.company_name, description: 'de ' + loc.opening_hours[textual_day].opens + " à " + loc.opening_hours[textual_day].closes } });
+              } else {
+                if (loc.company_name.includes('personnel')) {
+
+                  var single_entreprise = '<option disabled value=' + loc.id + loc.id + '"'
+                  single_entreprise += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
+                  single_entreprise += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
+                  single_entreprise += ' data-slot-interval="' + 30 + '"'
+                  single_entreprise += ' data-addr1="' + loc.address_line_1 + '"'
+                  single_entreprise += ' data-addr2="' + loc.address_line_2 + '"'
+                  single_entreprise += ' data-city="' + loc.city + '"'
+                  single_entreprise += ' data-zip="' + loc.postal_code + '"'
+                  single_entreprise += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
+                  single_entreprise += ' data-company_name="' + loc.company_name + '"'
+                  single_entreprise += '>' + loc.company_name + '</option>'
+
+                  $('#entreprise-select').append(single_entreprise)
+                } else {
+                  var single_loc = '<option disabled value="' + loc.id + '"'
+                  single_loc += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
+                  single_loc += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
+                  single_loc += ' data-slot-interval="' + 30 + '"'
+                  single_loc += ' data-addr1="' + loc.address_line_1 + '"'
+                  single_loc += ' data-addr2="' + loc.address_line_2 + '"'
+                  single_loc += ' data-city="' + loc.city + '"'
+                  single_loc += ' data-zip="' + loc.postal_code + '"'
+                  single_loc += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
+                  single_loc += ' data-company_name="' + loc.company_name + '"'
+                  single_loc += '>' + loc.company_name + '</option>'
+                  $('#loc-select').append(single_loc)
+                }
+              }
+
+            });
+
+            if ($("#entreprise-select option").length == 0) { console.log("pas d'entreprise aujourd'hui"); }
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoidHJvbmRpbyIsImEiOiJjanFxZjh6MGgwYXJvNDRrMHFjZHBpNDdmIn0.ioTp3niVhdCwcGjThH9TVQ';
+
+
+
+            var map = new mapboxgl.Map({
+              container: 'map',
+              style: 'mapbox://styles/mapbox/streets-v11',
+              center: [3.066667, 50.633333], // starting position
+              zoom: 11
+            });
+
+            map.addControl(new mapboxgl.NavigationControl());
+
+
+            if ($('.relais-map').length > 0) {
+              // $('.relais-map').find('.featured-link--wrap').empty().append("<div id='relais-map'></div>")
+
+              // var map2 = new mapboxgl.Map({
+              //   container: 'relais-map',
+              //   style: 'mapbox://styles/mapbox/streets-v11',
+              //   center: [3.066667, 50.633333], // starting position
+              //   zoom: 11
+              // });
+              // map2.addControl(new mapboxgl.NavigationControl());
+              $('.relais-map').find('.featured-link--wrap').empty().append("<iframe src='https://www.google.com/maps/d/embed?mid=1lmmBOdFHSZZ1m6w0fkHiMmmpNmos6GC4&hl=fr' width='100%' height='480'></iframe>")
+
+            }
+
+
+            geojson.features.forEach(function(marker) {
+              // create a HTML element for each feature
+              var el = document.createElement('div');
+              el.className = 'marker ' + marker.id;
+              el.addEventListener('click', function(elmt) {
+                var loc_id = elmt.currentTarget.classList[1];
+                $('#loc-select').val(loc_id);
+                $('#loc-select').trigger('change');
+              });
+
+              var el2 = document.createElement('div');
+              el2.className = 'marker ' + marker.id;
+
+              // make a marker for each feature and add to the map
+              new mapboxgl.Marker(el)
+                .setLngLat(marker.geometry.coordinates)
+                .addTo(map)
+
+              // if ($('.relais-map').length > 0) {
+
+
+              //   new mapboxgl.Marker(el2)
+              //     .setLngLat(marker.geometry.coordinates)
+              //     .addTo(map2)
+              // }
+
+            });
+            $('#loc-select').change(function() {
+              var choice = $(this).val();
+              var coord = $('option[value=' + choice + ']').attr('data-coord').split(',');
+              map.flyTo({ center: coord, zoom: 11 });
+            });
+            $('#zip_btn_retrait').click(function() {
+              var zip_code = $('#zip_retrait').val();
+              $.ajax({
+                method: "GET",
+                url: "https://api.mapbox.com/geocoding/v5/mapbox.places/" + zip_code + ".json?access_token=pk.eyJ1IjoibWF0dGZpY2tlIiwiYSI6ImNqNnM2YmFoNzAwcTMzM214NTB1NHdwbnoifQ.Or19S7KmYPHW8YjRz82v6g&cachebuster=1564583779753&autocomplete=false&country=fr&types=postcode",
+                dataType: 'json',
+                success: function(useremail) {},
+                error: function(xhr, status, err) {},
+                complete: function(xhr, status) {
+                  if (status === 'error' || !xhr.responseText) {
+                    // if error, no delivery in your town
+                  } else {
+                    json_data_zip = JSON.parse(xhr.responseText);
+                    map.flyTo({ center: json_data_zip.features[0].geometry.coordinates, zoom: 11 });
+                  }
+                }
+              })
+            })
+          }
+        }
+      })
+    }
+
+    call_pickup();
+
+    // On click on continue (save_and_next)
+
+    if (Cookies.get('dlvy') == undefined || Cookies.get('dlvy') == "") {
+      var dlvy = {
+        mode: false,
+        slot_id: false,
+        day: false,
+        code_postal: false,
+        valid: false,
+        pickup_id: null,
+        delivery_location_id: null
+      }
+
+      Cookies.set('dlvy', dlvy, {expires: expire})
+    } else {
+      var dlvy = JSON.parse(Cookies.get('dlvy'))
+    }
+
+
+
+
+
+      $('.save_and_next').click(function(e) {
+        e.preventDefault();
+        if ($('input[name="method"]:checked').length > 0) {
+          dlvy.mode = $('input[name="method"]:checked').attr('id');
+        }
+        if (dlvy.mode == 'velo') {
+          dlvy.code_postal = $("#zip_velo").val();
+          dlvy.delivery_location_id = $("#zip_velo").attr('data-delivery-location-id');
+          dlvy.custom_attribute_1 = $('#zip_velo').attr("data-custom_attribute_1");
+          dlvy.company_name = $('#zip_velo').attr("data-company_name");
+
+          // disabled other method
+          dlvy.pickup_id = undefined;
+          dlvy.pickup_name = undefined;
+          // dlvy.slot_text = undefined;
+          dlvy.slot_interval = undefined;
+          dlvy.addr1 = undefined;
+          dlvy.addr2 = undefined;
+          dlvy.city = undefined;
+
+          //disable time
+          dlvy.slot_id = undefined;
+          // dlvy.slot_text = undefined;
+
+        } else if (dlvy.mode == 'retrait') {
+          dlvy.pickup_id = $('#loc-select').val();
+          dlvy.pickup_name = $('#loc-select').children(":selected").text();
+          dlvy.slot_text = $('#loc-select').children(":selected").attr("data-slot");
+          dlvy.slot_interval = $('#loc-select').children(":selected").attr("data-slot-interval");
+          dlvy.addr1 = $('#loc-select').children(":selected").attr("data-addr1");
+          dlvy.addr2 = $('#loc-select').children(":selected").attr("data-addr2");
+          dlvy.city = $('#loc-select').children(":selected").attr("data-city");
+          dlvy.code_postal = $('#loc-select').children(":selected").attr("data-zip");
+          dlvy.custom_attribute_1 = $('#loc-select').children(":selected").attr("data-custom_attribute_1");
+          dlvy.company_name = $('#loc-select').children(":selected").attr("data-company_name");
+
+          dlvy.code_postal = undefined;
+          dlvy.pickup_id = undefined;
+          dlvy.delivery_location_id = undefined;
+          dlvy.custom_attribute_1 = undefined;
+          dlvy.company_name = undefined;
+
+
+          //disable time
+          dlvy.slot_id = undefined;
+          // dlvy.slot_text = undefined;
+
+
+        } else if (dlvy.mode == 'entreprise') {
+          dlvy.pickup_id = $('#entreprise-select').val();
+          dlvy.pickup_name = $('#entreprise-select').children(":selected").text();
+          dlvy.slot_text = $('#entreprise-select').children(":selected").attr("data-slot");
+          dlvy.slot_interval = $('#entreprise-select').children(":selected").attr("data-slot-interval");
+          dlvy.addr1 = $('#entreprise-select').children(":selected").attr("data-addr1");
+          dlvy.addr2 = $('#entreprise-select').children(":selected").attr("data-addr2");
+          dlvy.city = $('#entreprise-select').children(":selected").attr("data-city");
+          dlvy.code_postal = $('#entreprise-select').children(":selected").attr("data-zip");
+          dlvy.custom_attribute_1 = $('#entreprise-select').children(":selected").attr("data-custom_attribute_1");
+          dlvy.company_name = $('#entreprise-select').children(":selected").attr("data-company_name");
+
+          dlvy.code_postal = undefined;
+          dlvy.pickup_id = undefined;
+          dlvy.delivery_location_id = undefined;
+          dlvy.custom_attribute_1 = undefined;
+          dlvy.company_name = undefined;
+
+          //disable time
+          dlvy.slot_id = undefined;
+          // dlvy.slot_text = undefined;
+
+        }
+        dlvy.valid = false;
+        dlvy.day = today_date;
+        dlvy.textual_day = textual_day;
+
+        Cookies.set('dlvy', dlvy, {expires: expire})
+        if (window.location.pathname == "/") {
+
+          window.location.href = '/supermarche'
+
+        } else {
+
+          $.fancybox.close($('.deliverypopup'));
+          if (dlvy.mode == 'velo') {
+            getTimeSlot();
+            slotPopup();
+          } else if (dlvy.mode == 'retrait') {
+            getPickUpTimeSlot();
+            slotPopup();
+          } else if (dlvy.mode == 'entreprise') {
+            getPickUpTimeSlot();
+            slotPopup();
+          }
+          cookie_valid();
+
+        }
+      })
+
+
+
+
+
+
+
+  var interv = function() {
+    if (Cookies.get('eg_cookieconsent_status') != 'allow') {
+      if ($('.eg-cc-dismiss').length > 0) {
+        $('.eg-cc-dismiss').addClass('eg-cc-allow').removeClass('eg-cc-dismiss').attr('aria-label', 'allow cookie message')
+      }
+    } else {
+      clearInterval(intervalId);
+    }
+  }
+  var intervalId = setInterval(interv, 1000)
+
+
+
+    var cookie_valid = function() {
+      console.log('COOKIE VALID BEGIN');
+
+      var cookie = JSON.parse(Cookies.get('dlvy'));
+      cookie.valid = false;
+      var valid_date = cookie.day == today_date;
+      var valid_day = cookie.textual_day == textual_day;
+      var valid_mode = cookie.mode != false;
+
+      if (cookie.mode == 'retrait') {
+        var valid_pickup_id = (cookie.pickup_id != false && (cookie.delivery_location_id == false || cookie.delivery_location_id == undefined))
+      } else if (cookie.mode == 'velo') {
+        var valid_dlvy_id = (cookie.delivery_location_id != false && (cookie.pickup_id == false || cookie.pickup_id == undefined))
+      }
+
+
+      var valid_zip = cookie.zip != false;
+      var valid_pickup_id = cookie.pickup_id != false;
+      var valid_slot_id = cookie.slot_id != undefined && cookie.slot_id != false;
+
+
+      if (valid_date && valid_day && valid_mode && (valid_dlvy_id || valid_pickup_id) && valid_slot_id) {
+        if (valid_slot_id = true) {
+
+        } else{
+
+        }
+        cookie.valid = true;
+
+        // zapiet variables
+        var checkout_method = cookie.mode == 'retrait' ? 'pickup' : 'delivery'
+        var delivery_date = cookie.day
+        var delivery_time = cookie.slot_text
+        var delivery_slot_id = cookie.slot_id
+        var formated_date = cookie.day.split('-').join('/').replace(/<.*?>/g, '')
+        var validadate = function(date) {
+          var splitted = date.split('/')
+          if (splitted[1].length == 1) {
+            splitted[1] = "0" + splitted[1]
+          }
+          if (splitted[2].length == 1) {
+            splitted[2] = "0" + splitted[2]
+          }
+          return splitted.join('/')
+        }
+        formated_date = validadate(formated_date)
+
+
+        if (cookie.mode == "velo") {
+          CartJS.clearAttributes();
+          CartJS.setAttributes({
+              "Checkout-Method": checkout_method,
+              "Delivery-Date": formated_date,
+              "Delivery-Time": delivery_time,
+              "Delivery-Slot-Id": delivery_slot_id,
+              "Delivery-Location-Id": cookie.delivery_location_id,
+              "Custom-Attribute-1": cookie.custom_attribute_1,
+              "Custom-Attribute-2": cookie.custom_attribute_2,
+              "Custom-Attribute-3": cookie.custom_attribute_3
+            }, options = { success: function(data) {
+              if (window.location.pathname.includes("/cart")) {
+                postCheckout();
+                console.log("attributes");
+              }
+            }
+          });
+        } else if (cookie.mode == "retrait" || cookie.mode == "entreprise") {
+          CartJS.clearAttributes(options = {
+            success: function(data) {
+                CartJS.setAttributes({
+                   "Checkout-Method": checkout_method,
+                   "Pickup-Location-Id": cookie.pickup_id,
+                   "Pickup-Location-Company": cookie.pickup_name,
+                   "Pickup-Location-Address-Line-1": cookie.addr1,
+                   "Pickup-Location-Address-Line-2": cookie.addr2,
+                   "Pickup-Location-City": cookie.city,
+                   "Pickup-Location-Region": "",
+                   "Pickup-Location-Postal-Code": cookie.postal_code,
+                   "Pickup-Location-Country": "France",
+                   "Pickup-Date": formated_date,
+                   "Pickup-Time": cookie.slot_text.split(' - ')[0],
+                   "Custom-Attribute-1": cookie.custom_attribute_1,
+                   "Custom-Attribute-2": cookie.custom_attribute_2,
+                   "Custom-Attribute-3": cookie.custom_attribute_3
+                 }, options = { success: function(data) {
+                     if (window.location.pathname.includes("/cart")) {
+                       postCheckout();
+                     }
+                   }
+                 });
+              }
+          });
+
+
+        } else {
+          CartJS.clearAttributes();
+          CartJS.setAttributes({
+            "Checkout-Method": checkout_method,
+            "Shipping-Date": formated_date,
+            "Custom-Attribute-1": cookie.custom_attribute_1,
+            "Custom-Attribute-2": cookie.custom_attribute_2,
+            "Custom-Attribute-3": cookie.custom_attribute_3
+          }, options = { success: function(data) {
+              if (window.location.pathname.includes("/cart")) {
+                postCheckout();
+              }
+            }
+          });
+        }
+
+
+        $cart = CartJS.cart
+        $.ajax({
+          url: '/cart/update.js',
+          dataType: 'json',
+          cache: false,
+          type: 'post',
+
+          data: $cart.attributes,
+          success: function(data) {
+
+            CartJS.init(data, {
+              "dataAPI": false,
+              "requestBodyClass": "loading"
+            });
+
+            console.log('cookievalid');
+            console.log(CartJS.cart.attributes);
+          },
+
+        });
+        Cookies.set('dlvy', cookie, {expires: expire});
+        if (cookie.mode == 'retrait') {
+          $('.mode-dlvy').text("Retrait chez " + cookie.pickup_name);
+        } else if (cookie.mode == 'velo') {
+          $('.mode-dlvy').html("Livré chez vous <i class='fas fa-bicycle'></i>");
+        } else {
+          $('.mode-dlvy').text("Retrait à votre travail");
+        }
+
+        var dadate = new Date
+        // if (days[dadate.getDay()] == textual_day) {
+        //   $('.slot-dlvy').text(cookie.slot_text + ' | ' + "aujourd'hui")
+        // } else {
+        if (cookie.slot_text.indexOf("{{settings.placeholder_slot}}") == -1) {
+          $('.slot-dlvy').text(cookie.slot_text + ' | ' + days_fr[days.indexOf(cookie.textual_day)])
+        } else {
+          $('.slot-dlvy').text(cookie.slot_text)
+
+        }
+        // }
+
+        $(".dlvy_bar *").css('padding', '5px 8px')
+
+        if (window.location.pathname.includes("/cart")) {
+
+          // si c'est un point de retrait, remplir l'adresse
+          if (cookie.mode == "retrait" || cookie.mode == "entreprise") {
+            $('#addr1').val(cookie.addr1)
+            $('#method').val('pickup')
+            $(".checkoutMethod").removeClass('active')
+            $('#addr2').val(cookie.addr2)
+            $('#city').val(cookie.city)
+            $('#locale').val('fr-FR')
+            $('#province').val('')
+            $('#company').val(cookie.pickup_name)
+            $('#zip').val(cookie.code_postal)
+            $('#custom_attribute_1').val(cookie.custom_attribute_1)
+          } else if (cookie.mode == "velo") {
+            $('#zip').val(cookie.code_postal)
+          }
+
+        }
+
+
+      } else if (valid_date && valid_day && valid_mode && (valid_dlvy_id || valid_pickup_id)) {
+        $.fancybox.close($('.deliverypopup'));
+        if (cookie.mode == 'velo') {
+          getTimeSlot();
+          slotPopup();
+        } else if (cookie.mode == 'retrait') {
+          getPickUpTimeSlot();
+          slotPopup();
+        } else if (cookie.mode == 'entreprise') {
+          getPickUpTimeSlot();
+          slotPopup();
+        }
+
+      } else {
+
+
+        deliveryForm();
+
+      }
+    }
+    $('.dlvy_bar').click(function() {
+
+      deliveryForm();
+
+    });
+    var getPickUpTimeSlot = function() {
+      var cook = JSON.parse(Cookies.get('dlvy'))
+
+      var opens = cook.slot_text.split(' - ')[0]
+      var closes = cook.slot_text.split(' - ')[1]
+
+      var to_from = new Date()
+      to_from.setHours(opens.split(':')[0]);
+      to_from.setMinutes(opens.split(':')[1]);
+      var to_until = new Date()
+      to_until.setHours(closes.split(':')[0]);
+      to_until.setMinutes(closes.split(':')[1]);
+
+      var slots = []
+
+      while (to_from < to_until) {
+        var from = to_from.getHours() + ":" + (to_from.getMinutes() < 10 ? '0' : '') + to_from.getMinutes();
+        to_from.setMinutes(to_from.getMinutes() + 30)
+        var until = to_from.getHours() + ":" + (to_from.getMinutes() < 10 ? '0' : '') + to_from.getMinutes()
+        slots.push({ "id": 999, "from": from, "until": until })
+      }
+      var dadate = new Date
+      if (days[dadate.getDay()] == textual_day) {
+        $('.day_today').text("aujourd'hui");
+      } else {
+        $('.day_today').text(days_fr[days.indexOf(JSON.parse(Cookies.get('dlvy')).textual_day)]  + '-' + JSON.parse(Cookies.get('dlvy')).day.split('-').reverse().join('/') );
+      }
+      $('#slots').empty()
+      slots.forEach(function(slot) {
+        $('#slots').append('<option id="' + slot.id + '">' + slot.from + ' - ' + slot.until)
+      })
+    }
+    var getTimeSlot = function() {
+      // call zapiet
+      console.log('getTimeSlot');
+
+      var cook = Cookies.getJSON('dlvy')
+      if (cook.pickup_id != undefined) {
+        var loc_id = cook.pickup_id
+      } else if (cook.delivery_location_id != undefined) {
+        var loc_id = cook.delivery_location_id
+      }
+      var dlvy_day = cook.day
+      var zip = cook.code_postal
+      console.log(dlvy_day + zip + loc_id);
+      $.ajax({
+
+
+        method: "GET",
+        url: "https://api.zapiet.com/v4.0/delivery/locations/"+loc_id+"/calendar/"+dlvy_day+"?shop=mes-voisins-producteurs2.myshopify.com&postal_code="+zip,
+        // method: "POST",
+        // url: "https://api.zapiet.com/v4.0/delivery/locations?shop=mes-voisins-producteurs2.myshopify.com",
+        // data: { "geoSearchQuery": JSON.parse(Cookies.get('dlvy')).code_postal, "shop": "mes-voisins-producteurs2.myshopify.com" },
+        dataType: 'json',
+        success: function(slots) {console.log(slots);},
+        error: function(xhr, status, err) {},
+        complete: function(xhr, status) {
+          console.log(xhr);
+          if (status === 'error' || !xhr.responseText || xhr.responseJSON.length == 0) {
+            // if error, no delivery in your town
+            console.log("error ?");
+            $('.time_slot>*').hide();
+            $('#no_dlv2').fadeIn();
+
+            $('.timeslot__lightbox .fancybox-close-small').fadeIn();
+            var cook = Cookies.getJSON('dlvy')
+            cook.valid = true
+            cook.slot_id = true
+            cook.slot_text = "{{ settings.placeholder_slot }}"
+            Cookies.set('dlvy',cook, {expires: expire})
+            if (window.location.pathname.includes("/cart")) {
+              $('#checkout').text("{{settings.placeholder_slot}}").attr('disabled', 'disabled').addClass('disabled')
+            }
+
+          } else {
+
+            json_data = JSON.parse(xhr.responseText);
+            console.log(json_data);
+            console.log("_____2__hoho___");
+
+            $('.day_today').text(days_fr[days.indexOf(JSON.parse(Cookies.get('dlvy')).textual_day)] + '-' + JSON.parse(Cookies.get('dlvy')).day.split('-').reverse().join('/'));
+            $('#999').remove()
+            $('#slots').empty()
+
+            for (var i = json_data.length - 1; i >= 0; i--) {
+              $('#slots').append('<option id="' + json_data[i].id + '">' + json_data[i].available_from + ' - ' + json_data[i].available_until)
+            }
+            if (window.location.pathname.includes("/cart") && cook.slot_id != true ) {
+              $('#checkout').text("Passer ma commande").removeAttr('disabled').removeClass('disabled')
+            } else if (window.location.pathname.includes("/cart") && cook.slot_id == true ) {
+              $('#checkout').text("Veuillez choisir une méthode de livraison")
+            }
+
+
+          }
+        }
+      })
+
+    }
+
+    var slotPopup = function() {
+      $.fancybox.open($('.time_slot'), {
+        baseClass: 'timeslot__lightbox',
+        hash: false,
+        padding: 15,
+        infobar: false,
+        toolbar: false,
+        loop: true,
+        clickContent: false,
+        clickSlide: false,
+        clickOutside: false,
+        touch: false,
+
+        // smallBtn : true,
+        mobile: {
+          preventCaptionOverlap: false,
+          toolbar: true,
+          buttons: [
+
+          ]
+        }
+      });
+    }
+
+    $('.save_and_next2').click(function() {
+
+      var cooki = JSON.parse(Cookies.get('dlvy'))
+      cooki.slot_id = $('#slots').children(":selected").attr("id");
+      console.log(cooki.slot_id );
+      cooki.slot_text = $('#slots').val();
+
+      Cookies.set('dlvy', cooki, {expires: expire});
+      cookie_valid();
+      $.fancybox.close($('.deliverypopup'));
+      $.fancybox.close($('.time_slot'));
+
+    })
+
+    if (window.location.pathname != "/") {
+
+      $('#retrait_save_and_next').click(function() {
+
+        $.fancybox.close($('.deliverypopup'));
+        getTimeSlot();
+        slotPopup();
+        cookie_valid();
+      })
+
+    }
+    $('#entreprise-select').change(function() {
+      $('#entreprise_save_and_next').css("pointer-events","inherit").css("opacity", "1")
+    })
+    $('#loc-select').change(function() {
+      $('#retrait_save_and_next').css("pointer-events","inherit").css("opacity", "1")
+    })
+    var deliveryForm = function() {
+      var old_cart;
+      CartJS.getCart(options = {success: function(data) {
+          console.log(data);
+          old_cart = data
+          CartJS.clear()
+          Cookies.set('cart', '')
+          var items = {"items":[]}
+          console.log(items);
+          console.log( old_cart.items);
+          old_cart.items.forEach(function(item) {
+            items['items'].push( { "quantity": item.quantity, "id": item.variant_id } )
+          })
+          console.log(items);
+          $.ajax({
+            url: '/cart/add.js',
+            dataType: 'json',
+            cache: false,
+            type: 'post',
+            data: items,
+            success: function(data) {
+              console.log('done');
+            }
+          })
+        }
+      })
+
+      $.fancybox.open($('.deliverypopup'), {
+        baseClass: 'delivery__lightbox',
+        hash: false,
+        padding: 15,
+        infobar: false,
+        toolbar: false,
+        loop: true,
+        clickContent: false,
+        clickSlide: false,
+        clickOutside: false,
+        touch: false,
+
+        // smallBtn : true,
+        mobile: {
+          preventCaptionOverlap: false,
+          toolbar: true,
+          buttons: [
+
+          ]
+        }
+      });
+    }
+    var postZapietID = function() {
+      console.log("postZapietID");
+      var cart = CartJS.cart
+      var lineitems = []
+      var checkoutId = cart.token;
+      var qte = cart.items[0].quantity
+      var variant_ID = cart.items[0].id
+
+      var dataplus = {};
+      var tmp = {};
+
+      tmp[cart.items[0].id] = "0";
+      $.extend(dataplus, tmp);
+
+
+
+      var data = {
+        id: variant_ID,
+        quantity: qte,
+        properties: {
+          "_ZapietId": checkoutId,
+        }
+      }
+
+      console.log(dataplus)
+      console.log(data);
+
+      $.ajax({
+        url: '/cart/update.js',
+        dataType: 'json',
+        cache: false,
+        type: 'post',
+        data: {
+          updates: dataplus
+        },
+        success: function(hop) {
+          console.log(hop);
+          $.ajax({
+            url: '/cart/add.js',
+            dataType: 'json',
+            cache: false,
+            type: 'post',
+            data: data,
+            success: function(data) {
+              console.log("hoho");
+              console.log(data);
+              console.log("hoho");
+
+
+              $('#cart_form').submit()
+
+
+            },
+
+          });
+        }
+      })
+
+
+
+
+    }
+    var postCheckout = function() {
+      if (Cookies.getJSON('dlvy').slot_text.indexOf("{{settings.placeholder_slot}}") == -1) {
+        console.log("postCheckout");
+        var cook = JSON.parse(Cookies.get('dlvy'))
+        var cart = CartJS.cart
+        var date_now = new Date
+        var lineitems = []
+        var checkoutId = cart.token;
+        cart.items.forEach(function(lineitem) {
+          lineitems.push({
+            "key": lineitem.key,
+            "properties": []
+          })
+        })
+        if (lineitems.length > 0) {
+          lineitems[0].properties = [{ "name": "_ZapietId", "value": checkoutId }]
+        }
+
+        cook.pickup_id
+
+        if (cook.mode == 'retrait' || cook.mode == 'entreprise') {
+          var data = {
+            "updated_at": date_now.toISOString(),
+            "cart_token": cart.token,
+            "note_attributes": [{
+                "name": "Checkout-Method",
+                "value": 'pickup'
+              },
+              {
+                "name": "Pickup-Location-Id",
+                "value": cook.pickup_id
+              }
+            ],
+            "line_items": lineitems
+          }
+
+        } else {
+
+          var newDate = cook.day;
+          var expr = /\d+/g;
+          var parts = newDate.match(expr);
+          var json_date = new Date(parts[0], parts[1], parts[2]);
+          json_date = new Date(json_date.setHours(parseInt(cook.slot_text.split(' - ')[0].split(':')[0]) + 1))
+          json_date = new Date(json_date.setMinutes(cook.slot_text.split(' - ')[0].split(':')[1]))
+          json_date = json_date.toISOString().split('.').shift() + 'Z';
+          var data = {
+            "updated_at": date_now.toISOString(),
+            "cart_token": cart.token,
+
+            "note_attributes": [{
+                "name": "Checkout-Method",
+                "value": 'delivery'
+              },
+              {
+                "name": "Delivery-Location-Id",
+                "value": cook.delivery_location_id
+              },
+              {
+                "name": "Delivery-Date",
+                "value": json_date}
+            ],
+            "line_items": lineitems
+          }
+        }
+
+        $.ajax({
+          method: "POST",
+          url: "https://rates.storepickup.io/v1/checkouts",
+          contentType: "application/json",
+          dataType: "json",
+          headers: {
+            "X-Shopify-Shop-Domain": "mes-voisins-producteurs2.myshopify.com",
+            "X-Shopify-Topic": "checkouts/update"
+          },
+          data: JSON.stringify(data),
+          success: function(useremail) {
+          },
+          error: function(xhr, status, err) {
+            // console.log(err);
+          },
+          complete: function(xhr, status) {
+            // console.log(xhr.responseJSON)
+          }
+        })
+      }
+
+    }
+
+    if (window.location.pathname != "/" && !window.location.pathname.includes("/account") ) {
+      cookie_valid();
+    } else {
+      $('.dlvy_bar').hide();
+      console.log(currentTime.toLocaleDateString('FR') + today_date);
+      if (is_closed) {
+        var $alertIsClosed = "{{ settings.closed_day }}";
+        $('.preheader-text').after("<p class='alert is_closed'>" + $alertIsClosed.replace('$$$$', delivery_hour_limit.getHours() + 'h' + (delivery_hour_limit.getMinutes() < 10 ? '0' : '') + delivery_hour_limit.getMinutes()) + " " + days_fr[days.indexOf(textual_day)] + ' (' + currentTime.toLocaleDateString('FR') + ')' + "</p>")
+      } else if (not_today) {
+        var $alertNotToday = "{{ settings.alert_not_today }}";
+        $('.preheader-text').after("<p class='alert not_today'>" + $alertNotToday.replace('$$$$', delivery_hour_limit.getHours() + 'h' + (delivery_hour_limit.getMinutes() < 10 ? '0' : '') + delivery_hour_limit.getMinutes()) + " " + days_fr[days.indexOf(textual_day)]  + ' (' + currentTime.toLocaleDateString('FR') + ')' + "</p>")
+      }
+    }
+    if (window.location.pathname.includes("/cart")) {
+      if ((Cookies.getJSON('dlvy').slot_text != undefined && Cookies.getJSON('dlvy').slot_text != false) && Cookies.getJSON('dlvy').slot_text.indexOf("{{settings.placeholder_slot}}") > -1) {
+        $('#checkout').text("{{settings.placeholder_slot}}").attr('disabled', 'disabled').addClass('disabled')
+      }
+      var cook = JSON.parse(Cookies.get('dlvy'))
+      if (cook.valid == true) {
+        cook.valid = false
+        cook.slot_id = undefined
+        Cookies.set('dlvy', cook)
+        cookie_valid()
+      }
+    }
+
+
+    // if (window.location.pathname.includes("/cart")) {
+
+    //   // si c'est un point de retrait, remplir l'adresse
+    //   var cook = JSON.parse(Cookies.get('dlvy'));
+    //   if (cook.mode == "retrait" || cook.mode == "entreprise") {
+    //     $('#addr1').val(cook.addr1)
+    //     $('#method').val(cook.mode)
+    //     $(".checkoutMethod").removeClass('active')
+    //     $('#addr2').val(cook.addr2)
+    //     $('#city').val(cook.city)
+    //     $('#locale').val('fr-FR')
+    //     $('#province').val('')
+    //     $('#company').val(cook.pickup_name)
+    //     $('#zip').val(cook.code_postal)
+    //     $('#custom_attribute_1').val(cook.custom_attribute_1)
+    //   } else if (cook.mode == "velo") {
+    //     $('#zip').val(cook.code_postal)
+    //   }
+
+    //   postCheckout();
+    // }
+
+
+
+    // prehome popup
+    $('.preheader.closed').click(function() {
+      $('.preheader').removeClass('closed').addClass('open');
+      $('html,body').animate({ scrollTop: 0 }, 'slow');
+      $('.scroll-down').hide()
+      if ($(window).width() < 768) {
+        $('body').css('overflow', 'hidden')
+      }
+    })
+
+
+    $('#close_popup').click(function() {
+      $('#zip_validator, .retrait, .entreprise, #no_dlv, #no_today, #dlv_ok_today').hide();
+      setTimeout(function() {
+        $('.preheader').removeClass('open').addClass('closed');
+        $('.scroll-down').show()
+        if ($(window).width() < 768) {
+          $('body').css('overflow', 'initial')
+        }
+        $('#dlv_choice input[type="radio"]').each(function() {
+          $(this).prop("checked", false);
+        })
+      }, 10);
+    })
+
+    var getCart = function() {
+      $.ajax({
+        method: "GET",
+        url: "/cart",
+        dataType: 'json',
+        complete: function(data) {
+          // console.log(data.responseJSON);
+          CartJS.init(data.responseJSON, {
+            "dataAPI": false,
+            "requestBodyClass": "loading"
+          });
+        }
+      })
+    }
+
+    if ($(window).width() > 798) {
+      if ($('.collection_description').height() > 125) {
+        var oldHeight = $('.collection_description').height();
+        $('.collection_description').addClass('open');
+        $('#readMore, .fade').css('display', 'block');
+
+        var i = 0;
+        $('#readMore').on('click', function(e) {
+          i += 1
+          $('#readMore').text((i % 2) ? 'Voir moins...' : 'Voir plus...');
+          (i % 2) ? $('.fade').fadeOut(): $('.fade').fadeIn();
+          $('.collection_description').animate({ height: (i % 2) ? oldHeight : '125px' }, 200);
+        });
+      }
+    }
+    $(document).keydown(function(e) {
+        if (e.keyCode == 27) {
+          e.preventDefault()
+          e.stopImmediatePropagation()
+          return false;
+        }
+    });
+
+  })
+})
+

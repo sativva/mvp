@@ -1,0 +1,109 @@
+<div class="container">
+  {% if block.settings.title != blank %}
+    <h2 class="title center">{{ block.settings.title }}</h2>
+  {% endif %}
+</div>
+<div class="container gallery-slider slider" data-flickity='{"pageDots": false, {% if block.settings.autoplay %}"autoPlay": true,{% endif %}  "wrapAround": true }'>
+  <div class="four column thumbnail gallery-image-wrapper">
+    {% if block.settings.detail_image_1 %}
+      <div class="gallery-cell"  style="padding: {{block.settings.padding}}px">
+          {% include 'image-element', image: block.settings.detail_image_1, alt: block.settings.detail_image_1.alt %}
+      </div>
+    {% elsif block.settings.detail_image_link_1 %}
+    <div class="gallery-cell"  style="padding: {{block.settings.padding}}px">
+      <img src="{{block.settings.detail_image_link_1}}" alt="">
+
+    </div>
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+
+    {% if block.settings.title_img_1 != blank %}
+      <p class="title-img center">{{ block.settings.title_img_1 }}</p>
+    {% endif %}
+    {% if block.settings.text_img_1 != blank %}
+      <p class="text-img center">{{ block.settings.text_img_1 }}</p>
+    {% endif %}
+  </div>
+  <div class="four column thumbnail gallery-image-wrapper">
+    {% if block.settings.detail_image_2 %}
+      <div class="gallery-cell"  style="padding: {{block.settings.padding}}px">
+
+          {% include 'image-element', image: block.settings.detail_image_2, alt: block.settings.detail_image_2.alt %}
+      </div>
+    {% elsif block.settings.detail_image_link_2 %}
+    <div class="gallery-cell"  style="padding: {{block.settings.padding}}px">
+      <img src="{{block.settings.detail_image_link_2}}" alt="">
+
+    </div>
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+
+    {% if block.settings.title_img_2 != blank %}
+      <p class="title-img center">{{ block.settings.title_img_2 }}</p>
+    {% endif %}
+    {% if block.settings.text_img_2 != blank %}
+      <p class="text-img center">{{ block.settings.text_img_2 }}</p>
+    {% endif %}
+  </div>
+  <div class="four column thumbnail gallery-image-wrapper">
+    {% if block.settings.detail_image_3 %}
+      <div class="gallery-cell"  style="padding: {{block.settings.padding}}px">
+
+          {% include 'image-element', image: block.settings.detail_image_3, alt: block.settings.detail_image_3.alt %}
+      </div>
+    {% elsif block.settings.detail_image_link_3 %}
+    <div class="gallery-cell"  style="padding: {{block.settings.padding}}px">
+      <img src="{{block.settings.detail_image_link_3}}" alt="">
+    </div>
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+
+    {% if block.settings.title_img_3 != blank %}
+      <p class="title-img center">{{ block.settings.title_img_3 }}</p>
+    {% endif %}
+    {% if block.settings.text_img_3 != blank %}
+      <p class="text-img center">{{ block.settings.text_img_3 }}</p>
+    {% endif %}
+  </div>
+  <div class="four column thumbnail gallery-image-wrapper">
+    {% if block.settings.detail_image_4 %}
+      <div class="gallery-cell"  style="padding: {{block.settings.padding}}px">
+          {% include 'image-element', image: block.settings.detail_image_4, alt: block.settings.detail_image_4.alt %}
+      </div>
+    {% elsif block.settings.detail_image_link_4 %}
+      <div class="gallery-cell"  style="padding: {{block.settings.padding}}px">
+        <img src="{{block.settings.detail_image_link_4}}" alt="">
+      </div>
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+
+    {% if block.settings.title_img_4 != blank %}
+      <p class="title-img center">{{ block.settings.title_img_4 }}</p>
+    {% endif %}
+    {% if block.settings.text_img_4 != blank %}
+      <p class="text-img center">{{ block.settings.text_img_4 }}</p>
+    {% endif %}
+  </div>
+
+
+</div>
+
+<div class="container">
+  <div class="sixteen column">
+  {% if block.settings.subtitle != blank %}
+    <p class="img_gal_subtitle">{{ block.settings.subtitle }}</p>
+  {% endif %}
+  {% if block.settings.text != blank %}
+    <p class="text">{{ block.settings.text }}</p>
+  {% endif %}
+  {% if block.settings.img_gly_button != blank %}
+    <div class="div-centrage">
+      <a class="action_button center div-centre" href="{{block.settings.img_gly_btn_link}}">{{ block.settings.img_gly_button }}</a>
+    </div>
+  {% endif %}
+  </div>
+</div>

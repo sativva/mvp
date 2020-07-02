@@ -1,0 +1,55 @@
+{% assign bio_class = '' %}
+{% for tag in product.tags %}
+  {% if tag contains 'Bio' or tag contains 'bio' %}
+		{% unless tag contains 'Conversion' or tag contains 'conversion' %}
+    		{% assign bio_class = 'bio-image' %}
+	{% endunless %}
+  {% endif %}
+{% endfor %}
+
+<div class="
+
+  thumbnail {% cycle collection_group_mobile: 'even', 'odd' %}">
+
+  {% assign collection_handles = product.collections | map: 'handle' %}
+  {% if product.featured_image.alt contains 'youtube' or image.alt contains 'vimeo' %}
+    {% assign alt_text = product.title %}
+  {% else %}
+    {% assign alt_text = product.featured_image.alt %}
+  {% endif %}
+
+  <div class="product-wrap" data-product-id="{{product.selected_or_first_available_variant.id}}">
+    <div class="relative product_image swap-{{ settings.collection_secondary_image }}">
+      <a href="{{ product.url | within: collection }}" itemprop="url">
+        <div class="image__container  {% if product.available != true %} outOfStockOverlay {% endif %}">
+          {% include 'image-element', image: product.featured_image, alt: alt_text, object_fit: settings.align_height, max_height: section.settings.collection_height %}
+        </div>
+          {% if settings.collection_secondary_image != blank %}
+            <div class="image__container {% if product.available != true %} outOfStockOverlay {% endif %}" style="position:relative">
+              <div>
+                <img src="{% if product.images[1] != blank %}{{ product.images[1] | img_url: '800x' }}{% else %}{{ product.featured_image | img_url: '800x' }}{% endif %}"
+              class="secondary lazyload"
+              alt="{{ alt_text | escape }}"
+              />
+              </div>
+
+            </div>
+          {% endif %}
+
+
+        </a>
+      {% include "product-details" %}
+      <div class="{{ bio_class }}">
+      </div>
+    </div>
+    <div class="flex-container">
+      <a class="product-info__caption {% if settings.thumbnail_hover_enabled %}hidden{% endif %}" href="{{ product.url | within: collection }}" itemprop="url">
+        {% include "product-info" %}
+      </a>
+
+    </div>
+    {% include 'collection-swatch' %}
+
+  </div>
+
+</div>

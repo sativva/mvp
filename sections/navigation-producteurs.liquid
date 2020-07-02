@@ -1,0 +1,106 @@
+<div class="barre-nav">
+	{% for block in section.blocks %}  
+  		<div class="nav-category">
+    		<img src="{{block.settings.logo-category | img_url: "25x25"}}" />
+    		<a style="font-size: {{ section.settings.category-size }}px;" href="https://www.mesvoisinsproducteurs.com/pages/page-test-lou-anne#{{ block.settings.category-anchor}}">{{ block.settings.category-name }}</a>
+  		</div>	
+    {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "Barre de navigation",
+	"settings": [
+			{
+                "type": "range",
+                "id": "category-size",
+                "min": 0,
+                "max": 20,
+                "step": 1,
+                "unit": "px",
+                "label": "Taille des liens",
+                "default": 16
+            }
+
+		],
+
+    "blocks": [
+
+            {
+              "name": "Lien de catégorie",
+              "type": "text", 
+              "settings": [
+
+                { 
+                    "type": "text",
+                    "id": "category-name",
+                    "label": "Nom de la catégorie",
+                    "default": "Catégorie"
+                },
+
+                {
+                    "type": "text",
+                    "id": "category-anchor",
+                    "info": "Doit être identique à l'identifiant de la catégorie",
+                    "label": "Ancre de la catégorie"				
+                },
+
+                { 
+                    "type": "image_picker",
+                    "id": "logo-category",
+                    "label": "Logo de la catégorie"
+                }
+            ]
+          }
+		]
+	}
+{% endschema %}
+
+
+{% stylesheet %}
+
+.barre-nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.barre-nav > div {
+	margin-left: 5px;
+	margin-right : 10px;
+	border-bottom: solid 3px white !important;
+	padding-bottom: 5px;
+}
+
+.barre-nav > div:hover {
+	border-bottom: solid 3px #3eab37 !important;
+}
+  
+.barre-nav .nav-category {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.barre-nav .nav-category  img {
+	margin-right: 5px;
+}
+
+
+@media screen and (max-width: 468px) {
+	.barre-nav {
+      flex-direction: column;
+      align-items: flex-start;
+	}
+    .barre-nav .nav-category {
+        align-items: flex-start;
+		margin-bottom: 5px;
+    }
+}
+
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

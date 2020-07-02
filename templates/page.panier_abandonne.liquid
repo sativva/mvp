@@ -1,0 +1,17 @@
+{% comment %}<img src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/Spinner-1s-200px.gif?v=1584009133" alt="loader">{% endcomment %}
+
+<button class="action_button green-button p_a_purchase btn" style="
+    margin: 200px auto;
+    text-align: center;
+    justify-content: center;
+    display: flex;"> Poursuivre vers le panier </button>
+
+{% comment %}{% assign p_a_url = "https://mesvoisinsproducteurs.com/pages/panier-abandonne?" %}
+{% for line_item in line_items %}
+{% if line_item.quantity != 0 %}
+  {% assign p_a_url = p_a_url | append: line_item.product.variants[0].id | append: ":" | append: line_item.quantity | append: "," %}
+{% endif %}
+{% endfor %}
+{{ p_a_url }}
+{% endcomment %}
+

@@ -1,0 +1,55 @@
+{% assign title = block.settings.rev_title %}
+{% assign btn = block.settings.rev_button %}
+{% assign link = block.settings.rev_link %}
+
+
+{% comment %}avis {% endcomment %}
+{% assign stars_1 = block.settings.stars_1 %}
+{% assign text_1 = block.settings.text_1 %}
+{% assign client_1 = block.settings.client_1 %}
+
+{% assign stars_2 = block.settings.stars_2 %}
+{% assign text_2 = block.settings.text_2 %}
+{% assign client_2 = block.settings.client_2 %}
+
+{% assign stars_3 = block.settings.stars_3 %}
+{% assign text_3 = block.settings.text_3 %}
+{% assign client_3 = block.settings.client_3 %}
+
+<div class="container featured_products product-{{ collection_style }}">
+  <div class="sixteen columns center homepage_content">
+    {% if title != blank %}
+      <h2 class="title">{{ title }}</h2>
+    {% endif %}
+  </div>
+</div>
+<div class="container standard--width reviews-list-container slider" data-flickity='{"pageDots": false,{% if block.settings.autoplay %}"autoPlay": true,{% endif %}  "wrapAround": true  }'>
+  <div class="one-third column testimonial-block ">
+    <div class="squared">
+      <div class="stars"></div>
+      <p class="avis">{{text_1}}</p>
+      <p class="name customer-name">{{client_1}}</p>
+    </div>
+  </div>
+  <div class="one-third column testimonial-block">
+    <div class="squared">
+      <div class="stars"></div>
+         <p class="avis">{{text_2}}</p>
+         <p class="name customer-name">{{client_2}}</p>
+    </div>
+  </div>
+  <div class="one-third column testimonial-block">
+    <div class="squared">
+      <div class="stars"></div>
+         <p class="avis">{{text_3}}</p>
+         <p class="name customer-name">{{client_3}}</p>
+    </div>
+  </div>
+</div>
+<div class="container featured_products product-{{ collection_style }} home_review-btn">
+  <div class="sixteen columns center homepage_content">
+    {% if btn != blank %}
+      <a class="action_button" href="{{link}}">{{ btn }}</a>
+    {% endif %}
+  </div>
+</div>

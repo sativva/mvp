@@ -1,0 +1,12 @@
+{% comment %}
+  The contents of the cart.liquid template can be found in /sections/cart-template.liquid
+{% endcomment %}
+
+{% section 'cart-template' %}
+
+{% if cart.item_count > 0 %}
+<div class="container">
+<h3>Produits recommandés pour vous :</h3>
+<div recomatic="cart" shop="{{shop.permanent_domain}}" product_ids="{{cart.items|map:'product'|map:'id'|join:','}}"></div>
+{% endif %}
+</div>

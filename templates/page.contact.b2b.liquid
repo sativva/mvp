@@ -1,0 +1,293 @@
+<article class="site-page" data-template-page data-template-contact>
+
+  <header class="page-masthead">
+    <h1 class="page-title">
+      {{ page.title }}
+    </h1>
+  </header>
+  
+   <div class="b2b-contact">
+    
+  
+
+    {% if page.content != blank %}
+      <div class="page-content rte" style="max-width: 80%;" id="livraison-entreprises">
+        {{ page.content }}
+      </div>
+    {% endif %}
+
+    <div class="contact-page-content">
+      {% assign has_message = false %}
+
+      {% if form.errors != blank %}
+        {% assign has_message = true %}
+        {% assign message_type = 'error' %}
+      {% endif %}
+
+      {% if form.posted_successfully? %}
+        {% assign has_message = true %}
+        {% assign message_type = 'success' %}
+      {% endif %}
+
+      {% if has_message %}
+        <div class="contact-message message--{{ message_type }}">
+          {% case message_type %}
+            {% when 'success' %}
+              <p>
+                {{ 'contact.form.post_success' | t }}
+              </p>
+            {% when 'error' %}
+              {{ form.errors | default_errors }}
+          {% endcase %}
+        </div>
+      {% endif %}
+      
+      
+     
+	{% form 'contact' %}
+      
+<!-- Nom de votre entreprise, DONE -->
+      
+      <div class="form-field">
+        {% assign value = '' %}
+        {%- if form.companyname -%}
+          {% assign value = form.companyname %}
+        {%- elsif customer -%}
+          {% assign value = customer.companyname %}
+        {%- endif -%}
+        
+
+        <input
+          class="form-field-input form-field-text {% if form.errors contains 'companyname' %}form-field-error{% endif %}"
+          id="contact_companyname"
+          name="contact[companyname]"
+          type="text"
+          placeholder="Nom de votre entreprise"
+          value="{{ value }}">
+
+       </div>
+      
+      
+      <!-- Ville où se situe votre entreprise, DONE -->
+      
+      <div class="form-field">
+        {% assign value = '' %}
+        {%- if form.city -%}
+          {% assign value = form.city %}
+        {%- elsif customer -%}
+          {% assign value = customer.city %}
+        {%- endif -%}
+
+
+        <input
+          class="form-field-input form-field-text {% if form.errors contains 'city' %}form-field-error{% endif %}"
+          id="contact_city"
+          name="contact[city]"
+          type="text"
+          placeholder="Ville où se situe votre entreprise"
+          value="{{ value }}">
+
+       </div>
+
+     
+
+<!-- Nombre d'employés de votre entreprise, LISTE DEROULANTE, DONE-->
+  
+        
+        <label for="contact_employees">Nombre d'employés de votre entreprise : </label>
+		<select id="contact_employees" name="contact[employees]">
+  		<option>0 à 10</option>
+  		<option>10 à 50</option>
+  		<option>50 à 100</option>
+  		<option>100 à 500</option>
+  		<option>500 et plus</option>          
+		</select> 
+
+<br />
+<br />
+                     
+  
+<!-- Secteur d'activité de votre entreprise, DONE -->
+
+      <div class="form-field">
+        {% assign value = '' %}
+        {%- if form.activity -%}
+          {% assign value = form.activity %}
+        {%- elsif customer -%}
+          {% assign value = customer.activity %}
+        {%- endif -%}
+        
+        
+        <input
+          class="form-field-input form-field-text {% if form.errors contains 'activity' %}form-field-error{% endif %}"
+          id="contact_activity"
+          name="contact[activity]"
+          type="text"
+          placeholder="Secteur d'activité de votre entreprise"
+          value="{{ value }}">
+
+       
+      </div>
+      
+      
+<!-- Votre Prénom, DONE -->
+      
+      <div class="form-field">
+        {% assign value = '' %}
+        {%- if form.firstname -%}
+          {% assign value = form.firstname %}
+        {%- elsif customer -%}
+          {% assign value = customer.firstname %}
+        {%- endif -%}
+
+
+        <input
+          class="form-field-input form-field-text {% if form.errors contains 'firstname' %}form-field-error{% endif %}"
+          id="contact_firstname"
+          name="contact[firstname]"
+          type="text"
+          placeholder="Votre prénom "
+          value="{{ value }}">
+        
+      </div>      
+      
+      
+      
+<!-- Nom, DONE -->
+
+      <div class="form-field">
+        {% assign value = '' %}
+        {%- if form.name -%}
+          {% assign value = form.name %}
+        {%- elsif customer -%}
+          {% assign value = customer.name %}
+        {%- endif -%}
+
+
+        <input
+          class="form-field-input form-field-text {% if form.errors contains 'name' %}form-field-error{% endif %}"
+          id="contact_name"
+          name="contact[name]"
+          type="text"
+          placeholder="Votre nom"
+          value="{{ value }}">
+
+      </div>
+      
+        
+<!-- Fonction, DONE -->      
+
+      <div class="form-field">
+        {% assign value = '' %}
+        {%- if form.occupation -%}
+          {% assign value = form.occupation %}
+        {%- elsif customer -%}
+          {% assign value = customer.occupation %}
+        {%- endif -%}
+        
+        
+        <input
+          class="form-field-input form-field-text {% if form.errors contains 'occupation' %}form-field-error{% endif %}"
+          id="contact_occupation"
+          name="contact[occupation]"
+          type="text"
+          placeholder="Votre fonction"
+          value="{{ value }}">
+
+      </div>
+                    
+
+<!-- Email, DONE -->
+
+        <div class="form-field">
+          {% assign value = '' %}
+          {%- if form.email -%}
+            {% assign value = form.email %}
+          {%- elsif customer -%}
+            {% assign value = customer.email %}
+          {%- endif -%}
+          
+          
+          <input
+            class="form-field-input form-field-text {% if form.errors contains 'email' %}form-field-error{% endif %}"
+            id="contact_email"
+            name="contact[email]"
+            type="email"
+            placeholder="Votre email"
+            value="{{ value }}"
+            autocorrect="off"
+            autocapitalize="off">
+
+        </div>
+
+  
+<!-- Votre numéro de téléphone, DONE -->
+
+      <div class="form-field">
+        {% assign value = '' %}
+        {%- if form.phone -%}
+          {% assign value = form.phone %}
+        {%- elsif customer -%}
+          {% assign value = customer.phone %}
+        {%- endif -%}
+
+
+        <input
+          class="form-field-input form-field-text {% if form.errors contains 'phone' %}form-field-error{% endif %}"
+          id="contact_phone"
+          name="contact[phone]"
+          type="tel"
+          placeholder="Votre numéro de téléphone"
+          value="{{ value }}">
+
+
+      </div>  
+
+
+<!-- Commentaires, DONE -->
+  
+      <div class="form-field">
+        {% assign value = '' %}
+        {%- if form.body -%}
+          {% assign value = form.body %}
+        {%- endif -%}
+        
+        <textarea
+          class="form-field-input form-field-textarea {% if form.errors contains 'body' %}form-field-error{% endif %}"
+          id="contact_message"
+          placeholder="Commentaires"
+          name="contact[message]">{{ value }}
+          </textarea>
+
+      </div>
+
+  
+<!-- Comment nous avez-vous connu ?, LISTE DEROULANTE DONE -->
+
+
+        
+        <label for="contact_connu">Comment nous avez-vous connu ? (facultatif) </label>
+		<select id="contact_connu" name="contact[connu]">
+  		<option>Google, Bing ...</option>
+  		<option>Réseaux sociaux</option>
+  		<option>Bouche à oreille</option>
+  		<option>Flyers</option>
+  		<option>Presse</option>
+  		<option>Evénement</option>
+  		<option>Autre</option>          
+		</select> 
+  
+<br />  
+  
+<!-- Bouton Envoyer -->
+  
+      <div class="form-action-row">
+        <button class="button-primary contact-form-button action_button" type="submit">
+          {{ 'contact.form.send' | t }}
+        </button>
+      </div>
+    </div>
+  {% endform %}
+  </div>
+</article>
+

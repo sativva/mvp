@@ -1,0 +1,120 @@
+
+{% comment %}$$$$$$$$ put it somewhere else{% endcomment %}
+<script async src='https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
+<script async src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.1/mapbox-gl-geocoder.min.js"></script>
+
+
+<fieldset id="dlv_choice">
+
+  <label class="label">
+    <input type="radio" name="method" id="velo" class="label__checkbox">
+    <span class="label__text">
+      <span class="label__check">
+        <i class="fa fa-check icon"></i>
+      </span>
+      {{settings.dlv_method_velo}} <br>
+    </span>
+  </label>
+
+  {% comment %} If "Vélo" is selectionned {% endcomment %}
+  <form action="" id="zip_validator" style="display: none">
+
+    {% comment %}ZIP input{% endcomment %}
+    <input id="zip_velo" class="zip_input" type="number" placeholder="{{settings.dlv_zip_code}}">
+    <button id="zip_btn_velo" class="zip_btn" type="button" value="OK" disabled>OK</button>
+
+
+    {% comment %} If no delivery {% endcomment %}
+    <div id="no_dlv">
+      <p class="no_dlv_text">{{settings.no_dlv}}</p>
+      <p>Inscrivez-vous à la newsletter pour connaitre les nouvelles communes desservies.</p>
+      {% form 'customer' %}
+      {% if form.posted_successfully? %}
+        <p><em>{{ 'general.newsletter_form.success_text' | t }}</em></p>
+      {% elsif form.errors %}
+        {% for field in form.errors %}
+          <p><em>{{ field }} - {{ form.errors.messages[field] }}</em></p>
+        {% endfor %}
+      {% endif %}
+      <input type="hidden" name="contact[tags]" value="prospect,newsletter" />
+      <div class="input-row">
+        {% if display_first_name %}
+          <input type="text" class="firstName" name="contact[first_name]" placeholder="{{ 'general.newsletter_form.subscriber_first_name' | t }}" />
+        {% endif %}
+        {% if display_last_name %}
+          <input type="text" name="contact[last_name]" placeholder="{{ 'general.newsletter_form.subscriber_last_name' | t }}" />
+        {% endif %}
+      </div>
+      <div class="input-row">
+        <input type="hidden" name="challenge" value="false" />
+        <input type="email" class="contact_email zip_input" name="contact[email]" required placeholder="{{ 'general.newsletter_form.placeholder' | t }}" />
+        <input type='submit' class="action_button sign_up zip_btn" value="OK" />
+      </div>
+      {% endform %}
+    </div>
+
+    {% comment %} if no today {% endcomment %}
+    <p id="no_today">{{settings.no_today}} <span class="next_dlv_day"> </span></p>
+
+    {% comment %} If dlv ok today {% endcomment %}
+    <div id="dlv_ok_today">
+      <p>{% comment %}{{settings.dlv_ok_today}}{% endcomment %}</p>
+      <button id="velo_save_and_next" class="save_and_next action_button zip_btn">Continuer</button>
+    </div>
+  </form>
+
+  <label class="label">
+    <input type="radio" name="method" id="retrait" class="label__checkbox">
+    <span class="label__text">
+      <span class="label__check">
+        <i class="fa fa-check icon"></i>
+      </span>
+      {{settings.dlv_method_retrait}}<br>
+    </span>
+  </label>
+
+  {% comment %} if "retrait" is selectionned {% endcomment %}
+  <div class="retrait">
+    <input id="zip_retrait" class="zip_input" type="number" placeholder="{{settings.dlv_zip_code}}">
+    <button id="zip_btn_retrait" class="zip_btn" type="button" value="OK" disabled>OK</button>
+    <div class="map-container">
+      <div id='map' ></div>
+
+    </div>
+    <div class="">
+      <select id="loc-select" class="">
+      </select>
+    </div>
+    <div id="retrait_validation">
+      <button id="retrait_save_and_next" class="save_and_next action_button zip_btn">Continuer</button>
+    </div>
+  </div>
+
+
+  <label class="label">
+    <input type="radio" name="method" id="entreprise" class="label__checkbox">
+    <span class="label__text">
+      <span class="label__check">
+        <i class="fa fa-check icon"></i>
+      </span>
+      {{settings.dlv_method_entreprise}} <br>
+    </span>
+  </label>
+
+  <div class="entreprise">
+    <div class="">
+      <select id="entreprise-select" class="">
+      </select>
+    </div>
+    <div id="entreprise_validation">
+      <button id="entreprise_save_and_next" class="save_and_next action_button zip_btn">Continuer</button>
+    </div>
+  </div>
+</fieldset>
+
+{% comment %}<p class="right" style="padding-top: 8px;">
+  {{ 'customer.register.returning_customer_label' | t }} <b>{{ 'customer.register.sign_in_html' | t | customer_login_link }}</b>
+</p>{% endcomment %}
+
+
+

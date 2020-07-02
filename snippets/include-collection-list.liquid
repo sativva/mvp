@@ -1,0 +1,43 @@
+{% assign title = block.settings.title %}
+{% assign col_per_row_mob = block.settings.col_per_row_mob %}
+{% assign col_per_row = block.settings.col_per_row %}
+
+<div class="container featured_products product-{{ collection_style }}">
+  <div class="sixteen columns center homepage_content">
+    {% if title != blank %}
+      <h2 class="title">{{ title }}</h2>
+    {% endif %}
+
+  </div>
+</div>
+<div class="container standard--width collection-list-container slider" data-flickity='{"pageDots": false,{% if block.settings.autoplay %}"autoPlay": true,{% endif %} "wrapAround": true  }'>
+  {% for collection in collections %}
+    {% if collection.metafields.custom_fields["tag"] contains "home" %}
+    <div class="
+      {% if col_per_row == 6 %}
+        six
+      {% elsif col_per_row == 4 %}
+        four
+      {% elsif col_per_row == 2 %}
+        half
+      {% endif %}
+      columns
+      collection-list
+      center
+      {{collection.metafields.custom_fields['tag']}}
+    ">
+
+      <a href="/collections/{{collection.handle}}" class="collection-list-link div-centrage">
+        {% if collection.image %}
+
+          <img src="{{ collection.image | img_url: 'medium' }}" alt="{{collecion.title}}" class="collection-list-img">
+        {% endif %}
+        <p class="collection-list-ttl div-centre">{{collection.title}}</p>
+
+      </a>
+    </div>
+    {% endif %}
+  {% endfor %}
+
+</div>
+
