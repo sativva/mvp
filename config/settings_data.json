@@ -4199,7 +4199,7 @@
     "custom_tabs": true,
     "bio_image": "shopify:\/\/shop_images\/logo-ab-feuille.jpg",
     "change_day_hour": "00:20",
-    "closed_days": "saturday,sunday,monday,29\/06\/2020,30\/06\/2020,01\/07\/2020,02\/07\/2020,03\/07\/2020,04\/07\/2020,05\/072020,06\/07\/2020",
+    "closed_days": "saturday,sunday,monday,16\/07\/2020,17\/07\/2020,18\/07\/2020,19\/07\/2020,20\/07\/2020,21\/07\/2020,22\/07\/2020,23\/07\/2020,24\/07\/2020,25\/07\/2020,26\/07\/2020,27\/07\/2020",
     "form_enabled": false,
     "form_title": "Mon marché local en ligne...",
     "form_subtitle": "Livré à vélo du mardi au vendredi entre 17h et 21h, <br>sur la Métropole Lilloise (nouvelles communes en septembre !)",
@@ -5187,9 +5187,20 @@
           "1591603174279": {
             "type": "featured_collection",
             "settings": {
-              "title": "Vos paniers tout frais, tout prêts !",
+              "title": "Un nouveau producteur est arrivé : La ferme des limuchons !",
               "collection_description": false,
-              "collection": "nos-paniers-tout-prets",
+              "collection": "felix-et-florian-ferme-des-limuchons-comines",
+              "collection_style": "grid",
+              "products_per": 3,
+              "products_limit": 3
+            }
+          },
+          "1594193402426": {
+            "type": "featured_collection",
+            "settings": {
+              "title": "Grand nettoyage avant les vacances ? On a ce qu'il faut !",
+              "collection_description": false,
+              "collection": "ghizlaine-et-romain-mutyne-villeneuve-dascq",
               "collection_style": "grid",
               "products_per": 3,
               "products_limit": 6
@@ -5198,9 +5209,9 @@
           "1587377002456": {
             "type": "featured_collection",
             "settings": {
-              "title": "Une nouvelle gamme de produits ménagers éco-responsables !",
+              "title": "Découvrez toutes nos brosses et éponges",
               "collection_description": false,
-              "collection": "ghizlaine-et-romain-mutyne-villeneuve-dascq",
+              "collection": "selection-zero-dechet",
               "collection_style": "grid",
               "products_per": 3,
               "products_limit": 6
@@ -5369,6 +5380,7 @@
           "page-home-template-0",
           "page-home-template-1",
           "1591603174279",
+          "1594193402426",
           "1587377002456",
           "1578053375880",
           "1566379636039",
@@ -5634,7 +5646,7 @@
               "image_caption_top": "",
               "image_link_top": "",
               "menu_1": "zero-dechet-1",
-              "menu_1_link": "",
+              "menu_1_link": "shopify:\/\/collections\/selection-zero-dechet",
               "menu_2": "",
               "menu_2_link": "",
               "menu_3": "",
@@ -5898,7 +5910,10 @@
           "rv_products_style": "grid",
           "rv_max_display": 4,
           "rv_per": 4,
-          "toggle": false
+          "toggle": false,
+          "card-title": "A propos du producteur  :",
+          "no-description": "Ce producteur n'a pas encore de description.",
+          "text-button": "Découvrir ses produits"
         }
       },
       "product-recommendations": {
@@ -6232,41 +6247,89 @@
           "1592399968493": {
             "type": "text",
             "settings": {
-              "category-name": "Catégorie 1",
+              "category-name": "Fruits et légumes",
               "category-anchor": "categorie-1",
-              "logo-category": "shopify:\/\/shop_images\/circle-picto.png"
+              "logo-category": "shopify:\/\/shop_images\/fruits-et-legumes.png"
             }
           },
           "1592401001179": {
             "type": "text",
             "settings": {
-              "category-name": "Catégorie",
+              "category-name": "Boulangerie",
               "category-anchor": "",
-              "logo-category": "shopify:\/\/shop_images\/circle-picto.png"
+              "logo-category": "shopify:\/\/shop_images\/boulangerie.png"
             }
           },
           "1592469069936": {
             "type": "text",
             "settings": {
-              "category-name": "Catégorie",
-              "category-anchor": "",
-              "logo-category": "shopify:\/\/shop_images\/circle-picto.png"
+              "category-name": "Boucherie",
+              "category-anchor": "Boucherie",
+              "logo-category": "shopify:\/\/shop_images\/boucherie.png"
             }
           },
           "1592469078119": {
             "type": "text",
             "settings": {
-              "category-name": "Catégorie",
-              "category-anchor": "",
-              "logo-category": "shopify:\/\/shop_images\/circle-picto.png"
+              "category-name": "Poissonnerie",
+              "category-anchor": "Poissonnerie",
+              "logo-category": "shopify:\/\/shop_images\/poissonnerie.png"
             }
           },
           "1592568208300": {
             "type": "text",
             "settings": {
-              "category-name": "Catégorie",
+              "category-name": "Crèmerie",
+              "category-anchor": "Crèmerie",
+              "logo-category": "shopify:\/\/shop_images\/cremerie.png"
+            }
+          },
+          "1594212218421": {
+            "type": "text",
+            "settings": {
+              "category-name": "Traiteur",
+              "category-anchor": "Traiteur",
+              "logo-category": "shopify:\/\/shop_images\/traiteur.png"
+            }
+          },
+          "1594212223297": {
+            "type": "text",
+            "settings": {
+              "category-name": "Epicerie salée",
+              "category-anchor": "Epicerie salée",
+              "logo-category": "shopify:\/\/shop_images\/epicerie-salee.png"
+            }
+          },
+          "1594212225721": {
+            "type": "text",
+            "settings": {
+              "category-name": "Epicerie sucrée",
+              "category-anchor": "Epicerie sucrée",
+              "logo-category": "shopify:\/\/shop_images\/epicerie-sucree.png"
+            }
+          },
+          "1594212233526": {
+            "type": "text",
+            "settings": {
+              "category-name": "Boissons non alcoolisées",
+              "category-anchor": "Boissons non alcoolisées",
+              "logo-category": "shopify:\/\/shop_images\/boisson-non-alcoolisee.png"
+            }
+          },
+          "1595412252261": {
+            "type": "text",
+            "settings": {
+              "category-name": "Boissons alcoolisées",
+              "category-anchor": "Boissons alcoolisées",
+              "logo-category": "shopify:\/\/shop_images\/boisson-alcoolisee.png"
+            }
+          },
+          "1594212236658": {
+            "type": "text",
+            "settings": {
+              "category-name": "Hygiène & Zéro Déchet",
               "category-anchor": "",
-              "logo-category": "shopify:\/\/shop_images\/circle-picto.png"
+              "logo-category": "shopify:\/\/shop_images\/hygiene.png"
             }
           }
         },
@@ -6275,10 +6338,1092 @@
           "1592401001179",
           "1592469069936",
           "1592469078119",
-          "1592568208300"
+          "1592568208300",
+          "1594212218421",
+          "1594212223297",
+          "1594212225721",
+          "1594212233526",
+          "1595412252261",
+          "1594212236658"
         ],
         "settings": {
           "category-size": 16
+        }
+      },
+      "category-prod-1": {
+        "type": "category-prod-1",
+        "blocks": {
+          "1595406694658": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/serre-des-pres.jpg",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Nathalie - Les serres des près",
+              "prod-localisation": "Villeneuve d'Ascq",
+              "prod_entr": "shopify:\/\/collections\/nathalie-les-serres-des-pres-villeneuve-dascq"
+            }
+          },
+          "1595406774238": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/basile-octave.jpg",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": true,
+              "bio": false,
+              "name": "Basile et Octave - La ferme du recueil",
+              "prod-localisation": "Villeneuve d'Ascq",
+              "prod_entr": "shopify:\/\/collections\/basile-et-octave-la-ferme-du-recueil-villeneuve-dascq"
+            }
+          },
+          "1595407245672": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/nico.jpg",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Nicolas - La ferme des 4 vents",
+              "prod-localisation": "Hem",
+              "prod_entr": "shopify:\/\/collections\/nicolas-la-ferme-des-4-vents-hem"
+            }
+          },
+          "1595407424944": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/philipe.jpg",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Phillipe Lalau",
+              "prod-localisation": "Bailleul",
+              "prod_entr": ""
+            }
+          },
+          "1595407499206": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/lomme-primeurs.jpg",
+              "ultra-local": false,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Lomme primeurs bio",
+              "prod-localisation": "Lomme",
+              "prod_entr": "shopify:\/\/collections\/spenninck-lomme"
+            }
+          },
+          "1595407690594": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Spenninck",
+              "prod-localisation": "Lomme",
+              "prod_entr": "shopify:\/\/collections\/spenninck-lomme"
+            }
+          },
+          "1595491724015": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/terre-de-voyette.jpg",
+              "ultra-local": false,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Audrey - Terre de Voyettes",
+              "prod-localisation": "Gondecourt",
+              "prod_entr": "shopify:\/\/collections\/audrey-terre-de-voyettes-gondecourt"
+            }
+          },
+          "1595491825910": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/ime-loos.jpg",
+              "ultra-local": false,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Victoria et Pierre - La Pépinière",
+              "prod-localisation": "Loos",
+              "prod_entr": "shopify:\/\/collections\/victoria-et-pierre-la-pepiniere-loos"
+            }
+          },
+          "1595492285409": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Gaël - Interval Maraichage",
+              "prod-localisation": "Haubourdin",
+              "prod_entr": "shopify:\/\/collections\/interval-maraichage-haubourdin"
+            }
+          },
+          "1595492399836": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/pleurette.jpg",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Jürgen et Gabrielle",
+              "prod-localisation": "La révolution champignon",
+              "prod_entr": "shopify:\/\/collections\/j-rgen-gabrielle-la-revolution-champignon-lomme"
+            }
+          },
+          "1595492455053": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/bio-cense-laure.jpg",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Laure et Emile - Bio Cense",
+              "prod-localisation": "Cobrieux",
+              "prod_entr": ""
+            }
+          },
+          "1595492504751": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/michel-delille.jpg",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Michel Delille - Ferme des blancs moutons",
+              "prod-localisation": "Arieux",
+              "prod_entr": ""
+            }
+          }
+        },
+        "block_order": [
+          "1595406694658",
+          "1595406774238",
+          "1595407245672",
+          "1595407424944",
+          "1595407499206",
+          "1595407690594",
+          "1595491724015",
+          "1595491825910",
+          "1595492285409",
+          "1595492399836",
+          "1595492455053",
+          "1595492504751"
+        ],
+        "settings": {
+          "category-name": "Fruits & légumes",
+          "category-id": "Catégorie 1",
+          "prod-row-nb": "trois",
+          "category-color": "#59b252",
+          "name-size": 14,
+          "entr-size": 13,
+          "icon-prod": "shopify:\/\/shop_images\/fruits-et-legumes.png"
+        }
+      },
+      "category-prod-2": {
+        "type": "category-prod-2",
+        "blocks": {
+          "1595407899279": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Patrick - Boulangerie Doucet",
+              "prod-localisation": "Lille Wazemmes",
+              "prod_entr": "shopify:\/\/collections\/patrick-boulangerie-doucet-lille-wazemmes"
+            }
+          },
+          "1595408199173": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Martine - L'Art du Pain",
+              "prod-localisation": "Lille Centre",
+              "prod_entr": "shopify:\/\/collections\/lart-du-pain"
+            }
+          }
+        },
+        "block_order": [
+          "1595407899279",
+          "1595408199173"
+        ],
+        "settings": {
+          "category-name": "Boulangerie",
+          "category-id": "Boulangerie",
+          "prod-row-nb": "trois",
+          "category-color": "#e87b31",
+          "name-size": 14,
+          "entr-size": 13,
+          "icon-prod": "shopify:\/\/shop_images\/boulangerie.png"
+        }
+      },
+      "category-prod-3": {
+        "type": "category-prod-3",
+        "blocks": {
+          "1595408289901": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Damien - Boucherie Jean-Claude",
+              "prod-localisation": "Lille Wazemmes",
+              "prod_entr": ""
+            }
+          },
+          "1595408453252": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Amélie- Les petites marmites",
+              "prod-localisation": "Aulnoy",
+              "prod_entr": ""
+            }
+          },
+          "1595492562609": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Sabine et Benjamin - Les canards de la lys",
+              "prod-localisation": "Comines",
+              "prod_entr": "shopify:\/\/collections\/sabine-benjamin-les-canards-de-la-lys-comines"
+            }
+          }
+        },
+        "block_order": [
+          "1595408289901",
+          "1595408453252",
+          "1595492562609"
+        ],
+        "settings": {
+          "category-name": "Boucherie",
+          "category-id": "Boucherie",
+          "prod-row-nb": "trois",
+          "category-color": "#e56753",
+          "name-size": 14,
+          "entr-size": 13,
+          "icon-prod": "shopify:\/\/shop_images\/boucherie.png"
+        }
+      },
+      "category-prod-4": {
+        "type": "category-prod-4",
+        "blocks": {
+          "1595408596128": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Mathieu - La Bonne Pêche",
+              "prod-localisation": "Lille Wazemmes",
+              "prod_entr": "shopify:\/\/collections\/la-bonne-peche-wazemmes"
+            }
+          },
+          "1595408748336": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Sabine, Thomas et Pierre - Goéland Marée",
+              "prod-localisation": "Dunkerque",
+              "prod_entr": ""
+            }
+          },
+          "1595492208658": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Hervé - JC David",
+              "prod-localisation": "Boulogne-sur-mer",
+              "prod_entr": ""
+            }
+          }
+        },
+        "block_order": [
+          "1595408596128",
+          "1595408748336",
+          "1595492208658"
+        ],
+        "settings": {
+          "category-name": "Poissonnerie",
+          "category-id": "Poissonnerie",
+          "prod-row-nb": "trois",
+          "category-color": "#0a94bf",
+          "name-size": 14,
+          "entr-size": 13,
+          "icon-prod": "shopify:\/\/shop_images\/poissonnerie.png"
+        }
+      },
+      "category-prod-5": {
+        "type": "category-prod-5",
+        "blocks": {
+          "1595408835652": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Delphine et Julien - Ferme Bio",
+              "prod-localisation": "Aubers",
+              "prod_entr": "shopify:\/\/collections\/delphine-julien-ferme-bio-aubers"
+            }
+          },
+          "1595408865441": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Géraldine - La ferme du Vinage",
+              "prod-localisation": "Roncq",
+              "prod_entr": "shopify:\/\/collections\/therese-marie-michel-la-ferme-du-vinage-roncq"
+            }
+          },
+          "1595408950412": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Jessie Derkenne - Chèvrerie du Hauty",
+              "prod-localisation": "Mondrepuis",
+              "prod_entr": "shopify:\/\/collections\/jessie-derkenne-chevrerie-du-hauty-mondrepuis"
+            }
+          },
+          "1595409520610": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "David - Ferme de Cerfmont",
+              "prod-localisation": "Maroilles",
+              "prod_entr": "shopify:\/\/collections\/ferme-de-cerfmont"
+            }
+          },
+          "1595492246521": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Jean - Laiterie bio Jeanjean",
+              "prod-localisation": "Avesnois",
+              "prod_entr": ""
+            }
+          }
+        },
+        "block_order": [
+          "1595408835652",
+          "1595408865441",
+          "1595408950412",
+          "1595409520610",
+          "1595492246521"
+        ],
+        "settings": {
+          "category-name": "Crèmerie",
+          "category-id": "Crèmerie",
+          "prod-row-nb": "trois",
+          "category-color": "#e5ba17",
+          "name-size": 14,
+          "entr-size": 13,
+          "icon-prod": "shopify:\/\/shop_images\/cremerie.png"
+        }
+      },
+      "category-prod-6": {
+        "type": "category-prod-6",
+        "blocks": {
+          "1595409655734": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Claire - Le comptoir végétal",
+              "prod-localisation": "Lambersart",
+              "prod_entr": "shopify:\/\/collections\/claire-le-comptoir-vegetal-lambersart"
+            }
+          },
+          "1595409964487": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Guillaume - Faluch'Truck",
+              "prod-localisation": "Lille",
+              "prod_entr": "shopify:\/\/collections\/guillaume-faluchtruck-lille"
+            }
+          }
+        },
+        "block_order": [
+          "1595409655734",
+          "1595409964487"
+        ],
+        "settings": {
+          "category-name": "Traiteur",
+          "category-id": "Traiteur",
+          "prod-row-nb": "trois",
+          "category-color": "#c96696",
+          "name-size": 14,
+          "entr-size": 13,
+          "icon-prod": "shopify:\/\/shop_images\/traiteur.png"
+        }
+      },
+      "category-prod-7": {
+        "type": "category-prod-7",
+        "blocks": {
+          "1595411557693": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Elise - La ferme des Mions",
+              "prod-localisation": "Hazebrouck",
+              "prod_entr": "shopify:\/\/collections\/elise-la-ferme-des-mions-hazebrouck"
+            }
+          },
+          "1595411601964": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": true,
+              "bio": false,
+              "name": "Maxime et Stéphane - Biodemain",
+              "prod-localisation": "Lomme",
+              "prod_entr": ""
+            }
+          },
+          "1595411647277": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Moulins Saint Waast",
+              "prod-localisation": "Mons en Pévèle",
+              "prod_entr": "shopify:\/\/collections\/moulins-saint-waast-mons-en-pevele"
+            }
+          },
+          "1595411697732": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Cécilia - Autrement Bière",
+              "prod-localisation": "Weppes",
+              "prod_entr": "shopify:\/\/collections\/autrement-biere-weppes"
+            }
+          },
+          "1595411754489": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Marc - Le Royaume des abeilles",
+              "prod-localisation": "Cagnongles",
+              "prod_entr": "shopify:\/\/collections\/marc-le-royaume-des-abeilles-cagnongles"
+            }
+          },
+          "1595411807216": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Denis et Lucile - La Préserverie",
+              "prod-localisation": "Lomme",
+              "prod_entr": "shopify:\/\/collections\/denis-lucille-la-preserverie-lomme"
+            }
+          },
+          "1595411835178": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Quentin - Vertuchou",
+              "prod-localisation": "Marcq-en-baroeul",
+              "prod_entr": "shopify:\/\/collections\/quentin-vertuchou-marcq-en-baroeul"
+            }
+          },
+          "1595411866972": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Karine & Jeff",
+              "prod-localisation": "Revel",
+              "prod_entr": ""
+            }
+          },
+          "1595411902159": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Nathalie - Les serres des près",
+              "prod-localisation": "Villeneuve d'Ascq",
+              "prod_entr": "shopify:\/\/collections\/nathalie-les-serres-des-pres-villeneuve-dascq"
+            }
+          }
+        },
+        "block_order": [
+          "1595411557693",
+          "1595411601964",
+          "1595411647277",
+          "1595411697732",
+          "1595411754489",
+          "1595411807216",
+          "1595411835178",
+          "1595411866972",
+          "1595411902159"
+        ],
+        "settings": {
+          "category-name": "Epicerie salée",
+          "category-id": "Epicerie salée",
+          "prod-row-nb": "trois",
+          "category-color": "#ae7d44",
+          "name-size": 14,
+          "entr-size": 13,
+          "icon-prod": "shopify:\/\/shop_images\/epicerie-salee.png"
+        }
+      },
+      "category-prod-8": {
+        "type": "category-prod-8",
+        "blocks": {
+          "1595412401134": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Raphaël - Monsieur Muesli",
+              "prod-localisation": "Roubaix",
+              "prod_entr": "shopify:\/\/collections\/raphael-monsieur-muesli-roubaix"
+            }
+          },
+          "1595412474906": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Lionel - Lynde de miel",
+              "prod-localisation": "Lynde",
+              "prod_entr": "shopify:\/\/collections\/lionel-lynde-de-miel-lynde"
+            }
+          },
+          "1595412513136": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "François, Quentin & Richard - Teatap",
+              "prod-localisation": "Marcq en Baroeul",
+              "prod_entr": "shopify:\/\/collections\/francois-quentin-richard-teatap-marcq-en-baroeul"
+            }
+          },
+          "1595412550398": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Vincent - Le fou de grain",
+              "prod-localisation": "Quesnoy-sur-deûle",
+              "prod_entr": "shopify:\/\/collections\/vincent-le-fou-du-grain-quesnoy-sur-deule"
+            }
+          },
+          "1595492006126": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Candice et Antoine - Encuentro",
+              "prod-localisation": "Lomme",
+              "prod_entr": ""
+            }
+          },
+          "1595492100551": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Coffee Makers",
+              "prod-localisation": "Lille",
+              "prod_entr": ""
+            }
+          }
+        },
+        "block_order": [
+          "1595412401134",
+          "1595412474906",
+          "1595412513136",
+          "1595412550398",
+          "1595492006126",
+          "1595492100551"
+        ],
+        "settings": {
+          "category-name": "Epicerie sucrée",
+          "category-id": "Epicerie sucrée",
+          "prod-row-nb": "trois",
+          "category-color": "#ea8575",
+          "name-size": 14,
+          "entr-size": 13,
+          "icon-prod": "shopify:\/\/shop_images\/epicerie-sucree.png"
+        }
+      },
+      "category-prod-9": {
+        "type": "category-prod-9",
+        "blocks": {
+          "1595412904774": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Charles - La Brasserie l'Indispensable",
+              "prod-localisation": "Phalempin",
+              "prod_entr": "shopify:\/\/collections\/charles-la-brasserie-lindispensable-phalempin"
+            }
+          },
+          "1595412926667": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Florent - Kéfir des Weppes",
+              "prod-localisation": "Hallennes les Haubourdin",
+              "prod_entr": "shopify:\/\/collections\/florent-kefir-des-weppes-hallennes-les-haubourdin"
+            }
+          }
+        },
+        "block_order": [
+          "1595412904774",
+          "1595412926667"
+        ],
+        "settings": {
+          "category-name": "Boissons non alcoolisées",
+          "category-id": "Boissons non alcoolisées",
+          "prod-row-nb": "trois",
+          "category-color": "#454daf",
+          "name-size": 14,
+          "entr-size": 13,
+          "icon-prod": "shopify:\/\/shop_images\/boisson-non-alcoolisee.png"
+        }
+      },
+      "category-prod-10": {
+        "type": "category-prod-10",
+        "blocks": {
+          "1595412702810": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Marc - Le royaume des abeilles",
+              "prod-localisation": "Cagnonles",
+              "prod_entr": "shopify:\/\/collections\/marc-le-royaume-des-abeilles-cagnongles"
+            }
+          },
+          "1595412733054": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Pierre, Guillaume & Valentin - Brasserie Le Singe Savant",
+              "prod-localisation": "Lille Moulins",
+              "prod_entr": ""
+            }
+          },
+          "1595413102461": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Aymeric et Pierre-André - Brasserie Tandam",
+              "prod-localisation": "Wambrechies",
+              "prod_entr": "shopify:\/\/collections\/aymeric-pierre-andre-brasserie-tandem-wambrechies"
+            }
+          },
+          "1595413142380": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Sébastien & Alexis - Brasserie Hub",
+              "prod-localisation": "Roubaix",
+              "prod_entr": "shopify:\/\/collections\/sebastien-et-alexis-brasserie-hub-roubaix"
+            }
+          },
+          "1595413180862": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Cyrille & Jiyun - Biovino",
+              "prod-localisation": "Lille Centre",
+              "prod_entr": "shopify:\/\/collections\/cyrille-jiyun-biovino-lille-centre"
+            }
+          }
+        },
+        "block_order": [
+          "1595412702810",
+          "1595412733054",
+          "1595413102461",
+          "1595413142380",
+          "1595413180862"
+        ],
+        "settings": {
+          "category-name": "Boissons alcoolisées",
+          "category-id": "Boissons alcoolisées",
+          "prod-row-nb": "trois",
+          "category-color": "#acac00",
+          "name-size": 14,
+          "entr-size": 13,
+          "icon-prod": "shopify:\/\/shop_images\/boisson-alcoolisee.png"
+        }
+      },
+      "category-prod-11": {
+        "type": "category-prod-11",
+        "blocks": {
+          "1595413303524": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Bérénice - Au petit monde de B.",
+              "prod-localisation": "Beuvry-La-Fôret",
+              "prod_entr": "shopify:\/\/collections\/au-petit-monde-de-b"
+            }
+          },
+          "1595413438139": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Claudia et Sylvain - Anthenya",
+              "prod-localisation": "Guemps",
+              "prod_entr": "shopify:\/\/collections\/claudia-et-sylvain-antheya-guemps"
+            }
+          },
+          "1595413465976": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Virgnie - Möbius",
+              "prod-localisation": "Roubaix",
+              "prod_entr": "shopify:\/\/collections\/virginie-mobius-roubaix"
+            }
+          },
+          "1595413495443": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Noémie - Atelier iceberg",
+              "prod-localisation": "Roubaix",
+              "prod_entr": "shopify:\/\/collections\/noemie-atelier-iceberg-roubaix"
+            }
+          },
+          "1595490929260": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "André jardin",
+              "prod-localisation": "La Chapelle-sur-erdre",
+              "prod_entr": "shopify:\/\/collections\/andree-jardin-la-chapelle-sur-erdre"
+            }
+          },
+          "1595490999607": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Sylvie et Briac - Escurette",
+              "prod-localisation": "Liffré",
+              "prod_entr": "shopify:\/\/collections\/sylvie-et-briac-escurette-liffre"
+            }
+          },
+          "1595491026513": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Alexis, Delphin et Thomas - J'aime mes dents",
+              "prod-localisation": "Angers",
+              "prod_entr": "shopify:\/\/collections\/alexis-delphin-et-thomas-jaime-mes-dents-angers"
+            }
+          },
+          "1595491058460": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": false,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Fer à cheval",
+              "prod-localisation": "Marseilles",
+              "prod_entr": "shopify:\/\/collections\/fer-a-cheval-marseille"
+            }
+          },
+          "1595491111753": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Ghizlaine et Romain - Mutyne",
+              "prod-localisation": "Villeneuve d'Ascq",
+              "prod_entr": "shopify:\/\/collections\/ghizlaine-et-romain-mutyne-villeneuve-dascq"
+            }
+          },
+          "1595491239585": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Fabien, Elodie et Maxence - Youpaï",
+              "prod-localisation": "Bondues",
+              "prod_entr": ""
+            }
+          },
+          "1595492356882": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Julien et Michel - Gecco",
+              "prod-localisation": "Avelin",
+              "prod_entr": "shopify:\/\/collections\/julien-michel-gecco-avelin"
+            }
+          }
+        },
+        "block_order": [
+          "1595413303524",
+          "1595413438139",
+          "1595413465976",
+          "1595413495443",
+          "1595490929260",
+          "1595490999607",
+          "1595491026513",
+          "1595491058460",
+          "1595491111753",
+          "1595491239585",
+          "1595492356882"
+        ],
+        "settings": {
+          "category-name": "Hygiène & Zéro déchet",
+          "category-id": "",
+          "prod-row-nb": "trois",
+          "category-color": "#5089f6",
+          "name-size": 14,
+          "entr-size": 13,
+          "icon-prod": "shopify:\/\/shop_images\/hygiene.png"
         }
       }
     },

@@ -134,8 +134,10 @@ $(document).ready(function() {
       $(window).scroll(function() {
         if ($(document).scrollTop() > 25) {
           $('.top_bar').css({ 'position': 'fixed', 'top': '0px' });
+          $("body").css({"top": '104px', "position": "relative"});
         } else {
           $('.top_bar').css({ 'position': 'relative' });
+          $("body").css({"top": '0px', "position": "relative"});
         }
       });
     } else {
@@ -167,13 +169,13 @@ $(document).ready(function() {
       window.location.href = window.location.href.match(/^.+(\/)/)[0];
     });
 
-    $("#checkout").click(function(e) {
-      e.preventDefault()
-      postZapietID();
-      // postCheckout();
+    // $("#checkout").click(function(e) {
+    //   e.preventDefault()
+    //   // postZapietID();
+    //   // postCheckout();
 
 
-    });
+    // });
     // var cook = JSON.parse(Cookies.get('dlvy'))
     // $('#cart_form').find('#storePickupApp .checkoutMethod:last-child').click()
     // $('#cart_form').find('#storePickupApp #location_'+cook.pickup_id).click()
@@ -884,7 +886,6 @@ console.log(json_data.delivery[textual_day].blackout_dates);
         }
         // }
 
-        $(".dlvy_bar *").css('padding', '5px 8px')
 
         if (window.location.pathname.includes("/cart")) {
 
@@ -923,15 +924,11 @@ console.log(json_data.delivery[textual_day].blackout_dates);
       } else {
 
 
-        deliveryForm();
+        // deliveryForm();
 
       }
     }
-    $('.dlvy_bar').click(function() {
 
-      deliveryForm();
-
-    });
     var getPickUpTimeSlot = function() {
       var cook = JSON.parse(Cookies.get('dlvy'))
 
@@ -1286,31 +1283,31 @@ console.log(json_data.delivery[textual_day].blackout_dates);
 
     }
 
-    if (window.location.pathname != "/" && !window.location.pathname.includes("/account") ) {
-      cookie_valid();
-    } else {
-      $('.dlvy_bar').hide();
-      console.log(currentTime.toLocaleDateString('FR') + today_date);
-      if (is_closed) {
-        var $alertIsClosed = "{{ settings.closed_day }}";
-        $('.preheader-text').after("<p class='alert is_closed'>" + $alertIsClosed.replace('$$$$', delivery_hour_limit.getHours() + 'h' + (delivery_hour_limit.getMinutes() < 10 ? '0' : '') + delivery_hour_limit.getMinutes()) + " " + days_fr[days.indexOf(textual_day)] + ' (' + currentTime.toLocaleDateString('FR') + ')' + "</p>")
-      } else if (not_today) {
-        var $alertNotToday = "{{ settings.alert_not_today }}";
-        $('.preheader-text').after("<p class='alert not_today'>" + $alertNotToday.replace('$$$$', delivery_hour_limit.getHours() + 'h' + (delivery_hour_limit.getMinutes() < 10 ? '0' : '') + delivery_hour_limit.getMinutes()) + " " + days_fr[days.indexOf(textual_day)]  + ' (' + currentTime.toLocaleDateString('FR') + ')' + "</p>")
-      }
-    }
-    if (window.location.pathname.includes("/cart")) {
-      if ((Cookies.getJSON('dlvy').slot_text != undefined && Cookies.getJSON('dlvy').slot_text != false) && Cookies.getJSON('dlvy').slot_text.indexOf("{{settings.placeholder_slot}}") > -1) {
-        $('#checkout').text("{{settings.placeholder_slot}}").attr('disabled', 'disabled').addClass('disabled')
-      }
-      var cook = JSON.parse(Cookies.get('dlvy'))
-      if (cook.valid == true) {
-        cook.valid = false
-        cook.slot_id = undefined
-        Cookies.set('dlvy', cook)
-        cookie_valid()
-      }
-    }
+    // if (window.location.pathname != "/" && !window.location.pathname.includes("/account") ) {
+    //   cookie_valid();
+    // } else {
+    //   $('.dlvy_bar').hide();
+    //   console.log(currentTime.toLocaleDateString('FR') + today_date);
+    //   if (is_closed) {
+    //     var $alertIsClosed = "{{ settings.closed_day }}";
+    //     $('.preheader-text').after("<p class='alert is_closed'>" + $alertIsClosed.replace('$$$$', delivery_hour_limit.getHours() + 'h' + (delivery_hour_limit.getMinutes() < 10 ? '0' : '') + delivery_hour_limit.getMinutes()) + " " + days_fr[days.indexOf(textual_day)] + ' (' + currentTime.toLocaleDateString('FR') + ')' + "</p>")
+    //   } else if (not_today) {
+    //     var $alertNotToday = "{{ settings.alert_not_today }}";
+    //     $('.preheader-text').after("<p class='alert not_today'>" + $alertNotToday.replace('$$$$', delivery_hour_limit.getHours() + 'h' + (delivery_hour_limit.getMinutes() < 10 ? '0' : '') + delivery_hour_limit.getMinutes()) + " " + days_fr[days.indexOf(textual_day)]  + ' (' + currentTime.toLocaleDateString('FR') + ')' + "</p>")
+    //   }
+    // }
+    // if (window.location.pathname.includes("/cart")) {
+    //   if ((Cookies.getJSON('dlvy').slot_text != undefined && Cookies.getJSON('dlvy').slot_text != false) && Cookies.getJSON('dlvy').slot_text.indexOf("{{settings.placeholder_slot}}") > -1) {
+    //     $('#checkout').text("{{settings.placeholder_slot}}").attr('disabled', 'disabled').addClass('disabled')
+    //   }
+    //   var cook = JSON.parse(Cookies.get('dlvy'))
+    //   if (cook.valid == true) {
+    //     cook.valid = false
+    //     cook.slot_id = undefined
+    //     Cookies.set('dlvy', cook)
+    //     cookie_valid()
+    //   }
+    // }
 
 
     // if (window.location.pathname.includes("/cart")) {
@@ -1377,7 +1374,7 @@ console.log(json_data.delivery[textual_day].blackout_dates);
       })
     }
 
-    if ($(window).width() > 798) {
+    if ($(window).width() < 768) {
       if ($('.collection_description').height() > 125) {
         var oldHeight = $('.collection_description').height();
         $('.collection_description').addClass('open');
@@ -1399,6 +1396,28 @@ console.log(json_data.delivery[textual_day].blackout_dates);
           return false;
         }
     });
+
+
+
+    // NEWFORM
+
+    $('.add_to_cart').click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      console.log('add_toCart');
+    })
+
+    $('.method .dlvy').click(function() {
+      $('.method button').removeClass('selected');
+      $(this).addClass('selected');
+      }
+    )
+    $('.method .pickup').click(function() {
+      $('.method button').removeClass('selected');
+      $(this).addClass('selected');
+      }
+    )
 
   })
 })

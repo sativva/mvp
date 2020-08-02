@@ -1,0 +1,95 @@
+{% if type == 'block' %}
+  {% assign id = block.id %}
+  {% assign wide_display = block.settings.wide_display %}
+{% endif %}
+
+<p> {{ wide_display }}</p>
+
+<div class="container" style="background: white">
+  <div id="newform">
+    <div class="header">
+      <h2 class="new_head">MON PANIER</h2>
+      <p>Vous serez livré(e) le <b>vendredi 3 juillet</b></p>
+    </div>
+
+    <div class="method">
+      <button class="dlvy selected">
+        <p class="method_dlvy">livraison à<br> domicile</p>
+        <span class="conditions">5,90€</span></button>
+      <button class="pickup"><p class="method_pickup">Retrait <br>en boutique   </p>
+        <span class="conditions">Dès 30 € d'achat</span>
+      </button>
+    </div>
+
+
+
+    <div class="dynamic_content">
+      <div class="address_check newform">
+        <input type="text" class="first_input" placeholder="Numéro, nom de la rue" value="{% if customer %} customer.default_address.street {% endif %}">
+        <input type="text" class=""  placeholder="Ville"  value="{% if customer %} customer.default_address.city {% endif %}">
+        <input type="text" class="last_input"  placeholder="Code Postal"  value="{% if customer %} customer.default_address.zip {% endif %}">
+        <button class="action_button">Vérifier mon adresse</button>
+      </div>
+
+      <div class="slots">
+        <p class="neon">Bonne nouvelle, nos coursiers pédalent jusque chez vous.</p>
+        <p class="neon">Je choisis mon horaire de livraison</p>
+        <div class="slots flex">
+
+        </div>
+
+        <div class="hidden">
+          <p>En validant votre choix de créneau vous vous engagez à être disponible sur la plage horaire choisie. (reformuler à la cool)</p>
+          <button class="action_button">Vérifier mon adresse</button>
+        </div>
+      </div>
+
+      <div class="wrong_address">
+        <p class="neon">Mince ! Votre adresse n’est pas desservie pour le moment.</p>
+        <p class="arrow_before">Vous pouvez consulter <a href="#">les points de retrait.</a></p>
+        <div class="newsletter">
+          <h4>POUR ÊTRE TENU INFORMÉ DE L’OUVERTURE DE NOUVELLES ZONES DE LIVRAISON : </h4>
+          <input type="text" placeholder="Entrez votre adresse email"><button>S'inscrire</button>
+        </div>
+      </div>
+
+      <div class="pickup">
+        <p>Je choisis un point de retrait :</p>
+        <ul class="stores_list">
+          <li>
+            <input type="checkbox">
+            <div>
+              <p class="title"></p>
+              <p class="address"></p>
+
+              <div class="toggle_content">
+                <p> Place de la nouvelle aventure, 59000 Lille <br>
+                    Horaire de retrait : 17h - 19h <br>
+                    Retrait du mardi au vendredi</p>
+              </div>
+            </div>
+            <a href="">+ d'infos </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+    <div class="form_footer">
+      <div class="reinsurance">
+        <div>
+          <img src="" alt="">
+          <p></p>
+          <h4></h4>
+        </div>
+        <div>
+          <img src="" alt="">
+          <p></p>
+          <h4></h4>
+        </div>
+      </div>
+      <p></p>
+    </div>
+  </div>
+
+</div>

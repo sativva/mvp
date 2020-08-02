@@ -68,7 +68,7 @@
                 <h3>
                   <a href="{{ item.url }}">{{ item.product.title }}</a>
                 </h3>
-                <p class="modal_price right">
+                <p class="modal_price left">
                   {% if item.price > 0 %}
                     <span class="money">{{ item.price | money }}</span>
                   {% else %}
@@ -91,12 +91,11 @@
                 {% endunless %}
 
                 {% if item.properties %}
-                  <p>
+                  <span>
                     {% for p in item.properties %}
                       <!-- Zapiet | Store Pickup + Delivery -->
                       {% unless p.first contains 'Zapiet' %}
-
-  <!-- Zapiet | Store Pickup + Delivery -->
+                      <!-- Zapiet | Store Pickup + Delivery -->
                         {% if p.last contains '/uploads/' %}
                           <div>
                             {{ p.first }}: <a class="lightbox" href="{{ p.last }}">{{ 'cart.general.uploaded_file' | t }}</a>
@@ -107,16 +106,14 @@
                           </div>
                         {% endif %}
                       {% endunless %}
-
-
                     {% endfor %}
-                  </p>
+                  </span>
                 {% endif %}
 
               </div>
 
           <div class="flex boutons-quantite-mobile">
-             <div class="product-quantity-box left">
+             <div class="product-quantity-box right">
                <span class="ss-icon product-minus js-change-quantity" data-idx="{{forloop.index}}" data-variant_id="{{item.variant.id}}" data-func="minus"><span class="text">-</span></span>
                <input type="number" min="0" size="2" class="quantity" name="updates[]" id="updates_{{ item.id }}"  value="{{ item.quantity }}" data-line-id="{{ forloop.index }}" {% if settings.limit_quantity and item.variant.inventory_management != blank and item.variant.inventory_quantity > 0 and item.variant.inventory_policy == "deny" %}max="{{ item.variant.inventory_quantity }}"{% endif %} />
                <span class="ss-icon product-plus js-change-quantity" data-variant_id="{{item.variant.id}}" data-idx="{{forloop.index}}" data-func="plus"><span class="text">+</span></span>
@@ -150,6 +147,16 @@
               <h3>
                 <a href="{{ item.url }}">{{ item.product.title }}</a>
               </h3>
+              <p class="modal_price left">
+                {% if item.price > 0 %}
+                  <span class="money">{{ item.price | money }}</span>
+                {% else %}
+                  {{ settings.free_price_text }}
+                {% endif %}
+                {% if item.price < item.variant.compare_at_price %}
+                  <span class="money was_price">{{ item.variant.compare_at_price | money }}</span>
+                {% endif %}
+              </p>
 
               {% unless item.product.has_only_default_variant or item.variant.title contains "Title" %}
                 <p class="meta">
@@ -181,23 +188,16 @@
                   {% endfor %}
                 </p>
               {% endif %}
-<div class="flex">
-  <div class="product-quantity-box left">
-    <span class="ss-icon product-minus js-change-quantity" data-idx="{{forloop.index}}" data-variant_id="{{item.variant.id}}" data-func="minus"><span class="text">-</span></span>
-    <input type="number" min="0" size="2" class="quantity" name="updates[]" id="updates_{{ item.id }}"  value="{{ item.quantity }}" data-line-id="{{ forloop.index }}" {% if settings.limit_quantity and item.variant.inventory_management != blank and item.variant.inventory_quantity > 0 and item.variant.inventory_policy == "deny" %}max="{{ item.variant.inventory_quantity }}"{% endif %} />
-    <span class="ss-icon product-plus js-change-quantity" data-variant_id="{{item.variant.id}}" data-idx="{{forloop.index}}" data-func="plus"><span class="text">+</span></span>
-  </div>
-              <p class="modal_price right">
-                {% if item.price > 0 %}
-                  <span class="money">{{ item.price | money }}</span>
-                {% else %}
-                  {{ settings.free_price_text }}
-                {% endif %}
+              <div class="flex">
 
-                {% if item.price < item.variant.compare_at_price %}
-                  <span class="money was_price">{{ item.variant.compare_at_price | money }}</span>
-                {% endif %}
-              </p>
+                <p class="modal_price left">
+
+                </p>
+                <div class="product-quantity-box left">
+                  <span class="ss-icon product-minus js-change-quantity" data-idx="{{forloop.index}}" data-variant_id="{{item.variant.id}}" data-func="minus"><span class="text">-</span></span>
+                  <input type="number" min="0" size="2" class="quantity" name="updates[]" id="updates_{{ item.id }}"  value="{{ item.quantity }}" data-line-id="{{ forloop.index }}" {% if settings.limit_quantity and item.variant.inventory_management != blank and item.variant.inventory_quantity > 0 and item.variant.inventory_policy == "deny" %}max="{{ item.variant.inventory_quantity }}"{% endif %} />
+                  <span class="ss-icon product-plus js-change-quantity" data-variant_id="{{item.variant.id}}" data-idx="{{forloop.index}}" data-func="plus"><span class="text">+</span></span>
+                </div>
 
 
               </div>
@@ -216,13 +216,50 @@
 
       <div class="five columns medium-down--one-whole buy_section">
         <div class="section clearfix">
+          {% assign vendors = "" | split: ',' %}
+
+          {% for item in cart.items %}
+           {% assign vendor = item.vendor | split: ',' %}
+           {% assign vendors = vendors | concat: vendor %}
+           {% assign vendors = vendors | uniq %}
+           {% if item.variant.compare_at_price > item.variant.price %}
+             {% assign saving = item.variant.compare_at_price | minus: item.variant.price | times: item.quantity %}
+             {% assign total_saving = saving | plus: total_saving %}
+           {% endif %}
+          {% endfor %}
+
+
+
+
+
           <div class="subtotal">
+            <div class="producteurs">
+            <p class="help_provider">Grâce à vous, <b><span class="how_many">{{ vendors.size }}</span> producteur<span class="pluriel">{% if vendors.size != 1 %}s{% endif %}</span> soutenu{% if vendors.size != 1 %}s{% endif %}.</b></p>
+
+            </div>
+
+            <hr style="border-color: #cccccc;
+    border-width: 1px !important;
+    border-bottom-width: 0px !important;">
             <p class="cart_subtotal js-cart_subtotal">
               <span class="right">
                 <span class="money">{{ cart.total_price | money }}</span>
               </span>
               <span>{{ 'cart.general.subtotal' | t }}</span>
             </p>
+                    <hr style="border-color: #cccccc;
+            border-width: 1px !important;
+            border-bottom-width: 0px !important;">
+
+            {% if content_for_additional_checkout_buttons %}
+              <div class="additional-checkout-buttons">
+                <!-- Zapiet | Store Pickup + Delivery -->
+                  {{ content_for_additional_checkout_buttons }}
+                <!-- Zapiet | Store Pickup + Delivery -->
+              </div>
+            {% endif %}
+            <button type="submit" class="action_button add_to_cart desktop" id="checkout" name="checkout">Passer ma commande</button>
+
 
             {% if section.settings.display_savings %}
               <p class="cart_savings sale">
@@ -266,31 +303,36 @@
 
            {% if cart.item_count > 0 %}
               <div class="featured-links">
-                <a href="{% if cart.items.first.product.collections != blank %}{{ cart.items.first.product.collections.last.url }}{% else %}/collections/all{% endif %}" class="secondary_button">{{ 'cart.general.continue_shopping_link_html' | t }}</a>
+                <a href="{% if cart.items.first.product.collections != blank %}{{ cart.items.first.product.collections.last.url }}{% else %}/collections/all{% endif %}" class="arrow_before">{{ 'cart.general.continue_shopping_link_html' | t }}</a>
               </div>
             {% endif %}
+
+            <div class="delivery_static">
+              <p class="head">FRAIS DE LIVRAISON:</p>
+              <p><b>5,90€</b> pour toute commande inférieure à 45€<br>
+<b>3,90€</b> pour toute commande supérieure à 45€<br>
+<b>OFFERTS à partir de 80€</b><br><br>
+
+<b>OFFERTS</b> en point de retrait (minimum d’achat de 30€)
+</p>
+
+            </div>
 
 
             {% if section.settings.display_special_instructions %}
 
-              <textarea id="note" name="note" rows="2" maxlength="150" placeholder="Demande spéciale : (facultative)">{{ cart.note }}</textarea>
+              <textarea id="note" name="note" rows="2" maxlength="150" placeholder="Vous avez un petit commentaire à laisser, une demande spécifique ? C’est par ici. " >{{ cart.note }}</textarea>
 
             {% endif %}
 
 
 
-            {% if content_for_additional_checkout_buttons %}
-              <div class="additional-checkout-buttons">
-                <!-- Zapiet | Store Pickup + Delivery -->
-{{ content_for_additional_checkout_buttons }}
-<!-- Zapiet | Store Pickup + Delivery -->
-              </div>
-            {% endif %}
+
 
           <p>
               <!-- Zapiet | Store Pickup + Delivery -->
 			{% comment %}<div id="storePickupApp"></div>{% endcomment %}
-			<!-- Zapiet | Store Pickup + Delivery --><button type="submit" class="action_button add_to_cart" id="checkout" name="checkout">Passer ma commande</button>
+			<!-- Zapiet | Store Pickup + Delivery -->
 
           </p>
 
@@ -302,6 +344,8 @@
     </div>
 
     {% include 'cart-shipping-calculator' %}
+    <button type="submit" class="action_button add_to_cart mobile" id="checkout" name="checkout">Passer ma commande - <span class="money" style="color: white !important">{{ cart.total_price | money }}</span></button>
+
   {% endif %}
   </form>
 </div>
@@ -311,10 +355,16 @@
     <div {{ block.shopify_attributes }} class="block__{{ block.type }} block__{{ block.id }}">
       {% if block.type == 'featured_collection' %}
         {% include 'include-featured-collection', type: 'block' %}
+      {% elsif block.type == 'new_form' %}
+        {% include 'new_form', type: 'block' %}
       {% endif %}
+
     </div>
   {% endfor %}
 </div>
+
+
+<!-- NEWFORM -->
 
 
 
@@ -396,6 +446,17 @@
           "max": 50,
           "step": 1,
           "default": 6
+        }
+      ]
+    },{
+      "type": "new_form",
+      "name": "Nouveau formulaire",
+      "settings": [
+        {
+          "type": "text",
+          "id": "wide_display",
+          "label": "Heading",
+          "default": "You may also be interested in"
         }
       ]
     }

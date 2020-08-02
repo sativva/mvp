@@ -37,26 +37,15 @@
             {%- assign metarobots_found = true -%}
         {%- endif -%}
     {%- elsif request.page_type == 'product' and product.metafields.seo.hidden == blank or product.metafields.seo.hidden == 0 -%}
-        {%- if product.metafields.seo.noindex_nofollow == 1 -%}
+        {%- if product.metafields.seo.orbislabsRobots == 2 -%}
             <meta name="robots" content="noindex,nofollow" />
-			{%- assign metarobots_found = true -%}
-        {%- elsif product.metafields.seo.noindex == 1 -%}
+            {%- assign metarobots_found = true -%}
+        {%- elsif product.metafields.seo.orbislabsRobots == 3 -%}
             <meta name="robots" content="noindex" />
-			{%- assign metarobots_found = true -%}
-        {%- elsif product.metafields.seo.nofollow == 1 -%}
+            {%- assign metarobots_found = true -%}
+        {%- elsif product.metafields.seo.orbislabsRobots == 4 -%}
             <meta name="robots" content="nofollow" />
-			{%- assign metarobots_found = true -%}
-        {%- elsif shop.metafields.ninja_seo_collection.allproducts != blank and shop.metafields.ninja_seo_collection.allproducts > 0 -%}
-            {%- if shop.metafields.ninja_seo_collection.allproducts == 1 or shop.metafields.ninja_seo_collection.allproducts == 2 -%}
-                <meta name="robots" content="noindex,nofollow" />
-                {%- assign metarobots_found = true -%}
-            {%- elsif shop.metafields.ninja_seo_collection.allproducts == 3 -%}
-                <meta name="robots" content="noindex" />
-                {%- assign metarobots_found = true -%}
-            {%- elsif shop.metafields.ninja_seo_collection.allproducts == 4 -%}
-                <meta name="robots" content="nofollow" />
-                {%- assign metarobots_found = true -%}
-            {%- endif -%}
+            {%- assign metarobots_found = true -%}
         {%- elsif shop.metafields.ninja_seo_collection.zeroqty != blank and shop.metafields.ninja_seo_collection.zeroqty > 0 -%}
             {%- if product.available == false -%}
                 {%- if shop.metafields.ninja_seo_collection.zeroqty == 1 or shop.metafields.ninja_seo_collection.zeroqty == 2 -%}
@@ -151,26 +140,26 @@
                 <meta name="robots" content="nofollow" />
                 {%- assign metarobots_found = true -%}
             {%- endif -%}
-        {%- elsif collection.metafields.seo.noindex_nofollow == 1 -%}
+        {%- elsif collection.metafields.seo.orbislabsRobots == 2 -%}
             <meta name="robots" content="noindex,nofollow" />
-			{%- assign metarobots_found = true -%}
-        {%- elsif collection.metafields.seo.noindex == 1 -%}
+            {%- assign metarobots_found = true -%}
+        {%- elsif collection.metafields.seo.orbislabsRobots == 3 -%}
             <meta name="robots" content="noindex" />
-			{%- assign metarobots_found = true -%}
-        {%- elsif collection.metafields.seo.nofollow == 1 -%}
+            {%- assign metarobots_found = true -%}
+        {%- elsif collection.metafields.seo.orbislabsRobots == 4 -%}
             <meta name="robots" content="nofollow" />
-			{%- assign metarobots_found = true -%}
+            {%- assign metarobots_found = true -%}
         {%- endif -%}
     {%- elsif request.page_type == 'page' and page.metafields.seo.hidden == blank or page.metafields.seo.hidden == 0 -%}
-        {%- if page.metafields.seo.noindex_nofollow == 1 -%}
+        {%- if page.metafields.seo.orbislabsRobots == 2 -%}
             <meta name="robots" content="noindex,nofollow" />
-			{%- assign metarobots_found = true -%}
-        {%- elsif page.metafields.seo.noindex == 1 -%}
+            {%- assign metarobots_found = true -%}
+        {%- elsif page.metafields.seo.orbislabsRobots == 3 -%}
             <meta name="robots" content="noindex" />
-			{%- assign metarobots_found = true -%}
-        {%- elsif page.metafields.seo.nofollow == 1 -%}
+            {%- assign metarobots_found = true -%}
+        {%- elsif page.metafields.seo.orbislabsRobots == 4 -%}
             <meta name="robots" content="nofollow" />
-			{%- assign metarobots_found = true -%}
+            {%- assign metarobots_found = true -%}
         {%- endif -%}
     {%- elsif request.page_type == 'search' -%}
         {%- if shop.metafields.ninja_seo_site.search != blank and shop.metafields.ninja_seo_site.search > 0 -%}
@@ -249,26 +238,26 @@
                 <meta name="robots" content="nofollow" />
                 {%- assign metarobots_found = true -%}
             {%- endif -%}
-        {%- elsif blog.metafields.seo.noindex_nofollow == 1 -%}
+        {%- elsif blog.metafields.seo.orbislabsRobots == 2 -%}
             <meta name="robots" content="noindex,nofollow" />
-			{%- assign metarobots_found = true -%}
-        {%- elsif blog.metafields.seo.noindex == 1 -%}
+            {%- assign metarobots_found = true -%}
+        {%- elsif blog.metafields.seo.orbislabsRobots == 3 -%}
             <meta name="robots" content="noindex" />
-			{%- assign metarobots_found = true -%}
-        {%- elsif blog.metafields.seo.nofollow == 1 -%}
+            {%- assign metarobots_found = true -%}
+        {%- elsif blog.metafields.seo.orbislabsRobots == 4 -%}
             <meta name="robots" content="nofollow" />
-			{%- assign metarobots_found = true -%}
+            {%- assign metarobots_found = true -%}
         {%- endif -%}
     {%- elsif request.page_type == 'article' and article.metafields.seo.hidden == blank or article.metafields.seo.hidden == 0 -%}
-        {%- if article.metafields.seo.noindex_nofollow == 1 -%}
+        {%- if article.metafields.seo.orbislabsRobots == 2 -%}
             <meta name="robots" content="noindex,nofollow" />
-			{%- assign metarobots_found = true -%}
-        {%- elsif article.metafields.seo.noindex == 1 -%}
+            {%- assign metarobots_found = true -%}
+        {%- elsif article.metafields.seo.orbislabsRobots == 3 -%}
             <meta name="robots" content="noindex" />
-			{%- assign metarobots_found = true -%}
-        {%- elsif article.metafields.seo.nofollow == 1 -%}
+            {%- assign metarobots_found = true -%}
+        {%- elsif article.metafields.seo.orbislabsRobots == 4 -%}
             <meta name="robots" content="nofollow" />
-			{%- assign metarobots_found = true -%}
+            {%- assign metarobots_found = true -%}
         {%- endif -%}
     {%- endif -%}
     {%- if metarobots_found == false -%}
