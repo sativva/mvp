@@ -162,6 +162,7 @@ $(function() {
             var newQuantity = $this_item.quantity - 1;
             CartJS.updateItem(index, newQuantity,{},
                 {"success": function(data, textStatus, jqXHR) {
+                   console.log(data)
                    refreshCart(data)
                    $this.css("opacity", 1).removeClass('disabled')
 
@@ -509,6 +510,15 @@ $(function() {
     var discounted_price_total = 0;
     var total_savings = 0;
     $cartBtn.attr('data-count', value.replace(/[0-9]+/, cart.item_count));
+    if (location.href.includes('/cart')) {
+      $('.add_to_cart .money').text((cart.total_price / 100).toFixed(2).replace('.',',') + ' €')
+      $('.buy_more').text(( ( 8000 - cart.total_price ) / 100 ).toFixed(2).replace('.',',') + ' €')
+    }
+    if (cart.total_price < 8000) {
+      $('.free_dlvy_amount').show()
+    } else {
+      $('.free_dlvy_amount').hide()
+    }
 
     if (cart.item_count == 0) {
 
@@ -592,9 +602,7 @@ $(function() {
       } else {
         cart_savings_html = "";
       }
-    if (location.href.includes('/cart')) {
-      // $('.cart_subtotal .money').text((CartJS.cart.total_price / 100) + ' €')
-    }
+
     }
 
     $('.js-cart_items').html(cart_items_html);

@@ -1193,7 +1193,7 @@ h1 {
   clear:both;
   font-weight: {{ settings.headline__font.weight }};
   padding-top: 4px;
-  
+
 }
 
 h2, .h2, h2.title {
@@ -2144,7 +2144,7 @@ div.cart_content form {
   padding: 15px 20px 30px 20px;
   width: 16.666%;
   vertical-align: top;
-  
+
   ul {
     margin: 0;
     padding: 0;
@@ -3513,8 +3513,8 @@ span.item-pricing {
         border-radius: 3px;
       {% elsif settings.button_style == 'pill_shaped' %}
         border-radius: 100px;
-        padding-left: 15px;
-      {% endif %} 
+        <!-- padding-left: 15px; -->
+      {% endif %}
     }
   }
 }
@@ -3689,14 +3689,14 @@ div.section { margin: 10px 0; }
   margin-top: 0px;
 }
 
-.boutons-prev-next { 
+.boutons-prev-next {
   margin-right: 0px!important;
-  width: 100%; 
-  display: flex; 
-  flex-direction : row; 
-  align-items : center; 
+  width: 100%;
+  display: flex;
+  flex-direction : row;
+  align-items : center;
   justify-content: center;
-  
+
 }
 
 
@@ -3704,7 +3704,7 @@ div.section { margin: 10px 0; }
   .boutons-prev-next {
   	width: 100%;
   }
-  
+
 }
 
 .collection-template-section .load-more,
@@ -4158,7 +4158,7 @@ $swatch-label-size: 34px;
     opacity: 1;
   }
 
- 
+
   /* Tooltips */
   .swatch .tooltip {
     /* Make it invisible by default */
@@ -4703,8 +4703,8 @@ $topMenuHeight: 40px;
   .page-banner .under-menu:nth-child(1) {
     margin-top: 0;
   }
-  
-  
+
+
 
 
   //recalculate values if promo banner is visible
@@ -5591,7 +5591,7 @@ form.search_form,
   color: {{ settings.nav_color }};
   letter-spacing: {{ settings.nav_letter_spacing }}px;
   border: none;
-  font-size: 36px;
+  font-size: 20px;
   line-height: 36px;
 
   @include respond-to('small-down') {
@@ -6617,7 +6617,7 @@ input[type="button"].highlight-false--dark {
           @include background-opacity({{ settings.featured_promotions_background }}, 0.5);
         {% endif %}
       }
-    } 
+    }
 }
 
 $i: 1;
@@ -6665,7 +6665,7 @@ $delay: 0;
   .caption.text-on-video {
     pointer-events: none;
   }
-  
+
 }
 
 

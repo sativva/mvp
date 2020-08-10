@@ -1,19 +1,20 @@
 <a name="pagecontent" id="pagecontent"></a>
 
 <div class="sixteen columns clearfix collection_nav">
-  <h1>{{ 'customer.login.title' | t }}</h1>
+
   <div class="feature_divider"></div>
 </div>
 
 <div class="clearfix" id="customer">
   <br class="clear" />
   <div class="six columns offset-by-five animated fadeInUp" id="login_form">
-
-    {% form 'customer_login' %}
+    <h1 class="new_head">{{ 'customer.login.title' | t }}</h1>
+    <p>Identifiez-vous ou <a href="/account/register"><u>créez un compte</u></a></p>
+    {% form 'customer_login', class: "newform"%}
       {{ form.errors | default_errors }}
 
-      <label for="customer_email" class="login">{{ 'customer.login.email' | t }}</label>
-      <input type="email" value="" name="customer[email]" id="customer_email" class="large" size="30"  autocorrect="off" autocapitalize="off" tabindex="1" />
+
+      <input type="email" value="" name="customer[email]" id="customer_email" class="large first_input" size="30"  autocorrect="off" autocapitalize="off" tabindex="1" placeholder="{{ 'customer.login.email' | t }}" />
 
       {% if form.password_needed %}
 
@@ -21,17 +22,18 @@
           Customer Account Login
         {% endcomment %}
 
-        <small class="right"><em><a href="#" onclick="showRecoverPasswordForm()">{{ 'customer.login.forgot_password' | t }}</a></em></small>
-        <label for="customer_password" class="login">{{ 'customer.login.password' | t }}</label>
-        <input type="password" value="" name="customer[password]" id="customer_password" class="large password" size="16" tabindex="2" />
+        <input type="password" value="" name="customer[password]" id="customer_password" class="large password last_input" size="16" tabindex="2" placeholder="{{ 'customer.login.password' | t }}" />
+
 
       {% endif %}
 
       <input class="btn action_button" type="submit" value="{{ 'customer.login.sign_in' | t }}" style="margin-bottom: 5px !important" tabindex="3" />
+      <a href="#" class="arrow_before" onclick="showRecoverPasswordForm()"><u>{{ 'customer.login.forgot_password' | t }}</u></a>
+
 
       {% unless shop.checkout.guest_login %}
-        <p class="right" style="padding-top: 10px;">
-          {{ 'customer.login.new_customer_label' | t }} {{ 'customer.login.sign_up_html' | t | customer_register_link }}
+        <p class="" style="padding-top: 10px;">
+          <a href="/account/register" class="action_button new_secondary_btn">CRÉER UN COMPTE</a>
         </p>
       {% endunless %}
     {% endform %}

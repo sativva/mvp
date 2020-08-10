@@ -2,18 +2,22 @@
 <h2 id="{{ section.settings.category-id }}">{{ section.settings.category-name }}</h2>
 <div class="prod-grid-columns-{{ section.settings.prod-row-nb }}">
 	{% for block in section.blocks %}
- 
+
   	<!-- Début du block Producteur -->
       <div class="block-producteur" style="background-color: {{ block.settings.bck-color }}; border-bottom: 3px solid {{section.settings.category-color }}">
         <!-- Photo du producteur -->
         <div class="photo-prod">
+
           <a aria-label="Lien vers le producteur" href="{{ block.settings.prod_entr }}"><img alt="Photo du producteur" src="{{ block.settings.prod-image | img_url : "500x500", crop: 'center', format: 'pjpg' }}" /></a>
+
         </div>
         <!-- Fin de la photo du producteur -->
 
         <!-- Logo de la catégorie du producteur -->
          <div class="logo-prod">
+
            <a aria-label="Lien vers le producteur"  href="{{ block.settings.prod_entr }}"><img alt="Logo de la catégorie" src="{{ section.settings.icon-prod | img_url: "x50" }}"/></a>
+
         </div>
         <!-- Fin du logo de la catégorie du producteur -->
 
@@ -21,7 +25,9 @@
         <div class="meta-producteur">
           <!-- Nom du producteur -->
           <p class="nom-producteur" style="margin-bottom: 0; font-size : {{ section.settings.name-size }}px">
+
             <a href="{{ block.settings.prod_entr }}">{{ block.settings.name }}</a>
+
           </p>
           <!-- Fin du nom du producteur -->
 
@@ -30,42 +36,42 @@
             {{ block.settings.prod-localisation }}
           </p>
           <!-- Fin de la localisation du producteur -->
-          
+
           <!-- Tags du producteur -->
           <div class="tags-prod">
             <!-- Tag Ultra-local -->
             {% if block.settings.ultra-local == true and section.settings.prod-row-nb == "trois" %}
-          		<img alt="Producteur ultra local" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-ultra-local.png?v=1592403599"/>      		
+          		<img alt="Producteur ultra local" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-ultra-local.png?v=1592403599"/>
             {% endif %}
             {% if block.settings.ultra-local == true and section.settings.prod-row-nb == "deux" %}
-          		<img alt="Producteur ultra local" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-ultra-local.png?v=1592403599"/>      		
+          		<img alt="Producteur ultra local" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-ultra-local.png?v=1592403599"/>
             {% endif %}
             <!-- Fin du tag Ultra-local-->
-            
+
             <!-- Tag Local -->
             {% if block.settings.local == true and section.settings.prod-row-nb == "trois" %}
-            	<img alt="Producteur local" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-local.png?v=1592403598"/>      
+            	<img alt="Producteur local" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-local.png?v=1592403598"/>
             {% endif %}
             {% if block.settings.local == true and section.settings.prod-row-nb == "deux" %}
-            <img alt="Producteur local" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-local.png?v=1592403598"/>      
+            <img alt="Producteur local" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-local.png?v=1592403598"/>
             {% endif %}
             <!-- Fin du tag Local -->
-            
+
             <!-- Tag En conversion bio -->
             {% if block.settings.conversion-bio == true  and section.settings.prod-row-nb == "trois" %}
-            	<img alt="Producteur en conversion bio" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-en-conversion-bio_480.png?v=1592403599"/>      
+            	<img alt="Producteur en conversion bio" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-en-conversion-bio_480.png?v=1592403599"/>
             {% endif %}
             {% if block.settings.conversion-bio == true  and section.settings.prod-row-nb == "deux" %}
-            	<img alt="Producteur en conversion bio" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-en-conversion-bio_480.png?v=1592403599"/>      
+            	<img alt="Producteur en conversion bio" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-en-conversion-bio_480.png?v=1592403599"/>
             {% endif %}
             <!-- Fin du tag en Conversion bio -->
-            
+
             <!-- Tag Bio -->
             {% if block.settings.bio == true and section.settings.prod-row-nb == "trois" %}
-            	<img alt="Producteur bio" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-bio.png?v=1592403598"/> 
+            	<img alt="Producteur bio" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-bio.png?v=1592403598"/>
           	{% endif %}
             {% if block.settings.bio == true and section.settings.prod-row-nb == "deux" %}
-            	<img alt="Producteur bio" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-bio.png?v=1592403598"/> 
+            	<img alt="Producteur bio" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-bio.png?v=1592403598"/>
           	{% endif %}
             <!-- Fin du tag Bio -->
           </div>
@@ -85,6 +91,7 @@
 {% schema %}
   {
 	"name": "Producteurs Catégorie 11",
+
 	"settings":  [
 	{
 		"type": "text",
@@ -95,7 +102,7 @@
 
     {
         "type": "text",
-		"id": "category-id",            
+		"id": "category-id",
 		"info": "Doit être identique à l'ancre de la catégorie",
         "label": "Identifiant de la catégorie"
       },
@@ -117,7 +124,7 @@
 		]
 	},
 
-		{ 
+		{
 			"type": "color",
 			"id": "category-color",
 			"label": "Couleur de la catégorie",
@@ -158,10 +165,10 @@
 
       {
         "name": "Producteur",
-		"type": "text", 
+		"type": "text",
         "settings": [
-	
-		{ 
+
+		{
 			"type": "color",
 			"id": "bck-color",
 			"label": "Couleur de fond",
@@ -256,7 +263,7 @@ html, body {
 
 .prod-grid-columns-trois .block-producteur {
 	width: 100%;
-	height: 300px; 
+	height: 300px;
 }
 
 .prod-grid-columns-deux .block-producteur {
@@ -306,7 +313,7 @@ html, body {
 }
 
 .meta-producteur p {
-	text-align : center;	
+	text-align : center;
 	box-sizing: border-box;
 }
 

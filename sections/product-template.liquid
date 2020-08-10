@@ -4,21 +4,21 @@
 {% endcomment %}
 
 <style>
-  
-  .card-title {  
-    font-family: Montserrat, sans-serif!important; 
+
+  .card-title {
+    font-family: Montserrat, sans-serif!important;
     font-size: 17px ;
     font-weight: 400;
     margin-top: 70px;
   }
-  
+
    #vendor-card {
       width: 100%;
-      box-shadow : rgba(0,0,0,10%) 1px 1px 8px; 
+      box-shadow : rgba(0,0,0,10%) 1px 1px 8px;
       padding: 25px;
      padding-bottom: 17px;
       box-sizing: border-box;
-      border-bottom:3px solid #3eab37; 
+      border-bottom:3px solid #3eab37;
       display: flex;
       flex-direction: column;
       margin-bottom: 100px;
@@ -35,28 +35,32 @@
       flex-direction: row;
   }
 
-  #vendor-card .vendor-details div, #vendor-card .vendor-details img { 
-      padding: 5px; 
+  #vendor-card .vendor-details div, #vendor-card .vendor-details img {
+      padding: 5px;
       box-sizing: border-box;
   }
 
-  #vendor-card .vendor-details .image-element__wrap { 
-    width: 100%; 
+  #vendor-card .vendor-details .image-element__wrap {
+
+    width: 100%;
+
     position: sticky;
-    top: 0; 
+    top: 0;
     display: flex;
     align-items: center;
   }
-  
+
   #vendor-card .vendor-details .image-element__wrap img { width: 100%; }
   #to-vendor { min-width: 25%!important;  margin-top: 17px }
 
-  #vendor-card .vendor-details { 
+  #vendor-card .vendor-details {
       max-height: 400px;
-      overflow: auto; 
+      overflow: auto;
   }
 
+
   .vendor-description h3 { display: none }
+
   .vendor-description p { font-size: 15px; }
 
 
@@ -66,12 +70,12 @@
 
 
   @media screen and (max-width: 468px) {
-    #vendor-card { 
+    #vendor-card {
     	padding: 15px ;
     	margin-top: 0px;
       	margin-bottom : 70px;
     }
-    
+
     #vendor-card h3 { font-size : 4vw; margin-bottom: 5px!important; }
       #vendor-card .vendor-details { width: 80% ; }
       #vendor-card .vendor-details .image-element__wrap  { width: 100%; }
@@ -387,11 +391,13 @@
       <div id="vendor-card">
         <center><h3 style="font-family: 'Montserrat'; {% if collections[vendorHandle].description == blank %}display: none; {% endif %}">{{ collections[vendorHandle].title }}</h3></center>
 		<div class="vendor-details">
-          {% assign vendor_image = collections[vendorHandle].image %} 
+          {% assign vendor_image = collections[vendorHandle].image %}
+
           {% if collections[vendorHandle].image != blank %}
           	{% include 'image-element', image: vendor_image, alt: collection.title, stretch_width: true, progressive: true %}
           {% endif %}
-          
+
+
           {% if collections[vendorHandle].description != blank %}
             {% assign vendorDescription = collections[vendorHandle].description %}
           {% endif %}
@@ -403,14 +409,14 @@
           <span style="text-align: center">{{ section.settings.no-description }}</span>
           {% endif %}
         </div>
-        
-        {% assign vendorHandle = product.vendor | handle %}        
+
+        {% assign vendorHandle = product.vendor | handle %}
         {% if collections[vendorHandle].products.size > 0 %}
         <a class="action_button" id="to-vendor" href="{{ collections[vendorHandle].url }}">{{section.settings.text-button }}</a>
-      	{% else %}  
-       {% endif %}  
+      	{% else %}
+       {% endif %}
       </div>
-      
+
 
       {% if product.description contains "<!-- split -->"  %}
         <br class="clear" />

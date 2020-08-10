@@ -23,7 +23,7 @@
       </div>
       {% comment %}<span class="menu_title">{{ 'layout.general.menu' | t }}</span>{% endcomment %}
     </a>
-    <a href="{{ shop.url }}/supermarche" title="{{ shop.name | escape }}" class="mobile_logo logo">
+    <a href="{{ shop.url }}" title="{{ shop.name | escape }}" class="mobile_logo logo">
       {% if section.settings.logo_mobile != nil %}
         <img src="{{ section.settings.logo_mobile | img_url: '410x' }}" alt="{{ shop.name | escape }}" class="lazyload" />
       {% elsif section.settings.logo != nil %}
@@ -35,7 +35,7 @@
     <div class="top_bar--right">
       {% if shop.customer_accounts_enabled %}
         {% if customer %}
-            <a href="/account" data-no-instant style="color:white">Mon compte</a>
+            <a href="/account" data-no-instant style="color:white;line-height: 14px;">Mon compte</a>
         {% else %}
           {{ 'layout.customer.log_in' | t | customer_login_link }}
         {% endif %}
@@ -116,12 +116,7 @@
 
 
 </header>
-<div class="dlvy_bar_mobile">
-  <div class="dlvy_bar menu left">
-    <div class="mode-dlvy"></div>
-    <div class="slot-dlvy"></div>
-  </div>
-</div>
+
 
 {% if template contains "index" %}
   {% assign feature_image = true %}
@@ -196,7 +191,7 @@
         <div class="flex">
         {% capture logo %}
           <div class="logo text-align--{{ section.settings.logo_alignment }}">
-            <a href="{{ shop.url }}/supermarche" title="{{ shop.name }}">
+            <a href="{{ shop.url }}" title="{{ shop.name }}">
               {% if section.settings.logo_home != nil %}
                 <img src="{{ section.settings.logo_home | img_url: '410x' }}" class="secondary_logo" alt="{{ shop.name | escape }}" />
               {% endif %}
@@ -250,8 +245,9 @@
             <div class="cart_container mini_panier">
               <a href="/cart" class="{% if section.settings.cart_icon == "cart" %}icon-cart{% else %}icon-bag{% endif %} mini_cart dropdown_link" data-no-instant>
                 <img src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/panier.svg?6360" class="picto-panier" alt="panier">
-                    <span class=" has-badge cart_count" data-count="{{ cart.item_count }}">
-                    </span>
+                <span class=" has-badge cart_count" data-count="{{ cart.item_count }}">
+                </span>
+                <p class="header_price">{{ cart.total_price | money }}</p>
               </a>
               {% unless settings.cart_action == 'ajax' and template contains 'cart' %}
                 <div class="cart_content animated fadeIn">
@@ -376,11 +372,6 @@
             </div>
           {% endif %}
 
-          <div class="dlvy_bar menu left">
-            <div class="mode-dlvy"></div>
-            <div class="slot-dlvy"></div>
-          </div>
-
           <ul class="menu right">
             {% if settings.show_multiple_currencies %}
               <li>
@@ -458,7 +449,6 @@
 <div class="deliverypopup">
   <h1 class="preheader-title">{{settings.form_title}}</h1>
   <p class="preheader-text">{{settings.form_subtitle}}</p>
-  {% include 'delivery-form' %}
 </div>
 
 

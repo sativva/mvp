@@ -10,68 +10,79 @@
 <style>
   .container {width: 95%!important }
 
+/*  .collection header {
+    max-height: {{banner_height}}px;
+  }*/
+
   .dark-overlay-true:after{
     background: rgba(0, 0, 0, 0.{{ banner_overlay }});
   }
-  
+
   .vendor-profile  { display: flex; align-items: center; }
+
   .vendor-profile > div { padding: 10px ; box-sizing: border-box }
-  
-  .vendor-tags { 
-    margin-bottom: 50px ; 
-    margin-top: 15px; 
+
+  .vendor-tags {
+    margin-bottom: 50px ;
+    margin-top: 15px;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
   }
-  
-  .vendor-tags img { 
+
+  .vendor-tags img {
     margin-right: 10px;
     margin-left: 10px;
   }
-  
+
   @media screen and (min-width: 468px) {
   	.mobile-description, .fade, #readMore { diplay: none }
   }
-  
+
   @media screen and (max-width: 468px) {
   	.vendor-profile { flex-direction: column; }
 	.fade { width: 100% }
-    .vendor-tags { 
+    .vendor-tags {
       justify-content: flex-start ;
     }
-    
-    .vendor-tags img { 
+
+    .vendor-tags img {
 		margin-right: 0px;
     	margin-left: 0px;
   	}
-    .caption.captionOverlay--true, .caption.captionOverlay--true .headline { height: 70px } 
-    
-    .caption.captionOverlay--true .headline { 
+    .caption.captionOverlay--true, .caption.captionOverlay--true .headline { height: 70px }
+
+    .caption.captionOverlay--true .headline {
       display: flex;
       align-items: center;
-      justify-content: center; 
+      justify-content: center;
     }
-    
+
+
     .collection_description p { font-size: 13px!important }
+
   }
-  
+
 </style>
-<!-- END EB -->
+
  <header style="height: {{ section.settings.top_banner_height }}px ; " class="banner center page_banner dark-overlay-{{ section.settings.image_darken }}">
-      {% if section.settings.image %}   
+
+
+      {% if section.settings.image %}
         {% assign image = section.settings.image %}   {% include 'image-element', image: image, alt: collection.title, stretch_width: true, progressive: true, height: banner_height %}
-     
-      {% else %} 
+
+      {% else %}
+
     	 <img alt={{collection.title}} src="//cdn.shopify.com/s/files/1/0095/0986/3479/collections/homev5_834252b7-0fdd-4fd3-b11e-fabbd0e4ae1e_1600x.jpg?v=1579014174" data-src="//cdn.shopify.com/s/files/1/0095/0986/3479/collections/homev5_834252b7-0fdd-4fd3-b11e-fabbd0e4ae1e_1600x.jpg?v=1579014174" data-sizes="auto" data-custom-height="200" data-srcset="//cdn.shopify.com/s/files/1/0095/0986/3479/collections/homev5_834252b7-0fdd-4fd3-b11e-fabbd0e4ae1e_5000x.progressive.jpg?v=1579014174 5000w">
 
        {% endif %}
-      
+
         <div class="caption captionOverlay--true">
           <h1 class="headline">{{ collection.title }}</h1>
         </div>
-     
+
   </header>
+
 
 <a name="pagecontent" id="pagecontent"></a>
 
@@ -119,16 +130,16 @@
       <div class="sixteen columns">
     {% endif %}
 
-      <div class="grid vendor-profile">  
-        <div class="grid__item one-third vendor-image">        
+      <div class="grid vendor-profile">
+        <div class="grid__item one-third vendor-image">
         {% if collection.image %}
           {% assign image = collection.image %}
         {%- else %}
-          
+
         {% endif %}
           {% include 'image-element', image: image, alt: collection.title, stretch_width: true, progressive: true %}
           </div>
-        
+
           {% if collection.description != blank %}
           <div class="section clearfix collection_description desktop grid__item  {% if collection.image %}two-third{% else %}{% endif %}">
             {{ collection.description }}
@@ -139,21 +150,21 @@
 
         </div>
 
-           
+
          <div class="vendor-tags">
           {% if collection.all_tags contains 'bio' or collection.all_tags contains 'Bio' %}
-              <img alt="Etiquette Bio" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-bio.png?v=1592403598" style="height: 30px!important" />     
-          {% endif %}  
+              <img alt="Etiquette Bio" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-bio.png?v=1592403598" style="height: 30px!important" />
+          {% endif %}
 
           {% if collection.all_tags contains 'En conversion bio' %}
-              <img alt="Etiquette En conversion bio" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-en-conversion-bio_480.png?v=1592403599" style="height: 30px!important" />       
-          {% endif %} 
+              <img alt="Etiquette En conversion bio" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-en-conversion-bio_480.png?v=1592403599" style="height: 30px!important" />
+          {% endif %}
 
           {% if collection.all_tags contains 'local' or collection.all_tags contains 'Local' %}
           	{% unless collection.all_tags contains 'ultra-local' or collection.all_tags contains 'Ultra-local' %}
                <img alt="Etiquette Local" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-local.png?v=1592403598" style="height: 30px!important" />
           	{% endunless %}
-          {% endif %}        
+          {% endif %}
 
           {% if collection.all_tags contains 'ultra-local' or collection.all_tags contains 'Ultra-local' %}
               <img alt="Etiquette Ultra-local" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-ultra-local.png?v=1592403599" style="height: 30px!important" />
@@ -181,7 +192,9 @@
       {% assign headline_length = headlines | split: '^' | size %}
 
 
+
 	<div class="collection">
+
       <div class="sidebar__collection-filter">
 
         <h4 class="toggle">{{ section.settings.filter_name }}<span class="right icon-down-arrow"></span></h4>
@@ -259,9 +272,11 @@
           </ul>
         {% endif %}
       </div>
+
    </div>
 
       <div class="section clearfix">
+
         <div class="eight columns section_select medium-down--one-whole">
           {% if collection.handle != blank and collection.products_count > 0 %}
             {% if section.settings.collection_tags %}
@@ -314,7 +329,7 @@
   {% endpaginate %}
 
 </div>
-  
+
   {% style %}
 
   {% endstyle %}
@@ -366,10 +381,12 @@
   	  "type": "range",
       "id": "top_banner_height",
       "label": "Banner height (px)",
+
       "min": 100,
       "max": 500,
       "step": 100,
       "default": 100
+
     },
     {
       "type": "checkbox",

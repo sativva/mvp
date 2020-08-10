@@ -379,6 +379,37 @@
       "additional_rates_part_1": "There are",
       "additional_rates_part_2": "shipping rates available for",
       "additional_rates_part_3": "starting at"
+    },
+    "shipping_static": {
+      "producteurs_1": "Grâce à vous, ",
+      "producteurs_2": "soutenu",
+      "shipping_head": "FRAIS DE LIVRAISON",
+      "shipping_1_html": "<b>5,90 € <\/b>pour toute commande inférieure à 45€",
+      "shipping_2_html": "<b>3,90 € <\/b>pour toute commande supérieure à 45€",
+      "shipping_3_html": "<b>OFFERTS à partir de 80€<\/b>",
+      "shipping_4_html": "<b>OFFERTS <\/b>en point de retrait (minimum d’achat de 30€)"
+    },
+    "new_form": {
+      "delivery_on": "Vous serez livré(e) le ",
+      "method_dlvy_html": "livraison à<br> domicile",
+      "method_pickup_html": "Retrait <br>en boutique ",
+      "conditions_pickup": "Dès 30 € d'achat",
+      "address_check": "Je vérifie que mon adresse est bien desservie.",
+      "address_check_btn": "Vérifier mon adresse",
+      "good_news": "Bonne nouvelle, nos coursiers pédalent jusque chez vous.",
+      "dlvy_hours": "Je choisis mon horaire de livraison",
+      "mentions": "En validant votre choix de créneau vous vous engagez à être disponible sur la plage horaire choisie. (reformuler à la cool)",
+      "validate": "Valider mon choix",
+      "no_go_zone": "Mince ! Votre adresse n’est pas desservie pour le moment.",
+      "pickup_link_html": "Vous pouvez consulter <a href='' class='pickup_link'>les points de retrait.<\/a>",
+      "newsletter_head": "POUR ÊTRE TENU INFORMÉ DE L’OUVERTURE DE NOUVELLES ZONES DE LIVRAISON : ",
+      "subscribe": "S'inscrire",
+      "pickup_choice": "Je choisis un point de retrait :",
+      "CO2": "Pas de CO2",
+      "light_dlvy": "Livraison douce",
+      "cold_chain": "Chaîne du froid",
+      "temperature": "TEMPÉRATURE CONTROLÉE",
+      "secured_payments_html": "Paiement <b>100% sécurisé<\/b>"
     }
   },
   "layout": {
