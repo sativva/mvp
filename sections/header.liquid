@@ -35,7 +35,7 @@
     <div class="top_bar--right">
       {% if shop.customer_accounts_enabled %}
         {% if customer %}
-            <a href="/account" data-no-instant style="color:white">Mon compte</a>
+            <a href="/account" data-no-instant style="color:white;line-height: 14px;">Mon compte</a>
         {% else %}
           {{ 'layout.customer.log_in' | t | customer_login_link }}
         {% endif %}
@@ -449,7 +449,6 @@
 <div class="deliverypopup">
   <h1 class="preheader-title">{{settings.form_title}}</h1>
   <p class="preheader-text">{{settings.form_subtitle}}</p>
-  {% include 'delivery-form' %}
 </div>
 
 

@@ -3,93 +3,148 @@
   {% assign wide_display = block.settings.wide_display %}
 {% endif %}
 
-<p> {{ wide_display }}</p>
 
-<div class="container" style="background: white">
+
+<div class="container-desktop" style="background: white;">
   <div id="newform">
-    <div class="header">
-      <h2 class="new_head">MON PANIER</h2>
-      <p>Vous serez livré(e) le <b>vendredi 3 juillet</b></p>
+
+    <div class="newform_header">
+      <h2 class="new_head">{{ 'cart.general.title' | t }}</h2>
+      <p>{{ 'cart.new_form.delivery_on' | t }} <b><span class="day_of_dlvy"></span></b></p>
     </div>
 
     <div class="method">
       <button class="dlvy selected">
-        <p class="method_dlvy">livraison à<br> domicile</p>
+        <p class="method_dlvy">{{ 'cart.new_form.method_dlvy_html' | t }} </p>
         <span class="conditions">5,90€</span></button>
-      <button class="pickup"><p class="method_pickup">Retrait <br>en boutique   </p>
-        <span class="conditions">Dès 30 € d'achat</span>
+      <button class="pickup"><p class="method_pickup">{{ 'cart.new_form.method_dlvy_html' | t }}  </p>
+        <span class="conditions">{{ 'cart.new_form.conditions_pickup' | t }}</span>
       </button>
+
     </div>
-
-
 
     <div class="dynamic_content">
       <div class="address_check newform">
-        <input type="text" class="first_input" placeholder="Numéro, nom de la rue" value="{% if customer %} customer.default_address.street {% endif %}">
-        <input type="text" class=""  placeholder="Ville"  value="{% if customer %} customer.default_address.city {% endif %}">
-        <input type="text" class="last_input"  placeholder="Code Postal"  value="{% if customer %} customer.default_address.zip {% endif %}">
-        <button class="action_button">Vérifier mon adresse</button>
+        <p><b>{{ 'cart.new_form.address_check' | t }}</b></p>
+        <form action="" id="address_check_form">
+          <span class="fields"></span>
+        <input type="text" class="first_input" name="address"  placeholder="Numéro, nom de la rue" value="{% if customer %} {{customer.default_address.street }}{% endif %}" required>
+        <input type="text" class="" name="city"   placeholder="Ville"  value="{% if customer %} {{customer.default_address.city}} {% endif %}" required>
+        <input type="text" class="last_input" pattern="[0-9]{5}" name="zip"  placeholder="Code Postal"  value="{% if customer %} {{customer.default_address.zip}} {% endif %}">
+        <input type="hidden" class="" name="mail"  placeholder="mail"  value="{% if customer %} {{ customer.email }} {% endif %}" required>
+        </form>
+        <button class="action_button address_check_btn"><span class="content">{{ 'cart.new_form.address_check_btn' | t }}</span> <span class="loader"><img src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/Spinner-1s-200px.gif?v=1584009133" alt="loader"></span></button>
       </div>
 
-      <div class="slots">
-        <p class="neon">Bonne nouvelle, nos coursiers pédalent jusque chez vous.</p>
-        <p class="neon">Je choisis mon horaire de livraison</p>
+      <div class="slots_cont">
+        <p class="neon fs24">{{ 'cart.new_form.good_news' | t }}</p>
+        <p class=""><b>{{ 'cart.new_form.dlvy_hours' | t }}</b></p>
         <div class="slots flex">
 
         </div>
 
-        <div class="hidden">
-          <p>En validant votre choix de créneau vous vous engagez à être disponible sur la plage horaire choisie. (reformuler à la cool)</p>
-          <button class="action_button">Vérifier mon adresse</button>
+        <div class="slot-selected hidden">
+          <p>{{ 'cart.new_form.mentions' | t }}</p>
+          <button class="action_button w100">
+            <span class="content">{{ 'cart.new_form.validate' | t }} </span>
+            <span class="loader"><img src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/Spinner-1s-200px.gif?v=1584009133" alt="loader"></span>
+          </button>
         </div>
       </div>
 
       <div class="wrong_address">
-        <p class="neon">Mince ! Votre adresse n’est pas desservie pour le moment.</p>
-        <p class="arrow_before">Vous pouvez consulter <a href="#">les points de retrait.</a></p>
+        <p class="neon fs24">{{ 'cart.new_form.no_go_zone' | t }}</p>
+        <p class="arrow_before"><b>{{ 'cart.new_form.pickup_link_html' | t }}></b></p>
         <div class="newsletter">
-          <h4>POUR ÊTRE TENU INFORMÉ DE L’OUVERTURE DE NOUVELLES ZONES DE LIVRAISON : </h4>
-          <input type="text" placeholder="Entrez votre adresse email"><button>S'inscrire</button>
+          <h4>{{ 'cart.new_form.newsletter_head' | t }}</h4>
+          <span class="message"></span>
+          <form method="post" action="/contact#contact_form" id="contact_form" accept-charset="UTF-8" class="contact-form">
+            <input type="hidden" name="form_type" value="customer">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="input-row"></div>
+            <div class="input-row"></div>
+            <input type="hidden" name="challenge" value="false">
+            <button class="btn_nwsletter w100" type="submit" >
+              <input class="ipt_nwsletter" aria-label="Email" type="email" class="contact_email" name="contact[email]" required="" placeholder="Entrez votre adresse email">{{ 'cart.new_form.subscribe' | t }}
+            </button>
+          </form>
         </div>
       </div>
 
       <div class="pickup">
-        <p>Je choisis un point de retrait :</p>
+        <p><b>{{ 'cart.new_form.pickup_choice' | t }}</b></p>
+        <form>
         <ul class="stores_list">
-          <li>
-            <input type="checkbox">
-            <div>
-              <p class="title"></p>
-              <p class="address"></p>
-
-              <div class="toggle_content">
-                <p> Place de la nouvelle aventure, 59000 Lille <br>
-                    Horaire de retrait : 17h - 19h <br>
-                    Retrait du mardi au vendredi</p>
+          <label class="cus_check ">
+            <li class="store_item undeployed">
+              <div>
+                <input type="radio" name="store_item" value="ID_2">
+                <span class="checkmark"></span>
               </div>
-            </div>
-            <a href="">+ d'infos </a>
-          </li>
+
+
+              <div style="position: relative;padding-left: 36px;">
+                <p class="title">Boucherie Jean-Claude, Wazemmes</p>
+                <p class="address">Place de la nouvelle aventure</p>
+
+                <div class="toggle_content hidden">
+                  <p> Place de la nouvelle aventure, 59000 Lille <br>
+                      Horaire de retrait : 17h - 19h <br>
+                      Retrait du mardi au vendredi</p>
+                </div>
+              </div>
+              <a class="more_infos">+ d'infos </a>
+            </li>
+          </label>
+          <label class="cus_check ">
+            <li class="store_item undeployed">
+              <div>
+                <input type="radio" name="store_item" value="ID_1">
+                <span class="checkmark"></span>
+              </div>
+
+
+              <div style="position: relative;padding-left: 36px;">
+                <p class="title">Boucherie Jean-Claude, Wazemmes</p>
+                <p class="address">Place de la nouvelle aventure</p>
+
+                <div class="toggle_content hidden">
+                  <p> Place de la nouvelle aventure, 59000 Lille <br>
+                      Horaire de retrait : 17h - 19h <br>
+                      Retrait du mardi au vendredi</p>
+                </div>
+              </div>
+              <a class="more_infos">+ d'infos </a>
+            </li>
+          </label>
 
         </ul>
+
+          <button class="w100 action_button store_btn" style="display: none">{{ 'cart.new_form.validate' | t }}</button>
+
+        </form>
       </div>
 
     </div>
     <div class="form_footer">
       <div class="reinsurance">
-        <div>
-          <img src="" alt="">
-          <p></p>
-          <h4></h4>
+        <div id="CO2">
+          <img src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/feuille_verte.png?v=1596009731" alt="">
+          <p>{{ 'cart.new_form.CO2' | t }}</p>
+          <h4>{{ 'cart.new_form.light_dlvy' | t }}</h4>
         </div>
-        <div>
-          <img src="" alt="">
-          <p></p>
-          <h4></h4>
+        <div id="temperature">
+          <img src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/thermometre.png?v=1596009731" alt="">
+          <p>{{ 'cart.new_form.cold_chain' | t }}</p>
+          <h4>{{ 'cart.new_form.temperature' | t }}</h4>
         </div>
       </div>
-      <p></p>
+      <p class="secured_paiments">{{ 'cart.new_form.secured_payments_html' | t }}<img src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/credit-card.png?v=1596009731" alt=""></p>
     </div>
+  </div>
+  <div class="desktop-img">
+    <img src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/image_desktop.png?v=1596009739" alt="">
   </div>
 
 </div>

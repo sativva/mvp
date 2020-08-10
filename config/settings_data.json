@@ -3987,8 +3987,9 @@
     "logo_color": "#020f4c",
     "vert_principal": "#3eab37",
     "alert": "#e95b0c",
-    "regular_color": "#2b2a2a",
+    "regular_color": "#465451",
     "banner_color": "#ffffff",
+    "cart_background": "#f7f7f7",
     "headline_color": "#454545",
     "headline_footer_text_color": "#3b3b3b",
     "sub_footer_text_color": "#8d8d8d",
@@ -4213,7 +4214,7 @@
     "no_dlv": "Malheureusement nous ne livrons pas encore à vélo votre commune, reportez-vous vers les points de retrait.",
     "closed_day": "Prochaines livraisons :",
     "no_today": "Malheureusement, nous ne livrons pas aujourd'hui dans votre ville, revenez faire votre marché",
-    "dlv_ok_today": "Bonne nouvelle, nous livrons votre commune. Prochaine livraison :",
+    "dlv_ok_today": "Vous serez livré(e) le",
     "hour_slot": "<p>Choisissez votre <strong>cr&eacute;neau horaire<\/strong><\/p>",
     "checkout_header_image": "shopify:\/\/shop_images\/BAN-checkout_00db4f9a-886a-4d6f-91a3-b27ab9a86c0f.jpg",
     "checkout_logo_image": "shopify:\/\/shop_images\/logo-blanc_4x.png",
@@ -4513,6 +4514,7 @@
       },
       "1489283389016": {
         "type": "image-with-text-overlay",
+        "disabled": true,
         "settings": {
           "wide_display": true,
           "image": "shopify:\/\/shop_images\/ImageHome-min_cab55975-4d19-4346-a2df-b2220bffee8c.jpg",
@@ -4533,6 +4535,7 @@
       },
       "1489283660007": {
         "type": "featured-text",
+        "disabled": true,
         "settings": {
           "image": "",
           "title": "Nos clients vous le disent",
@@ -5000,6 +5003,7 @@
       },
       "1563974707794": {
         "type": "customer-testimonials",
+        "disabled": true,
         "blocks": {
           "1563974707794-0": {
             "type": "image",
@@ -5149,7 +5153,6 @@
       },
       "1564047848324": {
         "type": "custom-html",
-        "disabled": true,
         "settings": {
           "custom_html": "<div id=\"insta-feed\"><\/div>"
         }
@@ -5645,7 +5648,7 @@
               "image_top": "",
               "image_caption_top": "",
               "image_link_top": "",
-              "menu_1": "zero-dechet-1",
+              "menu_1": "",
               "menu_1_link": "shopify:\/\/collections\/selection-zero-dechet",
               "menu_2": "",
               "menu_2_link": "",
@@ -6061,13 +6064,6 @@
               "feature_collection": "toutes-les-boissons",
               "image": ""
             }
-          },
-          "1577527870391": {
-            "type": "collection",
-            "settings": {
-              "feature_collection": "",
-              "image": ""
-            }
           }
         },
         "block_order": [
@@ -6077,8 +6073,7 @@
           "1577527715752",
           "1577527741569",
           "1577527811357",
-          "1577527850128",
-          "1577527870391"
+          "1577527850128"
         ],
         "settings": {
           "title": "Les étals du marché...",
@@ -6089,7 +6084,6 @@
       },
       "1577628796859": {
         "type": "social-feeds",
-        "disabled": true,
         "blocks": {
           "1577628796859-1": {
             "type": "instagram",
@@ -6107,6 +6101,17 @@
       },
       "cart-template": {
         "type": "cart-template",
+        "blocks": {
+          "1596185515749": {
+            "type": "new_form",
+            "settings": {
+              "wide_display": "hehe"
+            }
+          }
+        },
+        "block_order": [
+          "1596185515749"
+        ],
         "settings": {
           "display_special_instructions": true,
           "display_savings": true,
@@ -6115,6 +6120,7 @@
       },
       "1579514439950": {
         "type": "divider",
+        "disabled": true,
         "settings": {
           "divider_spacing": 20,
           "divider_border": false
@@ -7425,18 +7431,105 @@
           "entr-size": 13,
           "icon-prod": "shopify:\/\/shop_images\/hygiene.png"
         }
+      },
+      "1595828382486": {
+        "type": "image-with-text-overlay",
+        "settings": {
+          "wide_display": true,
+          "image": "shopify:\/\/shop_images\/homev3.jpg",
+          "pretext": "",
+          "title": "Votre marché de produits locaux livrés à vélo sur la métropole lilloise.",
+          "subtitle": "",
+          "caption_background": false,
+          "caption_background_transparency": false,
+          "button1": "Je commande",
+          "button1_link": "shopify:\/\/collections",
+          "button1_highlight": false,
+          "button2": "",
+          "button2_link": "",
+          "button2_highlight": false,
+          "text_position": "center",
+          "text_align": "center"
+        }
+      },
+      "1595828916833": {
+        "type": "featured-collection",
+        "settings": {
+          "title": "Un nouveau producteur est arrivé: la ferme des limuchon",
+          "collection_description": false,
+          "collection": "felix-et-florian-ferme-des-limuchons-comines",
+          "collection_style": "grid",
+          "products_per": 3,
+          "products_limit": 3
+        }
+      },
+      "1595829179136": {
+        "type": "featured-collection",
+        "settings": {
+          "title": "Grand nettoyage avant les vacances ? On a ce qu'il faut !",
+          "collection_description": false,
+          "collection": "ghizlaine-et-romain-mutyne-villeneuve-dascq",
+          "collection_style": "grid",
+          "products_per": 3,
+          "products_limit": 6
+        }
+      },
+      "1595839954929": {
+        "type": "featured-collection",
+        "settings": {
+          "title": "Découvrez toutes nos brosses et éponges",
+          "collection_description": false,
+          "collection": "selection-zero-dechet",
+          "collection_style": "grid",
+          "products_per": 3,
+          "products_limit": 6
+        }
+      },
+      "1595840369564": {
+        "type": "image-text",
+        "blocks": {
+          "1595840369564-0": {
+            "type": "image",
+            "settings": {
+              "additional_class": "",
+              "image": "shopify:\/\/shop_images\/producteurs-bloc-prehomepage2_min.jpg",
+              "image_crop": "none",
+              "title": "Nos producteurs & artisans",
+              "subtitle": "Si près, si proches !",
+              "text": "<p><\/p>\n<p>Les b&eacute;n&eacute;fices du &laquo; local &raquo; ne se r&eacute;sument pas &agrave; la proximit&eacute; g&eacute;ographique, c'est aussi un vrai rapport journalier avec nos producteurs qui permet d&rsquo;adapter au mieux leur offre &agrave; vos demandes.&nbsp; C'est &eacute;galement une juste r&eacute;tribution qui est favoris&eacute;e par le circuit-court.<\/p>\n<p><\/p>\n<p>Nos fruits et l&eacute;gumes sont exclusivement issus de l&rsquo;agriculture biologique, comme une bonne partie de nos autres produits (pains, &eacute;picerie, &oelig;ufs...). Nous privil&eacute;gions le Bio dans le choix des autres produits, en tenant compte des contraintes de notre territoire (par exemple, il n'existe que tr&egrave;s peu d'&eacute;levages bio en R&eacute;gion pour l'instant). Globalement nos produits sont issus d&rsquo;une agriculture respectueuse de la terre, des hommes et des animaux.<\/p>",
+              "button_label": "TOUS LES PRODUCTEURS",
+              "link": "shopify:\/\/pages\/les-producteurs-et-artisans",
+              "bg_color": "",
+              "text_color": ""
+            }
+          }
+        },
+        "block_order": [
+          "1595840369564-0"
+        ],
+        "settings": {
+          "frontpage_grid_style": false,
+          "featured_links_per_row": "1",
+          "frontpage_text_align": "left",
+          "frontpage_image_position": "left"
+        }
       }
     },
     "content_for_index": [
-      "1489283389016",
-      "1563978871129",
+      "1595828382486",
+      "1595828916833",
+      "1595829179136",
+      "1595839954929",
+      "1577527577291",
       "1563979066635",
+      "1489283389016",
       "1489283660007",
       "1563974707794",
       "1579514439950",
-      "1577527577291",
       "1577628796859",
-      "1564047848324"
+      "1564047848324",
+      "1595840369564",
+      "1563978871129"
     ]
   }
 }

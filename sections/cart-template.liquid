@@ -7,7 +7,13 @@
 
 <div class="section clearfix">
   <div class="sixteen columns">
-    <h1>{{ 'cart.general.title' | t }}</h1>
+    <h1 class="new_head">{{ 'cart.general.title' | t }}</h1>
+    <div id="dlv_ok_today">
+      <p></p>
+    </div>
+    <div id="no_today">
+      <p class="next_dlv_day"></p>
+    </div>
     <div class="feature_divider"></div>
   </div>
 </div>
@@ -28,10 +34,18 @@
   <form action="/cart" method="post" id="cart_form">
 {% comment %}checkout[shipping_address][address1]=Place+de+la+nouvelle+aventure&checkout[shipping_address][address2]=&checkout[shipping_address][city]=Lille&checkout[shipping_address][company]=Boucherie+Jean-Claude%2C+halles+de+Wazemmes+%28+mercredi+%29&checkout[shipping_address][country]=France&checkout[shipping_address][province]=&checkout[shipping_address][zip]=59000&discount=&locale=fr-CA&method=pickup&step=contact_information{% endcomment %}
     <input type="hidden" name="checkout[shipping_address][address1]" id="addr1" >
+
+    {% if customer %}
+      <input type="hidden" name="checkout[shipping_address][last_name]" id="last_name" value="{{customer.last_name}}">
+      <input type="hidden" name="checkout[shipping_address][first_name]" id="first_name" value="{{customer.first_name}}">
+      <input type="hidden" name="checkout[shipping_address][phone]" id="first_name" value="{{customer.default_address.phone}}">
+      <input type="hidden" name="checkout[customer][email]" id="email" value="{{customer.email}}">
+      <input type="hidden" name="checkout[shipping_address][company]" id="company" value="{{customer.default_address.company}}">
+    {% endif %}
+
     <input type="hidden" name="checkout[shipping_address][address2]" id="addr2">
     <input type="hidden" name="checkout[shipping_address][city]" id="city" value="">
     <input type="hidden" name="checkout[shipping_address][zip]" id="zip" value="">
-    <input type="hidden" name="checkout[shipping_address][company]" id="company" value="">
     <input type="hidden" name="locale" id="locale" value="">
     <input type="hidden" name="checkout[shipping_address][province]" id="province" value="">
     <input type="hidden" name="attributes[Checkout-Method]" id="method" value="delivery">
@@ -93,8 +107,11 @@
                 {% if item.properties %}
                   <span>
                     {% for p in item.properties %}
+
                       <!-- Zapiet | Store Pickup + Delivery -->
                       {% unless p.first contains 'Zapiet' %}
+                      {% unless p.last contains 'Zapiet' %}
+
                       <!-- Zapiet | Store Pickup + Delivery -->
                         {% if p.last contains '/uploads/' %}
                           <div>
@@ -106,6 +123,8 @@
                           </div>
                         {% endif %}
                       {% endunless %}
+                      {% endunless %}
+
                     {% endfor %}
                   </span>
                 {% endif %}
@@ -167,12 +186,11 @@
               {% endunless %}
 
               {% if item.properties %}
-                <p>
+                <span>
                   {% for p in item.properties %}
                     <!-- Zapiet | Store Pickup + Delivery -->
                     {% unless p.first contains 'Zapiet' %}
-
-<!-- Zapiet | Store Pickup + Delivery -->
+                    <!-- Zapiet | Store Pickup + Delivery -->
                       {% if p.last contains '/uploads/' %}
                         <div>
                           {{ p.first }}: <a class="lightbox" href="{{ p.last }}">{{ 'cart.general.uploaded_file' | t }}</a>
@@ -186,7 +204,7 @@
 
 
                   {% endfor %}
-                </p>
+                </span>
               {% endif %}
               <div class="flex">
 
@@ -234,7 +252,7 @@
 
           <div class="subtotal">
             <div class="producteurs">
-            <p class="help_provider">Grâce à vous, <b><span class="how_many">{{ vendors.size }}</span> producteur<span class="pluriel">{% if vendors.size != 1 %}s{% endif %}</span> soutenu{% if vendors.size != 1 %}s{% endif %}.</b></p>
+            <p class="help_provider">{{ 'cart.shipping_static.producteurs_1' | t }}, <b><span class="how_many">{{ vendors.size }}</span> producteur<span class="pluriel">{% if vendors.size != 1 %}s{% endif %}</span> {{ 'cart.shipping_static.producteurs_2' | t }}{% if vendors.size != 1 %}s{% endif %}.</b></p>
 
             </div>
 
@@ -258,7 +276,7 @@
                 <!-- Zapiet | Store Pickup + Delivery -->
               </div>
             {% endif %}
-            <button type="submit" class="action_button add_to_cart desktop" id="checkout" name="checkout">Passer ma commande</button>
+            <button type="submit" class="action_button add_to_cart desktop checkout" id="checkout" name="checkout">Passer ma commande</button>
 
 
             {% if section.settings.display_savings %}
@@ -301,20 +319,27 @@
             {% endif %}
 
 
+
+
            {% if cart.item_count > 0 %}
+
+              <div class="free_dlvy_amount">
+                <p>Plus que <b><span class="buy_more">{{ 8000 | minus: cart.total_price | money }}</span> d’achat</b> pour bénéficier de la livraison <b>offerte !</b></p>
+              </div>
+
               <div class="featured-links">
                 <a href="{% if cart.items.first.product.collections != blank %}{{ cart.items.first.product.collections.last.url }}{% else %}/collections/all{% endif %}" class="arrow_before">{{ 'cart.general.continue_shopping_link_html' | t }}</a>
               </div>
             {% endif %}
 
             <div class="delivery_static">
-              <p class="head">FRAIS DE LIVRAISON:</p>
-              <p><b>5,90€</b> pour toute commande inférieure à 45€<br>
-<b>3,90€</b> pour toute commande supérieure à 45€<br>
-<b>OFFERTS à partir de 80€</b><br><br>
+              <p class="head">{{ 'cart.shipping_static.shipping_head' | t }}</p>
+              <p>{{ 'cart.shipping_static.shipping_1_html' | t }}<br>
+              <b>{{ 'cart.shipping_static.shipping_2_html' | t }}<br>
+              {{ 'cart.shipping_static.shipping_3_html' | t }}<br><br>
 
-<b>OFFERTS</b> en point de retrait (minimum d’achat de 30€)
-</p>
+              {{ 'cart.shipping_static.shipping_4_html' | t }}
+              </p>
 
             </div>
 
@@ -344,7 +369,7 @@
     </div>
 
     {% include 'cart-shipping-calculator' %}
-    <button type="submit" class="action_button add_to_cart mobile" id="checkout" name="checkout">Passer ma commande - <span class="money" style="color: white !important">{{ cart.total_price | money }}</span></button>
+    <button type="submit" class="action_button add_to_cart mobile checkout" id="checkout" name="checkout">Passer ma commande - <span class="money" style="color: white !important">{{ cart.total_price | money }}</span></button>
 
   {% endif %}
   </form>
