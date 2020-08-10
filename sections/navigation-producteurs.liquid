@@ -1,8 +1,8 @@
 <div class="barre-nav">
 	{% for block in section.blocks %}  
   		<div class="nav-category">
-    		<img src="{{block.settings.logo-category | img_url: "25x25"}}" />
-    		<a style="font-size: {{ section.settings.category-size }}px;" href="https://www.mesvoisinsproducteurs.com/pages/page-test-lou-anne#{{ block.settings.category-anchor}}">{{ block.settings.category-name }}</a>
+    		<img alt="Logo de la catégorie" src="{{block.settings.logo-category | img_url: "25x25"}}" />
+    		<a style="font-size: {{ section.settings.category-size }}px;" href="https://www.mesvoisinsproducteurs.com/pages/nos-producteurs-et-artisans#{{ block.settings.category-anchor}}">{{ block.settings.category-name }}</a>
   		</div>	
     {% endfor %}
 </div>
@@ -65,6 +65,7 @@
 	justify-content: center;
 	margin-top: 20px;
 	margin-bottom: 10px;
+	flex-wrap: wrap;
 }
 
 .barre-nav > div {
@@ -82,6 +83,7 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	margin-bottom: 5px;
 }
 
 .barre-nav .nav-category  img {
@@ -90,16 +92,13 @@
 
 
 @media screen and (max-width: 468px) {
-	.barre-nav {
-      flex-direction: column;
-      align-items: flex-start;
-	}
+	.barre-nav { justify-content: space-between ; }
+
     .barre-nav .nav-category {
         align-items: flex-start;
 		margin-bottom: 5px;
     }
 }
-
 {% endstylesheet %}
 
 {% javascript %}

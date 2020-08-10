@@ -3,7 +3,7 @@
 <html lang="{{ shop.locale }}">
   <head>
   {% include 'elevar-head' %}
-    {% include 'orbislabs_sitemap_noindex' %}
+    {% render 'orbislabs_sitemap_noindex' %}
     {% include 'shop-sheriff-amp' %}
 
     <script async src="{{ 'jquery.min.js' | asset_url }}"></script>

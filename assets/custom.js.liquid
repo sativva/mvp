@@ -1377,7 +1377,7 @@ console.log(json_data.delivery[textual_day].blackout_dates);
       })
     }
 
-    if ($(window).width() > 798) {
+    if ($(window).width() < 768) {
       if ($('.collection_description').height() > 125) {
         var oldHeight = $('.collection_description').height();
         $('.collection_description').addClass('open');

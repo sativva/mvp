@@ -511,13 +511,18 @@ $(function() {
     $cartBtn.attr('data-count', value.replace(/[0-9]+/, cart.item_count));
 
     if (cart.item_count == 0) {
+
+	  $('.decrement').hide();     
       $('.js-empty-cart__message').removeClass('hidden');
       $('.js-cart_content__form').addClass('hidden');
+
     } else {
       $('.js-empty-cart__message').addClass('hidden');
       $('.js-cart_content__form').removeClass('hidden');
 
       $.each(cart.items, function(index, item) {
+        
+        $('.decrement[data-product-id=' + item.variant_id + ']').fadeIn();
 
         $('.product-wrap[data-product-id='+item.variant_id+'] .image-element__wrap').addClass('inbasket');
         $('.product-wrap[data-product-id='+item.variant_id+'] .inbasket').append('<div class="sentence"><div><span>'+item.quantity+'</span><br>dans votre panier</div></div>')
