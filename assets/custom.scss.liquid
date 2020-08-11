@@ -805,6 +805,11 @@ $font_black: #465451;
       width: 30% !important;
       padding-right: 0;
     }
+    @media screen and (min-width: 768px) and (max-width: 970px) {
+      .search_container {
+        width: 20% !important;
+      }
+    }
     .menu.align_left {
       margin-right: 0px;
     }
@@ -821,6 +826,7 @@ $font_black: #465451;
 
     .nav .search__results {
       width: 100%;
+      min-width: 300px;
       .title.see-all a {
         line-height: none;
       }
@@ -835,6 +841,7 @@ $font_black: #465451;
       }
 
     }
+
 
     .menu.right {
       top: 28px !important;
@@ -955,7 +962,7 @@ $font_black: #465451;
       height: auto;
       position: absolute;
       top: 50%;
-      left: 78%;
+      right: 130px;
       transform: translateY(-50%);
 
       .currencies {
@@ -996,6 +1003,7 @@ $font_black: #465451;
   .search_form input::placeholder {
     color: $grey;
   }
+
   @media screen and (max-width: 768px) {
     .icon-search:before {
         top: -10px;
@@ -2479,12 +2487,7 @@ $font_black: #465451;
         background-size: contain;
       }
   }
-  @media only screen and (max-width: 959px) and (min-width: 799px) {
-      .menu li.search_container, .search_container span.icon-search.search-submit {
-          display: block !important;
-      }
 
-  }
   @media only screen and (max-width: 1024px) and (min-width: 799px) {
     .purchase-details {
         width: 100%;
@@ -3079,7 +3082,7 @@ input:checked + .toggle_check:before {
       width: 100%;
     }
   }
-    .slot-selected {
+ .slot-selected {
     button {
       .loader {
         display: none;
@@ -3090,6 +3093,15 @@ input:checked + .toggle_check:before {
       width: 100%;
     }
   }
+  .store_btn {
+      .loader {
+        display: none;
+        img {
+          height: 45px;
+        }
+      }
+      width: 100%;
+    }
 
   :focus {
       outline: -webkit-focus-ring-color auto 0px;
@@ -3241,6 +3253,7 @@ input:checked + .toggle_check:before {
       padding: 0;
       font-family: Open Sans;
       font-size: 14px;
+      font-weight: 100;
 
     }
     &.deployed {

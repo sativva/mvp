@@ -19,12 +19,12 @@ $(document).ready(function() {
         return false;
     }
 
-    $('.scroll-top').on('click', function() {
-      $('html, body').animate({ scrollTop: 0 }, 1000);
-    })
-    $('.scroll-down').on('click', function() {
-      $('html, body').animate({ scrollTop: $('.headline-section').offset().top }, 1000);
-    })
+    // $('.scroll-top').on('click', function() {
+    //   $('html, body').animate({ scrollTop: 0 }, 1000);
+    // })
+    // $('.scroll-down').on('click', function() {
+    //   $('html, body').animate({ scrollTop: $('.headline-section').offset().top }, 1000);
+    // })
     var BrowserDetect = {
       init: function() {
         this.browser = this.searchString(this.dataBrowser) || "Other";
@@ -264,33 +264,7 @@ $(document).ready(function() {
     console.log(today_date)
 
 
-    var getNextDlvDay = function(dlv) {
-      var d_day;
-      console.log("getNextDlvDay" + d_day);
-      // reorder start day in array
-      days_from_today = days.slice(days.indexOf(textual_day) + 1, 7);
-      days_before_today = days.slice(0, days.indexOf(textual_day));
-      days_before_today.forEach(function(day) {
-        days_from_today.push(day);
-      });
-      console.log(days_from_today);
 
-      // for each next days see if there is delivery
-      days_from_today.every(function(day) {
-        console.log("every" + day);
-
-        var dlv_enabled = dlv[day].slots.enabled;
-        var is_blackout_day = dlv[day].blackout_dates.includes(today_date);
-        if (dlv_enabled && !is_blackout_day) {
-          d_day = day
-          return d_day;
-        }
-      })
-      // return the index of the day
-      console.log(days.indexOf(d_day));
-      return days.indexOf(d_day)
-
-    }
 
 
     // DELIVERY
@@ -351,7 +325,7 @@ $(document).ready(function() {
     // When i validate a zip in velo
     $('#zip_btn_velo').click(function() {
       // var zip_code = $('#zip_velo').val();
-      var zip_code = "56000"
+      var zip_code = "59000"
       // call zapiet
       $.ajax({
         method: "POST",
@@ -602,7 +576,7 @@ $(document).ready(function() {
     }
 
     var get_locations = function() {
-            var zip_code = "56000"
+            var zip_code = "59000"
             // call zapiet
             $.ajax({
               method: "POST",
@@ -1408,30 +1382,30 @@ $(document).ready(function() {
 
 
     // prehome popup
-    $('.preheader.closed').click(function() {
-      $('.preheader').removeClass('closed').addClass('open');
-      $('html,body').animate({ scrollTop: 0 }, 'slow');
-      $('.scroll-down').hide()
-      if ($(window).width() < 768) {
-        $('body').css('overflow', 'hidden')
-      }
-    })
+    // $('.preheader.closed').click(function() {
+    //   $('.preheader').removeClass('closed').addClass('open');
+    //   $('html,body').animate({ scrollTop: 0 }, 'slow');
+    //   $('.scroll-down').hide()
+    //   if ($(window).width() < 768) {
+    //     $('body').css('overflow', 'hidden')
+    //   }
+    // })
 
 
 
-    $('#close_popup').click(function() {
-      $('#zip_validator, .retrait, .entreprise, #no_dlv, #no_today, #dlv_ok_today').hide();
-      setTimeout(function() {
-        $('.preheader').removeClass('open').addClass('closed');
-        $('.scroll-down').show()
-        if ($(window).width() < 768) {
-          $('body').css('overflow', 'initial')
-        }
-        $('#dlv_choice input[type="radio"]').each(function() {
-          $(this).prop("checked", false);
-        })
-      }, 10);
-    })
+    // $('#close_popup').click(function() {
+    //   $('#zip_validator, .retrait, .entreprise, #no_dlv, #no_today, #dlv_ok_today').hide();
+    //   setTimeout(function() {
+    //     $('.preheader').removeClass('open').addClass('closed');
+    //     $('.scroll-down').show()
+    //     if ($(window).width() < 768) {
+    //       $('body').css('overflow', 'initial')
+    //     }
+    //     $('#dlv_choice input[type="radio"]').each(function() {
+    //       $(this).prop("checked", false);
+    //     })
+    //   }, 10);
+    // })
 
     var getCart = function() {
       $.ajax({
@@ -1513,15 +1487,42 @@ $(document).ready(function() {
 
 
     // NEWFORM
+    var getNextDlvDay = function(dlv) {
+      var d_day;
+      console.log("getNextDlvDay" + d_day);
+      // reorder start day in array
+      days_from_today = days.slice(days.indexOf(textual_day) + 1, 7);
+      days_before_today = days.slice(0, days.indexOf(textual_day));
+      days_before_today.forEach(function(day) {
+        days_from_today.push(day);
+      });
+      console.log(days_from_today);
+
+      // for each next days see if there is delivery
+      days_from_today.every(function(day) {
+        console.log("every" + day);
+
+        var dlv_enabled = dlv[day].slots.enabled;
+        var is_blackout_day = dlv[day].blackout_dates.includes(today_date);
+        if (dlv_enabled && !is_blackout_day) {
+          d_day = day
+          return d_day;
+        }
+      })
+      // return the index of the day
+      console.log(days.indexOf(d_day));
+      return days.indexOf(d_day)
+
+    }
+
     var call_pickup_new = function() {
+      $('.stores_list').html('')
       $.ajax({
         method: "POST",
         url: "https://api.zapiet.com/v4.0/pickup/locations?shop=mes-voisins-producteurs2.myshopify.com",
         data: { "shop": "mes-voisins-producteurs2.myshopify.com" },
         dataType: 'json',
         success: function(useremail) {
-          var uu = useremail
-          console.log(uu);
         },
         error: function(xhr, status, err) {},
         complete: function(xhr, status) {
@@ -1535,24 +1536,13 @@ $(document).ready(function() {
               if (!loc.opening_hours[textual_day].closed) {
                 pickup_today.push(loc);
                 console.log(loc.company_name);
-                if (loc.company_name.includes('personnel')) {
 
-                  var single_entreprise = '<option value="' + loc.id + '"'
-                  single_entreprise += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
-                  single_entreprise += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
-                  single_entreprise += ' data-slot-interval="' + 30 + '"'
-                  single_entreprise += ' data-addr1="' + loc.address_line_1 + '"'
-                  single_entreprise += ' data-addr2="' + loc.address_line_2 + '"'
-                  single_entreprise += ' data-city="' + loc.city + '"'
-                  single_entreprise += ' data-zip="' + loc.postal_code + '"'
-                  single_entreprise += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
-                  single_entreprise += ' data-company_name="' + loc.company_name + '"'
-                  single_entreprise += '>' + loc.company_name + '</option>'
 
-                  $('#entreprise-select').append(single_entreprise)
-                } else {
-                  var single_loc = '<option value="' + loc.id + '"'
-                  single_loc += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
+                  var single_loc = '<label class="cus_check ">'
+                  single_loc += '<li class="store_item undeployed">'
+                  single_loc += '<div>'
+                  single_loc += '<input type="radio" name="store_item" value="' + loc.id
+                  single_loc += '" data-coord="' + loc.longitude + ',' + loc.latitude + '"'
                   single_loc += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
                   single_loc += ' data-slot-interval="' + 30 + '"'
                   single_loc += ' data-addr1="' + loc.address_line_1 + '"'
@@ -1560,130 +1550,57 @@ $(document).ready(function() {
                   single_loc += ' data-city="' + loc.city + '"'
                   single_loc += ' data-zip="' + loc.postal_code + '"'
                   single_loc += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
-                  single_loc += ' data-company_name="' + loc.company_name + '"'
-                  single_loc += '>' + loc.company_name + '</option>'
-                  $('#loc-select').append(single_loc)
-                }
+                  single_loc += ' data-company_name="' + loc.company_name +'">'
+                  single_loc += '<span class="checkmark"></span>'
+                  single_loc += '</div>'
+                  single_loc += '<div style="position: relative;padding-left: 36px;">'
+                  single_loc += '<p class="title">' + loc.company_name + '</p>'
+                  single_loc += '<p class="address">'+loc.address_line_1 +'</p>'
+                  single_loc += '<div class="toggle_content hidden">'
+                  single_loc += '<p> '+loc.address_line_1 + ', ' +loc.postal_code  +' ' +loc.city+ '<br>'
+                  single_loc += ' Horaire de retrait : '+loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes +  '<br>'
+                  single_loc += ' Retrait du mardi au vendredi</p>'
+                  single_loc += '</div>'
+                  single_loc += '</div>'
+                  single_loc += '<a class="more_infos">+ d\'infos </a>'
+                  single_loc += '</li>'
+                  single_loc += '</label>'
+
+                  $('.stores_list').append(single_loc)
+
                 geojson.features.push({ id: loc.id, type: 'Feature', geometry: { type: 'Point', coordinates: [loc.longitude, loc.latitude] }, properties: { title: loc.company_name, description: 'de ' + loc.opening_hours[textual_day].opens + " à " + loc.opening_hours[textual_day].closes } });
-              } else {
-                if (loc.company_name.includes('personnel')) {
-
-                  var single_entreprise = '<option disabled value=' + loc.id + loc.id + '"'
-                  single_entreprise += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
-                  single_entreprise += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
-                  single_entreprise += ' data-slot-interval="' + 30 + '"'
-                  single_entreprise += ' data-addr1="' + loc.address_line_1 + '"'
-                  single_entreprise += ' data-addr2="' + loc.address_line_2 + '"'
-                  single_entreprise += ' data-city="' + loc.city + '"'
-                  single_entreprise += ' data-zip="' + loc.postal_code + '"'
-                  single_entreprise += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
-                  single_entreprise += ' data-company_name="' + loc.company_name + '"'
-                  single_entreprise += '>' + loc.company_name + '</option>'
-
-                  $('#entreprise-select').append(single_entreprise)
-                } else {
-                  var single_loc = '<option disabled value="' + loc.id + '"'
-                  single_loc += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
-                  single_loc += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
-                  single_loc += ' data-slot-interval="' + 30 + '"'
-                  single_loc += ' data-addr1="' + loc.address_line_1 + '"'
-                  single_loc += ' data-addr2="' + loc.address_line_2 + '"'
-                  single_loc += ' data-city="' + loc.city + '"'
-                  single_loc += ' data-zip="' + loc.postal_code + '"'
-                  single_loc += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
-                  single_loc += ' data-company_name="' + loc.company_name + '"'
-                  single_loc += '>' + loc.company_name + '</option>'
-                  $('#loc-select').append(single_loc)
-                }
               }
 
-            });
-
-            if ($("#entreprise-select option").length == 0) { console.log("pas d'entreprise aujourd'hui"); }
-
-            mapboxgl.accessToken = 'pk.eyJ1IjoidHJvbmRpbyIsImEiOiJjanFxZjh6MGgwYXJvNDRrMHFjZHBpNDdmIn0.ioTp3niVhdCwcGjThH9TVQ';
-
-
-
-            var map = new mapboxgl.Map({
-              container: 'map',
-              style: 'mapbox://styles/mapbox/streets-v11',
-              center: [3.066667, 50.633333], // starting position
-              zoom: 11
-            });
-
-            map.addControl(new mapboxgl.NavigationControl());
-
-
-            if ($('.relais-map').length > 0) {
-              // $('.relais-map').find('.featured-link--wrap').empty().append("<div id='relais-map'></div>")
-
-              // var map2 = new mapboxgl.Map({
-              //   container: 'relais-map',
-              //   style: 'mapbox://styles/mapbox/streets-v11',
-              //   center: [3.066667, 50.633333], // starting position
-              //   zoom: 11
-              // });
-              // map2.addControl(new mapboxgl.NavigationControl());
-              $('.relais-map').find('.featured-link--wrap').empty().append("<iframe src='https://www.google.com/maps/d/embed?mid=1lmmBOdFHSZZ1m6w0fkHiMmmpNmos6GC4&hl=fr' width='100%' height='480'></iframe>")
-
-            }
-
-
-            geojson.features.forEach(function(marker) {
-              // create a HTML element for each feature
-              var el = document.createElement('div');
-              el.className = 'marker ' + marker.id;
-              el.addEventListener('click', function(elmt) {
-                var loc_id = elmt.currentTarget.classList[1];
-                $('#loc-select').val(loc_id);
-                $('#loc-select').trigger('change');
-              });
-
-              var el2 = document.createElement('div');
-              el2.className = 'marker ' + marker.id;
-
-              // make a marker for each feature and add to the map
-              new mapboxgl.Marker(el)
-                .setLngLat(marker.geometry.coordinates)
-                .addTo(map)
-
-              // if ($('.relais-map').length > 0) {
-
-
-              //   new mapboxgl.Marker(el2)
-              //     .setLngLat(marker.geometry.coordinates)
-              //     .addTo(map2)
-              // }
 
             });
-            $('#loc-select').change(function() {
-              var choice = $(this).val();
-              var coord = $('option[value=' + choice + ']').attr('data-coord').split(',');
-              map.flyTo({ center: coord, zoom: 11 });
-            });
-            $('#zip_btn_retrait').click(function() {
-              var zip_code = $('#zip_retrait').val();
-              $.ajax({
-                method: "GET",
-                url: "https://api.mapbox.com/geocoding/v5/mapbox.places/" + zip_code + ".json?access_token=pk.eyJ1IjoibWF0dGZpY2tlIiwiYSI6ImNqNnM2YmFoNzAwcTMzM214NTB1NHdwbnoifQ.Or19S7KmYPHW8YjRz82v6g&cachebuster=1564583779753&autocomplete=false&country=fr&types=postcode",
-                dataType: 'json',
-                success: function(useremail) {},
-                error: function(xhr, status, err) {},
-                complete: function(xhr, status) {
-                  if (status === 'error' || !xhr.responseText) {
-                    // if error, no delivery in your town
-                  } else {
-                    json_data_zip = JSON.parse(xhr.responseText);
-                    map.flyTo({ center: json_data_zip.features[0].geometry.coordinates, zoom: 11 });
-                  }
-                }
-              })
+
+            $('.pickup .more_infos').click(function(e){
+              e.preventDefault()
+              $(this).parent().toggleClass('deployed');
+              $(this).parent().toggleClass('undeployed');
+              $(this).parent().find('.toggle_content').slideToggle();
             })
+
+            $(".store_item input[type='radio']").change(function() {
+              console.log('change')
+              console.log($(this).is(':checked'))
+              console.log($(this).val())
+              $(".store_btn").fadeIn();
+
+              $('.stores_list .store_item').attr('style','border: solid 1px #C9C9C9 !important;')
+              if ($(this).is(':checked')) {
+                $(this).parents('.store_item').css('border', 'solid 1px #3eab37')
+              } else {
+                $(this).parents('.store_item').attr('style','border: solid 1px #C9C9C9 !important;')
+              }
+            })
+
           }
         }
       })
     }
+
+
     var get_locations_new = function() {
         var zip_code = "59000"
         // call zapiet
@@ -1759,8 +1676,8 @@ $(document).ready(function() {
       console.log('getTimeSlot');
 
       var cook = Cookies.getJSON('dlvy')
-      var loc_id = "118345"
-      var dlvy_day = "2020-08-11"
+      var loc_id = $('body').attr('data-delivery-location-id')
+      var dlvy_day = "2020-08-19"
       var zip = $('.address_check input[name="zip"').val()
       console.log(dlvy_day + zip + loc_id);
       $.ajax({
@@ -1827,13 +1744,20 @@ $(document).ready(function() {
         var cart = CartJS.cart
         var date_now = new Date
         var method = $('body').attr('data-method')
-        var location_id = $('body').attr('data-pickup-location-id')
+
         var newDate = currentTime.getYear() +"-"+currentTime.getMonth()+"-"+currentTime.getDate();
         var expr = /\d+/g;
         var parts = newDate.match(expr);
         var json_date = new Date(parts[0], parts[1], parts[2]);
-        var hour = parseInt($(".slot.selected").text().split(" - ")[0].split("H")[0])
-        var minutes = parseInt($(".slot.selected").text().split(" - ")[0].split("H")[1])
+        if (method != 'pickup') {
+          var location_id = $('body').attr('data-pickup-location-id')
+          var hour = parseInt($(".slot.selected").text().split(" - ")[0].split("H")[0])
+          var minutes = parseInt($(".slot.selected").text().split(" - ")[0].split("H")[1])
+        } else {
+          var location_id = $('.stores_list input:checked').val()
+          var hour = parseInt($('.stores_list input:checked').attr('data-slot').split(" - ")[0].split("H")[0])
+          var minutes = parseInt($('.stores_list input:checked').attr('data-slot').split(" - ")[0].split("H")[1])
+        }
 
         json_date = new Date(json_date.setHours(hour + 1))
         if (!Number.isNaN(minutes)) {
@@ -1868,7 +1792,7 @@ $(document).ready(function() {
                         "value": method
                       },
                       {
-                        "name": method.substr(0,1).toUpperCase()+yourtext.substr(1) + "-Location-Id",
+                        "name": method.substr(0,1).toUpperCase()+method.substr(1) + "-Location-Id",
                         "value": location_id
                       },
                       {
@@ -1915,6 +1839,7 @@ $(document).ready(function() {
 
     if (location.href.indexOf('/cart') > -1) {
       get_locations_new();
+      $('body').attr('data-method', 'delivery')
     }
 
     // On click validate cart display new form
@@ -1923,6 +1848,8 @@ $(document).ready(function() {
       e.stopPropagation();
       e.stopImmediatePropagation();
       CartJS.getCart();
+      call_pickup_new();
+
       console.log('add_toCart');
       $('#newform').show();
       $('.dynamic_content .address_check').show();
@@ -1977,14 +1904,12 @@ $(document).ready(function() {
     })
 
 
-    $('.slot-selected button').click(function() {
+    $('.slot-selected button, .store_btn').click(function() {
       // go to checkout
       $('.loader', this).show()
       $('.content', this).hide()
 
       postCheckout_new()
-
-
     })
 
     $('.method .pickup').click(function() {
@@ -2000,28 +1925,13 @@ $(document).ready(function() {
 
       }
     )
+
+
     $('.pickup_link').click(function() {$('.method .pickup').click()})
 
-    $('.pickup .more_infos').click(function(e){
-      e.preventDefault()
-      $(this).parent().toggleClass('deployed');
-      $(this).parent().toggleClass('undeployed');
-      $(this).parent().find('.toggle_content').slideToggle();
-    })
 
-    $(".store_item input[type='radio']").change(function() {
-      console.log('change')
-      console.log($(this).is(':checked'))
-      console.log($(this).val())
-      $(".store_btn").fadeIn();
 
-      $('.stores_list .store_item').attr('style','border: solid 1px #C9C9C9 !important;')
-      if ($(this).is(':checked')) {
-        $(this).parents('.store_item').css('border', 'solid 1px #3eab37')
-      } else {
-        $(this).parents('.store_item').attr('style','border: solid 1px #C9C9C9 !important;')
-      }
-    })
+
 
     $('.address_check_btn').click(function() {
 
