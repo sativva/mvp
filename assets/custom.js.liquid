@@ -19,12 +19,22 @@ $(document).ready(function() {
         return false;
     }
 
-    $('.scroll-top').on('click', function() {
-      $('html, body').animate({ scrollTop: 0 }, 1000);
-    })
-    $('.scroll-down').on('click', function() {
-      $('html, body').animate({ scrollTop: $('.headline-section').offset().top }, 1000);
-    })
+    if (($(window).width() > 798) && ($(window).width() <= 1099)) {
+      $('.top_bar .search_container input').remove()
+      $('.top_bar .search_container .icon-search').click(function(e) {
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        window.location.href = 'https://www.mesvoisinsproducteurs.com/search/?q=#';
+      })
+    }
+
+    // $('.scroll-top').on('click', function() {
+    //   $('html, body').animate({ scrollTop: 0 }, 1000);
+    // })
+    // $('.scroll-down').on('click', function() {
+    //   $('html, body').animate({ scrollTop: $('.headline-section').offset().top }, 1000);
+    // })
     var BrowserDetect = {
       init: function() {
         this.browser = this.searchString(this.dataBrowser) || "Other";
@@ -134,8 +144,10 @@ $(document).ready(function() {
       $(window).scroll(function() {
         if ($(document).scrollTop() > 25) {
           $('.top_bar').css({ 'position': 'fixed', 'top': '0px' });
+          $("body").css({"top": '104px', "position": "relative"});
         } else {
           $('.top_bar').css({ 'position': 'relative' });
+          $("body").css({"top": '0px', "position": "relative"});
         }
       });
     } else {
@@ -167,13 +179,13 @@ $(document).ready(function() {
       window.location.href = window.location.href.match(/^.+(\/)/)[0];
     });
 
-    $("#checkout").click(function(e) {
-      e.preventDefault()
-      postZapietID();
-      // postCheckout();
+    // $("#checkout").click(function(e) {
+    //   e.preventDefault()
+    //   // postZapietID();
+    //   // postCheckout();
 
 
-    });
+    // });
     // var cook = JSON.parse(Cookies.get('dlvy'))
     // $('#cart_form').find('#storePickupApp .checkoutMethod:last-child').click()
     // $('#cart_form').find('#storePickupApp #location_'+cook.pickup_id).click()
@@ -191,6 +203,7 @@ $(document).ready(function() {
 
     var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     var days_fr = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+    var monthNames = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre"];
     var delivery_hour_limit = new Date();
     var json_data_loc;
     var json_data;
@@ -246,169 +259,25 @@ $(document).ready(function() {
 
     while (closed_days.includes(textual_day) || closed_days.includes(currentTime.toLocaleDateString().split('').filter(function(v) {return v.charCodeAt() != 8206 }).join('') )) {
       currentTime.setDate(currentTime.getDate() + 1);
+
       (n == 6) ? n = 0: n = n + 1
       textual_day = days[n];
       not_today = true;
-
+      console.log(not_today)
+      console.log(closed_days)
     }
 
     // today date 'yyyy-mm-dd'
     var today_date = currentTime.toLocaleDateString('FR').split('').filter(function(v) {return v.charCodeAt() != 8206 }).join('').split('/').reverse().join('-');
 
-    var getNextDlvDay = function(dlv) {
-      var d_day;
-      console.log("getNextDlvDay" + d_day);
-      // reorder start day in array
-      days_from_today = days.slice(days.indexOf(textual_day) + 1, 7);
-      days_before_today = days.slice(0, days.indexOf(textual_day));
-      days_before_today.forEach(function(day) {
-        days_from_today.push(day);
-      });
-      console.log(days_from_today);
-
-      // for each next days see if there is delivery
-      days_from_today.every(function(day) {
-        console.log("every" + day);
-        var dlv_enabled = dlv[day].slots.enabled;
-        var is_blackout_day = dlv[day].blackout_dates.includes(today_date);
-        if (dlv_enabled && !is_blackout_day) {
-          d_day = day
-          return d_day;
-        }
-      })
-      // return the index of the day
-      console.log(days.indexOf(d_day));
-      return days.indexOf(d_day)
-
-    }
+    console.log("today_date _______________________________")
+    console.log(today_date)
 
 
-    // DELIVERY
-
-    // when change of input radio
-    $('#dlv_choice input[type="radio"]').on('change',function() {
-
-      if ($("#velo").is(':checked')) {
-        $('#zip_validator').slideDown();
-      } else {
-        $('#zip_validator').slideUp();
-      }
-      if ($("#retrait").is(':checked')) {
-        $('.retrait').slideDown();
-        if (isIE() == false ) {
-          setTimeout(function() {
-            window.dispatchEvent(new Event('resize'));
-          }, 501);
-        } else {
-
-        }
-
-      } else {
-        $('.retrait').slideUp();
-      }
-      if ($("#entreprise").is(':checked')) {
-        $('.entreprise').slideDown();
-      } else {
-        $('.entreprise').slideUp();
-      }
-      $('#no_dlv, #no_today, #dlv_ok_today').hide();
-
-      var dlvy = {
-        mode: false,
-        slot_id: false,
-        day: false,
-        code_postal: false,
-        valid: false,
-        pickup_id: null,
-        delivery_location_id: null
-      }
-      Cookies.set('dlvy', dlvy, {expires: expire})
-    });
 
 
-    // VELO CHOICE
-    // when typing in velo zip code
-    $('#zip_velo').keyup(function() {
-      if ($(this).val().length == 5) {
-        $('#zip_btn_velo').attr('disabled', false)
-      } else {
-        $('#zip_btn_velo').attr('disabled', true)
-      }
-      $('#no_dlv, #no_today, #dlv_ok_today').hide();
-    })
 
 
-    // When i validate a zip in velo
-    $('#zip_btn_velo').click(function() {
-      var zip_code = $('#zip_velo').val();
-
-      // call zapiet
-      $.ajax({
-        method: "POST",
-        url: "https://api.zapiet.com/v4.0/delivery/locations?shop=mes-voisins-producteurs2.myshopify.com",
-        data: { "geoSearchQuery": zip_code, "shop": "mes-voisins-producteurs2.myshopify.com" },
-        dataType: 'json',
-        success: function(useremail) {console.log( useremail );},
-        error: function(xhr, status, err) {},
-        complete: function(xhr, status) {
-
-
-          if (status === 'error' || !xhr.responseText) {
-            // if error, no delivery in your town
-            $('#no_dlv').fadeIn();
-          } else {
-            json_data = JSON.parse(xhr.responseText);
-            console.log(json_data);
-            console.log("______________");
-            $('#zip_velo').attr('data-delivery-location-id', json_data.id)
-            $('#zip_velo').attr("data-custom_attribute_1", json_data.custom_attribute_1)
-            $('#zip_velo').attr("data-company_name", json_data.company_name)
-
-            var dlv_enabled = json_data.delivery[textual_day].slots.enabled;
-            var is_blackout_day = json_data.delivery[textual_day].blackout_dates.includes(today_date);
-console.log(is_blackout_day + "is_blackout_day");
-console.log(json_data.delivery[textual_day].blackout_dates);
-
-            if (dlv_enabled && !is_blackout_day) {
-              // if delivery is okay today
-              //
-              var dadate = new Date
-                $('#dlv_ok_today p').text("{{ settings.dlv_ok_today }}" +" " + days_fr[days.indexOf(textual_day)]  + ' (' + currentTime.toLocaleDateString('FR') + ')' );
-
-              // if (days[dadate.getDay()] == textual_day) {
-              //   $('#dlv_ok_today p').append(" aujourd'hui");
-              // } else {
-              //   $('#dlv_ok_today p').text("{{ settings.dlv_ok_today }}" +" " + days_fr[days.indexOf(textual_day)]  + ' (' + currentTime.toLocaleDateString('FR') + ')' );
-              // }
-              $('#dlv_ok_today').fadeIn();
-            } else {
-              // if delivery is not okay today give the next available day
-
-              var next_available_dlv_day = getNextDlvDay(json_data.delivery);
-
-              if (next_available_dlv_day == -1) {
-                $('.next_dlv_day').text(' ' + 'dans quelques jours')
-              } else {
-                $('.next_dlv_day').text(' ' + days_fr[next_available_dlv_day])
-              }
-              $('#no_today').fadeIn();
-            }
-          }
-        }
-      })
-    })
-
-
-    // RETRAIT CHOICE
-    // same for zip retrait
-    $('#zip_retrait').keyup(function() {
-      if ($(this).val().length == 5) {
-        $('#zip_btn_retrait').attr('disabled', false)
-      } else {
-        $('#zip_btn_retrait').attr('disabled', true)
-      }
-
-    })
 
     // Set marker object
     var geojson = {
@@ -416,302 +285,6 @@ console.log(json_data.delivery[textual_day].blackout_dates);
       features: []
     }
 
-
-    // function get map + zapiet call
-    var call_pickup = function() {
-      $.ajax({
-        method: "POST",
-        url: "https://api.zapiet.com/v4.0/pickup/locations?shop=mes-voisins-producteurs2.myshopify.com",
-        data: { "shop": "mes-voisins-producteurs2.myshopify.com" },
-        dataType: 'json',
-        success: function(useremail) {
-          var uu = useremail
-          console.log(uu);
-        },
-        error: function(xhr, status, err) {},
-        complete: function(xhr, status) {
-          if (status === 'error' || !xhr.responseText) {
-            // if error, no delivery in your town
-          } else {
-            json_data_loc = JSON.parse(xhr.responseText);
-            var pickup_today = []
-            $('#entreprise-select').append('<option value="" disabled selected>Faites votre choix</option>')
-            $('#loc-select').append('<option value="" disabled selected>Faites votre choix</option>')
-            json_data_loc.locations.forEach(function(loc) {
-              if (!loc.opening_hours[textual_day].closed) {
-                pickup_today.push(loc);
-                console.log(loc.company_name);
-                if (loc.company_name.includes('personnel')) {
-
-                  var single_entreprise = '<option value="' + loc.id + '"'
-                  single_entreprise += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
-                  single_entreprise += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
-                  single_entreprise += ' data-slot-interval="' + 30 + '"'
-                  single_entreprise += ' data-addr1="' + loc.address_line_1 + '"'
-                  single_entreprise += ' data-addr2="' + loc.address_line_2 + '"'
-                  single_entreprise += ' data-city="' + loc.city + '"'
-                  single_entreprise += ' data-zip="' + loc.postal_code + '"'
-                  single_entreprise += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
-                  single_entreprise += ' data-company_name="' + loc.company_name + '"'
-                  single_entreprise += '>' + loc.company_name + '</option>'
-
-                  $('#entreprise-select').append(single_entreprise)
-                } else {
-                  var single_loc = '<option value="' + loc.id + '"'
-                  single_loc += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
-                  single_loc += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
-                  single_loc += ' data-slot-interval="' + 30 + '"'
-                  single_loc += ' data-addr1="' + loc.address_line_1 + '"'
-                  single_loc += ' data-addr2="' + loc.address_line_2 + '"'
-                  single_loc += ' data-city="' + loc.city + '"'
-                  single_loc += ' data-zip="' + loc.postal_code + '"'
-                  single_loc += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
-                  single_loc += ' data-company_name="' + loc.company_name + '"'
-                  single_loc += '>' + loc.company_name + '</option>'
-                  $('#loc-select').append(single_loc)
-                }
-                geojson.features.push({ id: loc.id, type: 'Feature', geometry: { type: 'Point', coordinates: [loc.longitude, loc.latitude] }, properties: { title: loc.company_name, description: 'de ' + loc.opening_hours[textual_day].opens + " à " + loc.opening_hours[textual_day].closes } });
-              } else {
-                if (loc.company_name.includes('personnel')) {
-
-                  var single_entreprise = '<option disabled value=' + loc.id + loc.id + '"'
-                  single_entreprise += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
-                  single_entreprise += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
-                  single_entreprise += ' data-slot-interval="' + 30 + '"'
-                  single_entreprise += ' data-addr1="' + loc.address_line_1 + '"'
-                  single_entreprise += ' data-addr2="' + loc.address_line_2 + '"'
-                  single_entreprise += ' data-city="' + loc.city + '"'
-                  single_entreprise += ' data-zip="' + loc.postal_code + '"'
-                  single_entreprise += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
-                  single_entreprise += ' data-company_name="' + loc.company_name + '"'
-                  single_entreprise += '>' + loc.company_name + '</option>'
-
-                  $('#entreprise-select').append(single_entreprise)
-                } else {
-                  var single_loc = '<option disabled value="' + loc.id + '"'
-                  single_loc += ' data-coord="' + loc.longitude + ',' + loc.latitude + '"'
-                  single_loc += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
-                  single_loc += ' data-slot-interval="' + 30 + '"'
-                  single_loc += ' data-addr1="' + loc.address_line_1 + '"'
-                  single_loc += ' data-addr2="' + loc.address_line_2 + '"'
-                  single_loc += ' data-city="' + loc.city + '"'
-                  single_loc += ' data-zip="' + loc.postal_code + '"'
-                  single_loc += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
-                  single_loc += ' data-company_name="' + loc.company_name + '"'
-                  single_loc += '>' + loc.company_name + '</option>'
-                  $('#loc-select').append(single_loc)
-                }
-              }
-
-            });
-
-            if ($("#entreprise-select option").length == 0) { console.log("pas d'entreprise aujourd'hui"); }
-
-            mapboxgl.accessToken = 'pk.eyJ1IjoidHJvbmRpbyIsImEiOiJjanFxZjh6MGgwYXJvNDRrMHFjZHBpNDdmIn0.ioTp3niVhdCwcGjThH9TVQ';
-
-
-
-            var map = new mapboxgl.Map({
-              container: 'map',
-              style: 'mapbox://styles/mapbox/streets-v11',
-              center: [3.066667, 50.633333], // starting position
-              zoom: 11
-            });
-
-            map.addControl(new mapboxgl.NavigationControl());
-
-
-            if ($('.relais-map').length > 0) {
-              // $('.relais-map').find('.featured-link--wrap').empty().append("<div id='relais-map'></div>")
-
-              // var map2 = new mapboxgl.Map({
-              //   container: 'relais-map',
-              //   style: 'mapbox://styles/mapbox/streets-v11',
-              //   center: [3.066667, 50.633333], // starting position
-              //   zoom: 11
-              // });
-              // map2.addControl(new mapboxgl.NavigationControl());
-              $('.relais-map').find('.featured-link--wrap').empty().append("<iframe src='https://www.google.com/maps/d/embed?mid=1lmmBOdFHSZZ1m6w0fkHiMmmpNmos6GC4&hl=fr' width='100%' height='480'></iframe>")
-
-            }
-
-
-            geojson.features.forEach(function(marker) {
-              // create a HTML element for each feature
-              var el = document.createElement('div');
-              el.className = 'marker ' + marker.id;
-              el.addEventListener('click', function(elmt) {
-                var loc_id = elmt.currentTarget.classList[1];
-                $('#loc-select').val(loc_id);
-                $('#loc-select').trigger('change');
-              });
-
-              var el2 = document.createElement('div');
-              el2.className = 'marker ' + marker.id;
-
-              // make a marker for each feature and add to the map
-              new mapboxgl.Marker(el)
-                .setLngLat(marker.geometry.coordinates)
-                .addTo(map)
-
-              // if ($('.relais-map').length > 0) {
-
-
-              //   new mapboxgl.Marker(el2)
-              //     .setLngLat(marker.geometry.coordinates)
-              //     .addTo(map2)
-              // }
-
-            });
-            $('#loc-select').change(function() {
-              var choice = $(this).val();
-              var coord = $('option[value=' + choice + ']').attr('data-coord').split(',');
-              map.flyTo({ center: coord, zoom: 11 });
-            });
-            $('#zip_btn_retrait').click(function() {
-              var zip_code = $('#zip_retrait').val();
-              $.ajax({
-                method: "GET",
-                url: "https://api.mapbox.com/geocoding/v5/mapbox.places/" + zip_code + ".json?access_token=pk.eyJ1IjoibWF0dGZpY2tlIiwiYSI6ImNqNnM2YmFoNzAwcTMzM214NTB1NHdwbnoifQ.Or19S7KmYPHW8YjRz82v6g&cachebuster=1564583779753&autocomplete=false&country=fr&types=postcode",
-                dataType: 'json',
-                success: function(useremail) {},
-                error: function(xhr, status, err) {},
-                complete: function(xhr, status) {
-                  if (status === 'error' || !xhr.responseText) {
-                    // if error, no delivery in your town
-                  } else {
-                    json_data_zip = JSON.parse(xhr.responseText);
-                    map.flyTo({ center: json_data_zip.features[0].geometry.coordinates, zoom: 11 });
-                  }
-                }
-              })
-            })
-          }
-        }
-      })
-    }
-
-    call_pickup();
-
-    // On click on continue (save_and_next)
-
-    if (Cookies.get('dlvy') == undefined || Cookies.get('dlvy') == "") {
-      var dlvy = {
-        mode: false,
-        slot_id: false,
-        day: false,
-        code_postal: false,
-        valid: false,
-        pickup_id: null,
-        delivery_location_id: null
-      }
-
-      Cookies.set('dlvy', dlvy, {expires: expire})
-    } else {
-      var dlvy = JSON.parse(Cookies.get('dlvy'))
-    }
-
-
-
-
-
-      $('.save_and_next').click(function(e) {
-        e.preventDefault();
-        if ($('input[name="method"]:checked').length > 0) {
-          dlvy.mode = $('input[name="method"]:checked').attr('id');
-        }
-        if (dlvy.mode == 'velo') {
-          dlvy.code_postal = $("#zip_velo").val();
-          dlvy.delivery_location_id = $("#zip_velo").attr('data-delivery-location-id');
-          dlvy.custom_attribute_1 = $('#zip_velo').attr("data-custom_attribute_1");
-          dlvy.company_name = $('#zip_velo').attr("data-company_name");
-
-          // disabled other method
-          dlvy.pickup_id = undefined;
-          dlvy.pickup_name = undefined;
-          // dlvy.slot_text = undefined;
-          dlvy.slot_interval = undefined;
-          dlvy.addr1 = undefined;
-          dlvy.addr2 = undefined;
-          dlvy.city = undefined;
-
-          //disable time
-          dlvy.slot_id = undefined;
-          // dlvy.slot_text = undefined;
-
-        } else if (dlvy.mode == 'retrait') {
-          dlvy.pickup_id = $('#loc-select').val();
-          dlvy.pickup_name = $('#loc-select').children(":selected").text();
-          dlvy.slot_text = $('#loc-select').children(":selected").attr("data-slot");
-          dlvy.slot_interval = $('#loc-select').children(":selected").attr("data-slot-interval");
-          dlvy.addr1 = $('#loc-select').children(":selected").attr("data-addr1");
-          dlvy.addr2 = $('#loc-select').children(":selected").attr("data-addr2");
-          dlvy.city = $('#loc-select').children(":selected").attr("data-city");
-          dlvy.code_postal = $('#loc-select').children(":selected").attr("data-zip");
-          dlvy.custom_attribute_1 = $('#loc-select').children(":selected").attr("data-custom_attribute_1");
-          dlvy.company_name = $('#loc-select').children(":selected").attr("data-company_name");
-
-          dlvy.code_postal = undefined;
-          dlvy.pickup_id = undefined;
-          dlvy.delivery_location_id = undefined;
-          dlvy.custom_attribute_1 = undefined;
-          dlvy.company_name = undefined;
-
-
-          //disable time
-          dlvy.slot_id = undefined;
-          // dlvy.slot_text = undefined;
-
-
-        } else if (dlvy.mode == 'entreprise') {
-          dlvy.pickup_id = $('#entreprise-select').val();
-          dlvy.pickup_name = $('#entreprise-select').children(":selected").text();
-          dlvy.slot_text = $('#entreprise-select').children(":selected").attr("data-slot");
-          dlvy.slot_interval = $('#entreprise-select').children(":selected").attr("data-slot-interval");
-          dlvy.addr1 = $('#entreprise-select').children(":selected").attr("data-addr1");
-          dlvy.addr2 = $('#entreprise-select').children(":selected").attr("data-addr2");
-          dlvy.city = $('#entreprise-select').children(":selected").attr("data-city");
-          dlvy.code_postal = $('#entreprise-select').children(":selected").attr("data-zip");
-          dlvy.custom_attribute_1 = $('#entreprise-select').children(":selected").attr("data-custom_attribute_1");
-          dlvy.company_name = $('#entreprise-select').children(":selected").attr("data-company_name");
-
-          dlvy.code_postal = undefined;
-          dlvy.pickup_id = undefined;
-          dlvy.delivery_location_id = undefined;
-          dlvy.custom_attribute_1 = undefined;
-          dlvy.company_name = undefined;
-
-          //disable time
-          dlvy.slot_id = undefined;
-          // dlvy.slot_text = undefined;
-
-        }
-        dlvy.valid = false;
-        dlvy.day = today_date;
-        dlvy.textual_day = textual_day;
-
-        Cookies.set('dlvy', dlvy, {expires: expire})
-        if (window.location.pathname == "/") {
-
-          window.location.href = '/supermarche'
-
-        } else {
-
-          $.fancybox.close($('.deliverypopup'));
-          if (dlvy.mode == 'velo') {
-            getTimeSlot();
-            slotPopup();
-          } else if (dlvy.mode == 'retrait') {
-            getPickUpTimeSlot();
-            slotPopup();
-          } else if (dlvy.mode == 'entreprise') {
-            getPickUpTimeSlot();
-            slotPopup();
-          }
-          cookie_valid();
-
-        }
-      })
 
 
 
@@ -732,635 +305,8 @@ console.log(json_data.delivery[textual_day].blackout_dates);
 
 
 
-    var cookie_valid = function() {
-      console.log('COOKIE VALID BEGIN');
 
-      var cookie = JSON.parse(Cookies.get('dlvy'));
-      cookie.valid = false;
-      var valid_date = cookie.day == today_date;
-      var valid_day = cookie.textual_day == textual_day;
-      var valid_mode = cookie.mode != false;
 
-      if (cookie.mode == 'retrait') {
-        var valid_pickup_id = (cookie.pickup_id != false && (cookie.delivery_location_id == false || cookie.delivery_location_id == undefined))
-      } else if (cookie.mode == 'velo') {
-        var valid_dlvy_id = (cookie.delivery_location_id != false && (cookie.pickup_id == false || cookie.pickup_id == undefined))
-      }
-
-
-      var valid_zip = cookie.zip != false;
-      var valid_pickup_id = cookie.pickup_id != false;
-      var valid_slot_id = cookie.slot_id != undefined && cookie.slot_id != false;
-
-
-      if (valid_date && valid_day && valid_mode && (valid_dlvy_id || valid_pickup_id) && valid_slot_id) {
-        if (valid_slot_id = true) {
-
-        } else{
-
-        }
-        cookie.valid = true;
-
-        // zapiet variables
-        var checkout_method = cookie.mode == 'retrait' ? 'pickup' : 'delivery'
-        var delivery_date = cookie.day
-        var delivery_time = cookie.slot_text
-        var delivery_slot_id = cookie.slot_id
-        var formated_date = cookie.day.split('-').join('/').replace(/<.*?>/g, '')
-        var validadate = function(date) {
-          var splitted = date.split('/')
-          if (splitted[1].length == 1) {
-            splitted[1] = "0" + splitted[1]
-          }
-          if (splitted[2].length == 1) {
-            splitted[2] = "0" + splitted[2]
-          }
-          return splitted.join('/')
-        }
-        formated_date = validadate(formated_date)
-
-
-        if (cookie.mode == "velo") {
-          CartJS.clearAttributes();
-          CartJS.setAttributes({
-              "Checkout-Method": checkout_method,
-              "Delivery-Date": formated_date,
-              "Delivery-Time": delivery_time,
-              "Delivery-Slot-Id": delivery_slot_id,
-              "Delivery-Location-Id": cookie.delivery_location_id,
-              "Custom-Attribute-1": cookie.custom_attribute_1,
-              "Custom-Attribute-2": cookie.custom_attribute_2,
-              "Custom-Attribute-3": cookie.custom_attribute_3
-            }, options = { success: function(data) {
-              if (window.location.pathname.includes("/cart")) {
-                postCheckout();
-                console.log("attributes");
-              }
-            }
-          });
-        } else if (cookie.mode == "retrait" || cookie.mode == "entreprise") {
-          CartJS.clearAttributes(options = {
-            success: function(data) {
-                CartJS.setAttributes({
-                   "Checkout-Method": checkout_method,
-                   "Pickup-Location-Id": cookie.pickup_id,
-                   "Pickup-Location-Company": cookie.pickup_name,
-                   "Pickup-Location-Address-Line-1": cookie.addr1,
-                   "Pickup-Location-Address-Line-2": cookie.addr2,
-                   "Pickup-Location-City": cookie.city,
-                   "Pickup-Location-Region": "",
-                   "Pickup-Location-Postal-Code": cookie.postal_code,
-                   "Pickup-Location-Country": "France",
-                   "Pickup-Date": formated_date,
-                   "Pickup-Time": cookie.slot_text.split(' - ')[0],
-                   "Custom-Attribute-1": cookie.custom_attribute_1,
-                   "Custom-Attribute-2": cookie.custom_attribute_2,
-                   "Custom-Attribute-3": cookie.custom_attribute_3
-                 }, options = { success: function(data) {
-                     if (window.location.pathname.includes("/cart")) {
-                       postCheckout();
-                     }
-                   }
-                 });
-              }
-          });
-
-
-        } else {
-          CartJS.clearAttributes();
-          CartJS.setAttributes({
-            "Checkout-Method": checkout_method,
-            "Shipping-Date": formated_date,
-            "Custom-Attribute-1": cookie.custom_attribute_1,
-            "Custom-Attribute-2": cookie.custom_attribute_2,
-            "Custom-Attribute-3": cookie.custom_attribute_3
-          }, options = { success: function(data) {
-              if (window.location.pathname.includes("/cart")) {
-                postCheckout();
-              }
-            }
-          });
-        }
-
-
-        $cart = CartJS.cart
-        $.ajax({
-          url: '/cart/update.js',
-          dataType: 'json',
-          cache: false,
-          type: 'post',
-
-          data: $cart.attributes,
-          success: function(data) {
-
-            CartJS.init(data, {
-              "dataAPI": false,
-              "requestBodyClass": "loading"
-            });
-
-            console.log('cookievalid');
-            console.log(CartJS.cart.attributes);
-          },
-
-        });
-        Cookies.set('dlvy', cookie, {expires: expire});
-        if (cookie.mode == 'retrait') {
-          $('.mode-dlvy').text("Retrait chez " + cookie.pickup_name);
-        } else if (cookie.mode == 'velo') {
-          $('.mode-dlvy').html("Livré chez vous <i class='fas fa-bicycle'></i>");
-        } else {
-          $('.mode-dlvy').text("Retrait à votre travail");
-        }
-
-        var dadate = new Date
-        // if (days[dadate.getDay()] == textual_day) {
-        //   $('.slot-dlvy').text(cookie.slot_text + ' | ' + "aujourd'hui")
-        // } else {
-        if (cookie.slot_text.indexOf("{{settings.placeholder_slot}}") == -1) {
-          $('.slot-dlvy').text(cookie.slot_text + ' | ' + days_fr[days.indexOf(cookie.textual_day)])
-        } else {
-          $('.slot-dlvy').text(cookie.slot_text)
-
-        }
-        // }
-
-        $(".dlvy_bar *").css('padding', '5px 8px')
-
-        if (window.location.pathname.includes("/cart")) {
-
-          // si c'est un point de retrait, remplir l'adresse
-          if (cookie.mode == "retrait" || cookie.mode == "entreprise") {
-            $('#addr1').val(cookie.addr1)
-            $('#method').val('pickup')
-            $(".checkoutMethod").removeClass('active')
-            $('#addr2').val(cookie.addr2)
-            $('#city').val(cookie.city)
-            $('#locale').val('fr-FR')
-            $('#province').val('')
-            $('#company').val(cookie.pickup_name)
-            $('#zip').val(cookie.code_postal)
-            $('#custom_attribute_1').val(cookie.custom_attribute_1)
-          } else if (cookie.mode == "velo") {
-            $('#zip').val(cookie.code_postal)
-          }
-
-        }
-
-
-      } else if (valid_date && valid_day && valid_mode && (valid_dlvy_id || valid_pickup_id)) {
-        $.fancybox.close($('.deliverypopup'));
-        if (cookie.mode == 'velo') {
-          getTimeSlot();
-          slotPopup();
-        } else if (cookie.mode == 'retrait') {
-          getPickUpTimeSlot();
-          slotPopup();
-        } else if (cookie.mode == 'entreprise') {
-          getPickUpTimeSlot();
-          slotPopup();
-        }
-
-      } else {
-
-
-        deliveryForm();
-
-      }
-    }
-    $('.dlvy_bar').click(function() {
-
-      deliveryForm();
-
-    });
-    var getPickUpTimeSlot = function() {
-      var cook = JSON.parse(Cookies.get('dlvy'))
-
-      var opens = cook.slot_text.split(' - ')[0]
-      var closes = cook.slot_text.split(' - ')[1]
-
-      var to_from = new Date()
-      to_from.setHours(opens.split(':')[0]);
-      to_from.setMinutes(opens.split(':')[1]);
-      var to_until = new Date()
-      to_until.setHours(closes.split(':')[0]);
-      to_until.setMinutes(closes.split(':')[1]);
-
-      var slots = []
-
-      while (to_from < to_until) {
-        var from = to_from.getHours() + ":" + (to_from.getMinutes() < 10 ? '0' : '') + to_from.getMinutes();
-        to_from.setMinutes(to_from.getMinutes() + 30)
-        var until = to_from.getHours() + ":" + (to_from.getMinutes() < 10 ? '0' : '') + to_from.getMinutes()
-        slots.push({ "id": 999, "from": from, "until": until })
-      }
-      var dadate = new Date
-      if (days[dadate.getDay()] == textual_day) {
-        $('.day_today').text("aujourd'hui");
-      } else {
-        $('.day_today').text(days_fr[days.indexOf(JSON.parse(Cookies.get('dlvy')).textual_day)]  + '-' + JSON.parse(Cookies.get('dlvy')).day.split('-').reverse().join('/') );
-      }
-      $('#slots').empty()
-      slots.forEach(function(slot) {
-        $('#slots').append('<option id="' + slot.id + '">' + slot.from + ' - ' + slot.until)
-      })
-    }
-    var getTimeSlot = function() {
-      // call zapiet
-      console.log('getTimeSlot');
-
-      var cook = Cookies.getJSON('dlvy')
-      if (cook.pickup_id != undefined) {
-        var loc_id = cook.pickup_id
-      } else if (cook.delivery_location_id != undefined) {
-        var loc_id = cook.delivery_location_id
-      }
-      var dlvy_day = cook.day
-      var zip = cook.code_postal
-      console.log(dlvy_day + zip + loc_id);
-      $.ajax({
-
-
-        method: "GET",
-        url: "https://api.zapiet.com/v4.0/delivery/locations/"+loc_id+"/calendar/"+dlvy_day+"?shop=mes-voisins-producteurs2.myshopify.com&postal_code="+zip,
-        // method: "POST",
-        // url: "https://api.zapiet.com/v4.0/delivery/locations?shop=mes-voisins-producteurs2.myshopify.com",
-        // data: { "geoSearchQuery": JSON.parse(Cookies.get('dlvy')).code_postal, "shop": "mes-voisins-producteurs2.myshopify.com" },
-        dataType: 'json',
-        success: function(slots) {console.log(slots);},
-        error: function(xhr, status, err) {},
-        complete: function(xhr, status) {
-          console.log(xhr);
-          if (status === 'error' || !xhr.responseText || xhr.responseJSON.length == 0) {
-            // if error, no delivery in your town
-            console.log("error ?");
-            $('.time_slot>*').hide();
-            $('#no_dlv2').fadeIn();
-
-            $('.timeslot__lightbox .fancybox-close-small').fadeIn();
-            var cook = Cookies.getJSON('dlvy')
-            cook.valid = true
-            cook.slot_id = true
-            cook.slot_text = "{{ settings.placeholder_slot }}"
-            Cookies.set('dlvy',cook, {expires: expire})
-            if (window.location.pathname.includes("/cart")) {
-              $('#checkout').text("{{settings.placeholder_slot}}").attr('disabled', 'disabled').addClass('disabled')
-            }
-
-          } else {
-
-            json_data = JSON.parse(xhr.responseText);
-            console.log(json_data);
-            console.log("_____2__hoho___");
-
-            $('.day_today').text(days_fr[days.indexOf(JSON.parse(Cookies.get('dlvy')).textual_day)] + '-' + JSON.parse(Cookies.get('dlvy')).day.split('-').reverse().join('/'));
-            $('#999').remove()
-            $('#slots').empty()
-
-            for (var i = json_data.length - 1; i >= 0; i--) {
-              $('#slots').append('<option id="' + json_data[i].id + '">' + json_data[i].available_from + ' - ' + json_data[i].available_until)
-            }
-            if (window.location.pathname.includes("/cart") && cook.slot_id != true ) {
-              $('#checkout').text("Passer ma commande").removeAttr('disabled').removeClass('disabled')
-            } else if (window.location.pathname.includes("/cart") && cook.slot_id == true ) {
-              $('#checkout').text("Veuillez choisir une méthode de livraison")
-            }
-
-
-          }
-        }
-      })
-
-    }
-
-    var slotPopup = function() {
-      $.fancybox.open($('.time_slot'), {
-        baseClass: 'timeslot__lightbox',
-        hash: false,
-        padding: 15,
-        infobar: false,
-        toolbar: false,
-        loop: true,
-        clickContent: false,
-        clickSlide: false,
-        clickOutside: false,
-        touch: false,
-
-        // smallBtn : true,
-        mobile: {
-          preventCaptionOverlap: false,
-          toolbar: true,
-          buttons: [
-
-          ]
-        }
-      });
-    }
-
-    $('.save_and_next2').click(function() {
-
-      var cooki = JSON.parse(Cookies.get('dlvy'))
-      cooki.slot_id = $('#slots').children(":selected").attr("id");
-      console.log(cooki.slot_id );
-      cooki.slot_text = $('#slots').val();
-
-      Cookies.set('dlvy', cooki, {expires: expire});
-      cookie_valid();
-      $.fancybox.close($('.deliverypopup'));
-      $.fancybox.close($('.time_slot'));
-
-    })
-
-    if (window.location.pathname != "/") {
-
-      $('#retrait_save_and_next').click(function() {
-
-        $.fancybox.close($('.deliverypopup'));
-        getTimeSlot();
-        slotPopup();
-        cookie_valid();
-      })
-
-    }
-    $('#entreprise-select').change(function() {
-      $('#entreprise_save_and_next').css("pointer-events","inherit").css("opacity", "1")
-    })
-    $('#loc-select').change(function() {
-      $('#retrait_save_and_next').css("pointer-events","inherit").css("opacity", "1")
-    })
-    var deliveryForm = function() {
-      var old_cart;
-      CartJS.getCart(options = {success: function(data) {
-          console.log(data);
-          old_cart = data
-          CartJS.clear()
-          Cookies.set('cart', '')
-          var items = {"items":[]}
-          console.log(items);
-          console.log( old_cart.items);
-          old_cart.items.forEach(function(item) {
-            items['items'].push( { "quantity": item.quantity, "id": item.variant_id } )
-          })
-          console.log(items);
-          $.ajax({
-            url: '/cart/add.js',
-            dataType: 'json',
-            cache: false,
-            type: 'post',
-            data: items,
-            success: function(data) {
-              console.log('done');
-            }
-          })
-        }
-      })
-
-      $.fancybox.open($('.deliverypopup'), {
-        baseClass: 'delivery__lightbox',
-        hash: false,
-        padding: 15,
-        infobar: false,
-        toolbar: false,
-        loop: true,
-        clickContent: false,
-        clickSlide: false,
-        clickOutside: false,
-        touch: false,
-
-        // smallBtn : true,
-        mobile: {
-          preventCaptionOverlap: false,
-          toolbar: true,
-          buttons: [
-
-          ]
-        }
-      });
-    }
-    var postZapietID = function() {
-      console.log("postZapietID");
-      var cart = CartJS.cart
-      var lineitems = []
-      var checkoutId = cart.token;
-      var qte = cart.items[0].quantity
-      var variant_ID = cart.items[0].id
-
-      var dataplus = {};
-      var tmp = {};
-
-      tmp[cart.items[0].id] = "0";
-      $.extend(dataplus, tmp);
-
-
-
-      var data = {
-        id: variant_ID,
-        quantity: qte,
-        properties: {
-          "_ZapietId": checkoutId,
-        }
-      }
-
-      console.log(dataplus)
-      console.log(data);
-
-      $.ajax({
-        url: '/cart/update.js',
-        dataType: 'json',
-        cache: false,
-        type: 'post',
-        data: {
-          updates: dataplus
-        },
-        success: function(hop) {
-          console.log(hop);
-          $.ajax({
-            url: '/cart/add.js',
-            dataType: 'json',
-            cache: false,
-            type: 'post',
-            data: data,
-            success: function(data) {
-              console.log("hoho");
-              console.log(data);
-              console.log("hoho");
-
-
-              $('#cart_form').submit()
-
-
-            },
-
-          });
-        }
-      })
-
-
-
-
-    }
-    var postCheckout = function() {
-      if (Cookies.getJSON('dlvy').slot_text.indexOf("{{settings.placeholder_slot}}") == -1) {
-        console.log("postCheckout");
-        var cook = JSON.parse(Cookies.get('dlvy'))
-        var cart = CartJS.cart
-        var date_now = new Date
-        var lineitems = []
-        var checkoutId = cart.token;
-        cart.items.forEach(function(lineitem) {
-          lineitems.push({
-            "key": lineitem.key,
-            "properties": []
-          })
-        })
-        if (lineitems.length > 0) {
-          lineitems[0].properties = [{ "name": "_ZapietId", "value": checkoutId }]
-        }
-
-        cook.pickup_id
-
-        if (cook.mode == 'retrait' || cook.mode == 'entreprise') {
-          var data = {
-            "updated_at": date_now.toISOString(),
-            "cart_token": cart.token,
-            "note_attributes": [{
-                "name": "Checkout-Method",
-                "value": 'pickup'
-              },
-              {
-                "name": "Pickup-Location-Id",
-                "value": cook.pickup_id
-              }
-            ],
-            "line_items": lineitems
-          }
-
-        } else {
-
-          var newDate = cook.day;
-          var expr = /\d+/g;
-          var parts = newDate.match(expr);
-          var json_date = new Date(parts[0], parts[1], parts[2]);
-          json_date = new Date(json_date.setHours(parseInt(cook.slot_text.split(' - ')[0].split(':')[0]) + 1))
-          json_date = new Date(json_date.setMinutes(cook.slot_text.split(' - ')[0].split(':')[1]))
-          json_date = json_date.toISOString().split('.').shift() + 'Z';
-          var data = {
-            "updated_at": date_now.toISOString(),
-            "cart_token": cart.token,
-
-            "note_attributes": [{
-                "name": "Checkout-Method",
-                "value": 'delivery'
-              },
-              {
-                "name": "Delivery-Location-Id",
-                "value": cook.delivery_location_id
-              },
-              {
-                "name": "Delivery-Date",
-                "value": json_date}
-            ],
-            "line_items": lineitems
-          }
-        }
-
-        $.ajax({
-          method: "POST",
-          url: "https://rates.storepickup.io/v1/checkouts",
-          contentType: "application/json",
-          dataType: "json",
-          headers: {
-            "X-Shopify-Shop-Domain": "mes-voisins-producteurs2.myshopify.com",
-            "X-Shopify-Topic": "checkouts/update"
-          },
-          data: JSON.stringify(data),
-          success: function(useremail) {
-          },
-          error: function(xhr, status, err) {
-            // console.log(err);
-          },
-          complete: function(xhr, status) {
-            // console.log(xhr.responseJSON)
-          }
-        })
-      }
-
-    }
-
-    if (window.location.pathname != "/" && !window.location.pathname.includes("/account") ) {
-      cookie_valid();
-    } else {
-      $('.dlvy_bar').hide();
-      console.log(currentTime.toLocaleDateString('FR') + today_date);
-      if (is_closed) {
-        var $alertIsClosed = "{{ settings.closed_day }}";
-        $('.preheader-text').after("<p class='alert is_closed'>" + $alertIsClosed.replace('$$$$', delivery_hour_limit.getHours() + 'h' + (delivery_hour_limit.getMinutes() < 10 ? '0' : '') + delivery_hour_limit.getMinutes()) + " " + days_fr[days.indexOf(textual_day)] + ' (' + currentTime.toLocaleDateString('FR') + ')' + "</p>")
-      } else if (not_today) {
-        var $alertNotToday = "{{ settings.alert_not_today }}";
-        $('.preheader-text').after("<p class='alert not_today'>" + $alertNotToday.replace('$$$$', delivery_hour_limit.getHours() + 'h' + (delivery_hour_limit.getMinutes() < 10 ? '0' : '') + delivery_hour_limit.getMinutes()) + " " + days_fr[days.indexOf(textual_day)]  + ' (' + currentTime.toLocaleDateString('FR') + ')' + "</p>")
-      }
-    }
-    if (window.location.pathname.includes("/cart")) {
-      if ((Cookies.getJSON('dlvy').slot_text != undefined && Cookies.getJSON('dlvy').slot_text != false) && Cookies.getJSON('dlvy').slot_text.indexOf("{{settings.placeholder_slot}}") > -1) {
-        $('#checkout').text("{{settings.placeholder_slot}}").attr('disabled', 'disabled').addClass('disabled')
-      }
-      var cook = JSON.parse(Cookies.get('dlvy'))
-      if (cook.valid == true) {
-        cook.valid = false
-        cook.slot_id = undefined
-        Cookies.set('dlvy', cook)
-        cookie_valid()
-      }
-    }
-
-
-    // if (window.location.pathname.includes("/cart")) {
-
-    //   // si c'est un point de retrait, remplir l'adresse
-    //   var cook = JSON.parse(Cookies.get('dlvy'));
-    //   if (cook.mode == "retrait" || cook.mode == "entreprise") {
-    //     $('#addr1').val(cook.addr1)
-    //     $('#method').val(cook.mode)
-    //     $(".checkoutMethod").removeClass('active')
-    //     $('#addr2').val(cook.addr2)
-    //     $('#city').val(cook.city)
-    //     $('#locale').val('fr-FR')
-    //     $('#province').val('')
-    //     $('#company').val(cook.pickup_name)
-    //     $('#zip').val(cook.code_postal)
-    //     $('#custom_attribute_1').val(cook.custom_attribute_1)
-    //   } else if (cook.mode == "velo") {
-    //     $('#zip').val(cook.code_postal)
-    //   }
-
-    //   postCheckout();
-    // }
-
-
-
-    // prehome popup
-    $('.preheader.closed').click(function() {
-      $('.preheader').removeClass('closed').addClass('open');
-      $('html,body').animate({ scrollTop: 0 }, 'slow');
-      $('.scroll-down').hide()
-      if ($(window).width() < 768) {
-        $('body').css('overflow', 'hidden')
-      }
-    })
-
-
-    $('#close_popup').click(function() {
-      $('#zip_validator, .retrait, .entreprise, #no_dlv, #no_today, #dlv_ok_today').hide();
-      setTimeout(function() {
-        $('.preheader').removeClass('open').addClass('closed');
-        $('.scroll-down').show()
-        if ($(window).width() < 768) {
-          $('body').css('overflow', 'initial')
-        }
-        $('#dlv_choice input[type="radio"]').each(function() {
-          $(this).prop("checked", false);
-        })
-      }, 10);
-    })
 
     var getCart = function() {
       $.ajax({
@@ -1377,7 +323,7 @@ console.log(json_data.delivery[textual_day].blackout_dates);
       })
     }
 
-    if ($(window).width() > 798) {
+    if ($(window).width() < 768) {
       if ($('.collection_description').height() > 125) {
         var oldHeight = $('.collection_description').height();
         $('.collection_description').addClass('open');
@@ -1399,6 +345,666 @@ console.log(json_data.delivery[textual_day].blackout_dates);
           return false;
         }
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // NEWFORM
+    var getNextDlvDay = function(dlv) {
+      var d_day;
+      console.log("getNextDlvDay" + d_day);
+      // reorder start day in array
+      days_from_today = days.slice(days.indexOf(textual_day) + 1, 7);
+      days_before_today = days.slice(0, days.indexOf(textual_day));
+      days_before_today.forEach(function(day) {
+        days_from_today.push(day);
+      });
+      console.log(days_from_today);
+
+      // for each next days see if there is delivery
+      days_from_today.every(function(day) {
+        console.log("every" + day);
+
+        var dlv_enabled = dlv[day].slots.enabled;
+        var is_blackout_day = dlv[day].blackout_dates.includes(today_date);
+        if (dlv_enabled && !is_blackout_day) {
+          d_day = day
+          return d_day;
+        }
+      })
+      // return the index of the day
+      console.log(days.indexOf(d_day));
+      return days.indexOf(d_day)
+
+    }
+
+    var call_pickup_new = function() {
+      $('.stores_list').html('')
+      $.ajax({
+        method: "POST",
+        url: "https://api.zapiet.com/v4.0/pickup/locations?shop=mes-voisins-producteurs2.myshopify.com",
+        data: { "shop": "mes-voisins-producteurs2.myshopify.com" },
+        dataType: 'json',
+        success: function(useremail) {},
+        error: function(xhr, status, err) {},
+        complete: function(xhr, status) {
+          if (status === 'error' || !xhr.responseText || xhr.responseJSON["locations"].length == 0) {
+            // if error, no delivery in your town
+            $('.pickup .no_pickup_available').show()
+            $('.pickup .subtitle').hide()
+            $('.stores_list').html('')
+          } else {
+            json_data_loc = JSON.parse(xhr.responseText);
+            var pickup_today = []
+
+            json_data_loc.locations.forEach(function(loc) {
+              if (!loc.opening_hours[textual_day].closed) {
+                pickup_today.push(loc);
+                console.log(loc);
+
+
+                  var single_loc = '<label class="cus_check ">'
+                  single_loc += '<li class="store_item undeployed">'
+                  single_loc += '<div>'
+                  single_loc += '<input type="radio" name="store_item" value="' + loc.id
+                  single_loc += '" data-coord="' + loc.longitude + ',' + loc.latitude + '"'
+                  single_loc += ' data-slot="' + loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes + '"'
+                  single_loc += ' data-slot-interval="' + 30 + '"'
+                  single_loc += ' data-addr1="' + loc.address_line_1 + '"'
+                  single_loc += ' data-addr2="' + loc.address_line_2 + '"'
+                  single_loc += ' data-city="' + loc.city + '"'
+                  single_loc += ' data-zip="' + loc.postal_code + '"'
+                  single_loc += ' data-country="' + loc.country + '"'
+                  single_loc += ' data-hour="' + loc.opening_hours[textual_day].opens + '"'
+
+
+                  single_loc += ' data-loc_id="' + loc.id + '"'
+                  single_loc += ' data-custom_attribute_1="' + loc.custom_attribute_1 + '"'
+                  single_loc += ' data-company_name="' + loc.company_name +'">'
+                  single_loc += '<span class="checkmark"></span>'
+                  single_loc += '</div>'
+                  single_loc += '<div style="position: relative;padding-left: 36px;">'
+                  single_loc += '<p class="title">' + loc.company_name + '</p>'
+                  single_loc += '<p class="address">'+loc.address_line_1 +'</p>'
+                  single_loc += '<div class="toggle_content hidden">'
+                  single_loc += '<p> '+loc.address_line_1 + ', ' +loc.postal_code  +' ' +loc.city+ '<br>'
+                  single_loc += ' Horaire de retrait : '+loc.opening_hours[textual_day].opens + ' - ' + loc.opening_hours[textual_day].closes +  '<br>'
+                  single_loc += ' Retrait du mardi au vendredi</p>'
+                  single_loc += '</div>'
+                  single_loc += '</div>'
+                  single_loc += '<a class="more_infos">+ d\'infos </a>'
+                  single_loc += '</li>'
+                  single_loc += '</label>'
+
+                  $('.stores_list').append(single_loc)
+
+                geojson.features.push({ id: loc.id, type: 'Feature', geometry: { type: 'Point', coordinates: [loc.longitude, loc.latitude] }, properties: { title: loc.company_name, description: 'de ' + loc.opening_hours[textual_day].opens + " à " + loc.opening_hours[textual_day].closes } });
+              }
+
+
+            });
+
+            $('.pickup .more_infos').click(function(e){
+              e.preventDefault()
+              $(this).parent().toggleClass('deployed');
+              $(this).parent().toggleClass('undeployed');
+              $(this).parent().find('.toggle_content').slideToggle();
+            })
+
+            $(".store_item input[type='radio']").change(function() {
+              console.log('change')
+              console.log($(this).is(':checked'))
+              console.log($(this).val())
+              $(".store_btn").fadeIn();
+              $("#company, #pickup_company").val( $(this).attr('data-company_name') )
+              $("#addr1, #pickup_addr1").val( $(this).attr('data-addr1') )
+              $("#addr2, #pickup_addr2").val( $(this).attr('data-addr2') )
+              $("#city, #pickup_city").val( $(this).attr('data-city') )
+              $("#zip").val( $(this).attr('data-zip') )
+              $("#pickup_id").val( $(this).attr('data-loc_id') )
+              $("#pickup_country").val( $(this).attr('data-country') )
+              $('#pickup_date').val($('body').attr('data-dlvy-date').replace(/-/g, '/'))
+              $('#pickup_time').val($(this).attr('data-hour'))
+              $('#custom_attribute_1, #custom_attribute_1_1').val($('body').attr('data-custom_attribute_1'))
+              $('.dlvy_input').val('')
+
+
+
+              $('.stores_list .store_item').attr('style','border: solid 1px #C9C9C9 !important;')
+              if ($(this).is(':checked')) {
+                $(this).parents('.store_item').css('border', 'solid 1px #3eab37')
+              } else {
+                $(this).parents('.store_item').attr('style','border: solid 1px #C9C9C9 !important;')
+              }
+
+
+
+
+            })
+
+          }
+        }
+      })
+    }
+
+
+    var get_locations_new = function() {
+        var zip_code = $('input[name="zip"]').val() || "59000"
+        // call zapiet
+
+        console.log("get_locations_new")
+        $.ajax({
+            method: "POST",
+            url: "https://api.zapiet.com/v4.0/delivery/locations?shop=mes-voisins-producteurs2.myshopify.com",
+            data: { "geoSearchQuery": zip_code, "shop": "mes-voisins-producteurs2.myshopify.com" },
+            dataType: 'json',
+            success: function(useremail) { console.log(useremail); },
+            error: function(xhr, status, err) {},
+            complete: function(xhr, status) {
+
+
+                if (status === 'error' || !xhr.responseText) {
+                    // if error, no delivery in your town
+                    $('#no_dlv').fadeIn();
+                } else {
+                    json_data = JSON.parse(xhr.responseText);
+                    console.log(json_data);
+                    console.log("______________");
+                    console.log(json_data.id)
+                    $('body').attr('data-delivery-location-id', json_data.id)
+                    $('body').attr("data-custom_attribute_1", json_data.custom_attribute_1)
+                    $('body').attr("data-company_name", json_data.company_name)
+
+
+                    var dlv_enabled = json_data.delivery[textual_day].slots.enabled;
+                    var is_blackout_day = json_data.delivery[textual_day].blackout_dates.includes(today_date);
+                    console.log(is_blackout_day + "is_blackout_day");
+                    console.log(json_data.delivery[textual_day].blackout_dates);
+
+                    if (dlv_enabled && !is_blackout_day) {
+                        // if delivery is okay today
+                        //
+                        var dadate = new Date
+                        $('#dlv_ok_today p, .newform_header p').html("{{ settings.dlv_ok_today }}" + " <b>" + days_fr[days.indexOf(textual_day)] + ' ' + currentTime.getDate() +' ' + monthNames[currentTime.getMonth()] + '</b>');
+
+
+                        console.log(currentTime.toLocaleDateString('FR').split('/').reverse().join('-'))
+
+                        var next_available_dlv_day = getNextDlvDay(json_data.delivery);
+                        $('body').attr('data-dlvy-day', next_available_dlv_day)
+                        $('body').attr('data-dlvy-date', currentTime.toLocaleDateString('FR').split('/').reverse().join('-'))
+
+
+                        console.log("next_available_dlv_day")
+                        console.log(next_available_dlv_day)
+                        // if (days[dadate.getDay()] == textual_day) {
+                        //   $('#dlv_ok_today p').append(" aujourd'hui");
+                        // } else {
+                        //   $('#dlv_ok_today p').text("{{ settings.dlv_ok_today }}" +" " + days_fr[days.indexOf(textual_day)]  + ' (' + currentTime.toLocaleDateString('FR') + ')' );
+                        // }
+                        $('#dlv_ok_today').fadeIn();
+                    } else {
+                        // if delivery is not okay today give the next available day
+
+                        var next_available_dlv_day = getNextDlvDay(json_data.delivery);
+                        $('body').attr('data-dlvy-day', next_available_dlv_day)
+
+                        console.log("next_available_dlv_day")
+                        console.log(next_available_dlv_day)
+
+                        if (next_available_dlv_day == -1) {
+                            $('.next_dlv_day').text(' ' + 'dans quelques jours')
+                        } else {
+                            $('.next_dlv_day').text(' ' + days_fr[next_available_dlv_day])
+                        }
+                        $('#no_today').fadeIn();
+                    }
+
+                    getTimeSlot_new()
+                }
+            }
+        })
+    }
+    var getTimeSlot_new = function() {
+      // call zapiet
+      console.log('getTimeSlot');
+
+      var loc_id = $('body').attr('data-delivery-location-id')
+      var dlvy_day = $('body').attr('data-dlvy-date')
+      var zip = $('.address_check input[name="zip"').val()
+      console.log(dlvy_day + zip + loc_id);
+      $.ajax({
+
+
+        method: "GET",
+        url: "https://api.zapiet.com/v4.0/delivery/locations/"+loc_id+"/calendar/"+dlvy_day+"?shop=mes-voisins-producteurs2.myshopify.com&postal_code="+zip,
+        // method: "POST",
+        // url: "https://api.zapiet.com/v4.0/delivery/locations?shop=mes-voisins-producteurs2.myshopify.com",
+        // data: { "geoSearchQuery": JSON.parse(Cookies.get('dlvy')).code_postal, "shop": "mes-voisins-producteurs2.myshopify.com" },
+        dataType: 'json',
+        success: function(slots) {console.log(slots);},
+        error: function(xhr, status, err) {},
+        complete: function(xhr, status) {
+          console.log(xhr);
+          if (status === 'error' || !xhr.responseText || xhr.responseJSON.length == 0) {
+            // if error, no delivery in your town
+            console.log("error ?");
+
+
+            $('.slots_cont .no_slots_available').show()
+            $('.slots_cont .subtitle').hide()
+            $('.slots').html('')
+
+          } else {
+
+            json_data = JSON.parse(xhr.responseText);
+            console.log(json_data);
+            console.log("_____2__hoho___");
+
+              $('.slots_cont .no_slots_available').hide()
+              $('.slots_cont .subtitle').show()
+              $('.slots').html('')
+              for (var i = json_data.length - 1; i >= 0; i--) {
+                $('.slots').prepend("<div class='slot' id='" + json_data[i].id + "'>"+  json_data[i].available_from.replace(/:/i,"H" ).replace(/00/i,"" ) + ' - ' + json_data[i].available_until.replace(/:/i,"H" ).replace(/00/i,"" ) +"</div>")
+              }
+
+              $('.slots .slot').click(function() {
+                $('.slots .slot').removeClass('selected');
+                $(this).addClass('selected');
+                $('.slot-selected').removeClass('hidden');
+
+                var arr = $(this).text().split(' - ')
+                arr[0].length == 3 ? arr[0] = arr[0] + '00' : arr[0]
+                arr[1].length == 3 ? arr[1] = arr[1] + '00' : arr[1]
+
+
+                $('#dlvy_date').val($('body').attr('data-dlvy-date').replace(/-/g, '/'))
+                $('#dlvy_time').val(arr.join(' - ').replace(/H/g, ':'))
+                $('#dlvy_slot_id').val($(this).attr('id'))
+                $('#dlvy_location_id').val($('body').attr('data-delivery-location-id'))
+                $('#custom_attribute_1, #custom_attribute_1_1').val($('body').attr('data-custom_attribute_1'))
+
+                $('.pickup_input').val('')
+
+
+
+              })
+
+
+
+            // $('.day_today').text(days_fr[days.indexOf(JSON.parse(Cookies.get('dlvy')).textual_day)] + '-' + JSON.parse(Cookies.get('dlvy')).day.split('-').reverse().join('/'));
+            // $('#999').remove()
+
+
+
+
+
+
+          }
+        }
+      })
+
+    }
+
+    var check_if_already_sent = function() {
+      console.log('check_if_already_sent')
+
+
+      CartJS.getCart(options = {success: function(data) {
+
+        if (Cookies.getJSON('sent_to_checkout')) {
+          console.log(Cookies.getJSON('sent_to_checkout')['token'])
+          console.log(data.token)
+          if (data.token == Cookies.getJSON('sent_to_checkout')['token']) {
+              var old_cart;
+              console.log('GET NEW CART TOKEN')
+              console.log(data);
+              old_cart = data
+              Cookies.set('cart', '')
+              var items = {"items":[]}
+              console.log(items);
+              console.log( old_cart.items);
+              old_cart.items.forEach(function(item) {
+                items['items'].push( { "quantity": item.quantity, "id": item.variant_id } )
+              })
+              console.log(items);
+              $.ajax({
+                url: '/cart/add.js',
+                dataType: 'json',
+                cache: false,
+                type: 'post',
+                data: items,
+                success: function(data) {
+                  CartJS.getCart()
+                  console.log('done');
+                }
+              })
+          }
+        }
+
+      }})
+    }
+
+    var postCheckout_new = function() {
+      console.log('postcheckout')
+        console.log(currentTime)
+
+        var cart = CartJS.cart
+        Cookies.set('sent_to_checkout', {token: cart.token})
+        var date_now = new Date
+        var method = $('body').attr('data-method')
+        var newDate = (currentTime.getYear() - 100) +"-"+currentTime.getMonth()+"-"+currentTime.getDate();
+        var expr = /\d+/g;
+        var parts = newDate.match(expr);
+        var json_date = new Date("20"+parts[0], parts[1], parts[2]);
+        console.log(json_date)
+        if (method != 'pickup') {
+          var location_id = $('body').attr('data-delivery-location-id')
+          var hour = parseInt($(".slot.selected").text().split(" - ")[0].split("H")[0])
+          var minutes = parseInt($(".slot.selected").text().split(" - ")[0].split("H")[1])
+        } else {
+          var location_id = $('.stores_list input:checked').val()
+          var hour = parseInt($('.stores_list input:checked').attr('data-slot').split(" - ")[0].split("H")[0])
+          var minutes = parseInt($('.stores_list input:checked').attr('data-slot').split(" - ")[0].split("H")[1])
+        }
+
+        json_date = new Date(json_date.setHours(hour + 1))
+        if (!Number.isNaN(minutes)) {
+          json_date = new Date(json_date.setMinutes(minutes[1]))
+        }
+        json_date = json_date.toISOString().split('.').shift() + 'Z';
+        console.log(json_date)
+
+        var lineitems = []
+
+        cart.items.forEach(function(lineitem) {
+          lineitems.push({
+            "key": lineitem.key,
+            "properties": []
+          })
+        })
+        if (lineitems.length > 0) {
+          lineitems[0].properties = [{ "name": "_ZapietId", "value": cart.token }]
+        }
+
+
+
+        if (window.location.pathname.includes("/cart")) {
+            var data = {
+                "updated_at": date_now.toISOString(),
+                "cart_token": cart.token,
+
+                "note_attributes": [{
+                    "name": "Checkout-Method",
+                    "value": method
+                  },
+                  {
+                    "name": method.substr(0,1).toUpperCase()+method.substr(1) + "-Location-Id",
+                    "value": location_id
+                  }
+
+                ],
+                "line_items": lineitems
+            }
+
+            if (method == 'delivery') {
+                data['note_attributes'].push({
+                  "name": "Delivery-Date",
+                  "value": json_date
+                })
+            }
+
+            console.log(data)
+            console.log("_______________________________")
+
+            console.log(data)
+
+            $.ajax({
+              method: "POST",
+              url: "https://rates.storepickup.io/v1/checkouts",
+              contentType: "application/json",
+              dataType: "json",
+              headers: {
+                "X-Shopify-Shop-Domain": "mes-voisins-producteurs2.myshopify.com",
+                "X-Shopify-Topic": "checkouts/update"
+              },
+              data: JSON.stringify(data),
+              success: function(useremail) {
+                console.log(useremail)
+                $("#cart_form").submit()
+              },
+              error: function(xhr, status, err) {
+                // $("#cart_form").submit()
+
+                console.log(xhr);
+                console.log(status);
+                console.log(err);
+
+              },
+              complete: function(xhr, status) {
+                console.log(xhr.responseJSON)
+
+
+              }
+            })
+          }
+        }
+
+
+
+
+
+
+
+
+
+
+
+    if (location.href.indexOf('/cart') > -1) {
+      get_locations_new();
+      check_if_already_sent();
+      $('body').attr('data-method', 'delivery')
+      $('.checkout').css('pointer-events', 'initial')
+    }
+
+    // On click validate cart display new form
+    $('.checkout').click(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      CartJS.getCart();
+      call_pickup_new();
+
+      console.log('add_toCart');
+      $('#newform').show();
+      if ($(window).width() > 780) {
+        $('.desktop-img').show();
+      }
+
+      $('.dynamic_content .address_check').show();
+      $('.dynamic_content .pickup').hide()
+      $('.dynamic_content .wrong_address').hide()
+      $('.dynamic_content .slots').hide()
+
+
+      $('.container.main.content, .newsletter-section, .recommatic').hide()
+
+      if (CartJS.cart.total_price > 8000) {
+        $('.method .dlvy .conditions').text('Livraison offerte')
+      } else if (CartJS.cart.total_price < 4500) {
+        $('.method .dlvy .conditions').text('5,90 €')
+      } else {
+        $('.method .dlvy .conditions').text('3,90 €')
+
+      }
+      if (CartJS.cart.total_price < 3000) {
+        $('.method .pickup').css('pointer-events', 'none')
+      } else {
+        $('.method .pickup').css('pointer-events', 'initial')
+
+      }
+      cart = CartJS.cart
+      CartJS.updateItem(1, cart.items[0].quantity, properties = { "_ZapietId": cart.token })
+
+      // GET SLOTS and pickup
+    })
+
+
+    // back to cart
+    $('.mini_cart').click(function(e) {
+      if (location.href.indexOf('/cart') > -1){
+        e.preventDefault()
+        $('#newform').hide();
+        $('.desktop-img').hide();
+        $('.dynamic_content .address_check').show();
+        $('.dynamic_content .pickup').hide()
+        $('.dynamic_content .wrong_address').hide()
+        $('.dynamic_content .slots').hide()
+        $('.container.main.content, .newsletter-section, .recommatic').show()
+      }
+    })
+
+    // On delivery method choice display dynic content
+    $('.method .dlvy').click(function() {
+      $('.method button').removeClass('selected');
+      $(this).addClass('selected');
+      $('.dynamic_content .address_check').show();
+      $('.dynamic_content .pickup').hide()
+      $('.dynamic_content .wrong_address').hide()
+      $('#method').val('delivery')
+      $('body').attr('data-method', 'delivery')
+    })
+
+
+    $('.slot-selected button, .store_btn').click(function(e) {
+      // go to checkout
+      e.preventDefault()
+      e.stopPropagation()
+      e.stopImmediatePropagation()
+      console.log("clicked button");
+      $('.loader', this).show()
+      $('.content', this).hide()
+
+      postCheckout_new()
+    })
+
+    $('.method .pickup').click(function() {
+        $('.method button').removeClass('selected');
+        $(this).addClass('selected');
+        $('.dynamic_content .address_check').hide();
+        $('.dynamic_content .pickup').show()
+        $('.dynamic_content .wrong_address').hide()
+        $('.dynamic_content .slots_cont').hide()
+        $('#method').val('pickup')
+        $('body').attr('data-method', 'pickup')
+
+
+      }
+    )
+
+
+    $('.pickup_link').click(function() {$('.method .pickup').click()})
+
+
+
+
+
+    $('.address_check_btn').click(function() {
+
+      $('.address_check_btn .loader').show()
+      $('.address_check_btn .content').hide()
+
+      var settings = {
+        "url": "https://app.nyx-mvp.ovh/api/v1/lambdas/2/addr_validation?apikey=MVP2410MVP",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+          "addr1": $('.address_check input[name="address"]').val(),
+          "city":$('.address_check input[name="city"]').val(),
+          "zip":$('.address_check input[name="zip"').val(),
+          "mail": $('.address_check input[name="mail"').val()
+        }),
+      };
+
+      console.log(settings["data"]["addr1"])
+      console.log(settings["data"]["city"])
+
+      if ($('.address_check input[name="city"]').val() != "" && $('.address_check input[name="zip"]').val() != "" && $('.address_check input[name="address"]').val() != "") {
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+          console.log(response.in_zone);
+
+          if (response.in_zone) {
+            $('.address_check').hide();
+            $('.wrong_address').hide();
+            $('.dynamic_content').addClass('address_checked')
+            $('.address_check_btn .loader').hide()
+            $('.address_check_btn .content').show()
+
+            $('#addr1').val($('.address_check input[name="address"]').val())
+            $('#city').val($('.address_check input[name="city"]').val())
+            $("#zip").val($('.address_check input[name="zip"]').val())
+            $('#company').val('')
+
+            get_locations_new();
+
+
+            // getSlots
+            $('.slots_cont').fadeIn()
+          } else {
+            $('.address_check, .slots_cont').hide();
+            $('.wrong_address').show()
+          }
+        });
+      } else {
+        $('.fields').text("Veuillez remplir tous les champs !")
+      }
+      $('.address_check, .slots_cont').hide();
+      // $('.wrong_address').show()
+
+
+    })
 
   })
 })

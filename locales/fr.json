@@ -38,7 +38,7 @@
       "email": "E-mail",
       "subscriber_first_name": "Prénom",
       "subscriber_last_name": "Nom",
-      "success_text": "Merci de vous être inscrit(e) à notre liste de diffusion !",
+      "success_text": "Merci de vous être inscrit à notre newsletter :-) Promis, nous ne vous raconterons pas de salades !",
       "placeholder": "Saisissez votre adresse e-mail...",
       "submit": "S'ABONNER"
     },
@@ -121,7 +121,7 @@
       "new": "Nouveauté",
       "coming_soon": "À Venir",
       "pre_order": "Pré-Commande",
-      "sale": "Promo",
+      "sale": "Anti-Gaspi",
       "view_all": "Voir tout",
       "view_product_details_html": "Voir la description complète du produit"
     },
@@ -165,7 +165,7 @@
       "product_types": "Types de produits",
       "tags": "Catégorie",
       "size_chart": "Tableau des Tailles",
-      "savings": "Économisez",
+      "savings": "Vous avez économisé",
       "products_tagged": "Produits étiquetés comme {{ tag }}",
       "items_left_count": {
         "one": "produit en stock",
@@ -352,7 +352,7 @@
       "item": "Article",
       "uploaded_file": "fichier téléchargé",
       "continue_browsing_html": "Votre panier ne contient aucun article.",
-      "continue_shopping_link_html": "Poursuivre vos achats→",
+      "continue_shopping_link_html": "Poursuivre vos achats",
       "excluding_tax_shipping": "Taxe et frais de livraison non compris",
       "orders_processed_in_currency_html": "Les commandes seront facturées en {{ currency }}.",
       "note": "Commentaire",
@@ -379,6 +379,39 @@
       "additional_rates_part_1": "Il y a",
       "additional_rates_part_2": "catégories de frais de livraison pour",
       "additional_rates_part_3": "à partir de"
+    },
+    "shipping_static": {
+      "producteurs_1": "Grâce à vous, ",
+      "producteurs_2": "soutenu",
+      "shipping_head": "FRAIS DE LIVRAISON",
+      "shipping_1_html": "<b>À domicile, à vélo :<\/b><br><b>5,90 € <\/b> pour toute commande inférieure à 45€",
+      "shipping_2_html": "<b>3,90 € <\/b> pour toute commande supérieure à 45€",
+      "shipping_3_html": "<b>OFFERTS<\/b> à partir de 80€",
+      "shipping_4_html": "<b>En point de retrait :<\/b><br><b>OFFERTS <\/b> en point de retrait (minimum d’achat de 30€)"
+    },
+    "new_form": {
+      "delivery_on": "Vous serez livré(e) le ",
+      "method_dlvy_html": "livraison à<br> domicile",
+      "method_pickup_html": "Retrait <br>en boutique ",
+      "conditions_pickup": "Dès 30 € d'achat",
+      "address_check": "Je vérifie que mon adresse est bien desservie.",
+      "address_check_btn": "Vérifier mon adresse",
+      "good_news": "Bonne nouvelle, nos coursiers pédalent jusque chez vous.",
+      "dlvy_hours": "Je choisis mon horaire de livraison",
+      "no_slots_available": "Il n'y a plus de créneaux disponibles, revenez demain !",
+      "no_pickup_available": "Il n'y a pas de point de retrait disponible",
+      "mentions": "En validant mon choix, je m’engage à être présent à mon domicile à cet horaire.",
+      "validate": "Valider mon choix",
+      "no_go_zone": "Mince ! Votre adresse n’est pas desservie pour le moment.",
+      "pickup_link_html": "Vous pouvez consulter <a href='' class='pickup_link'><u>les points de retrait.<\/u><\/a>",
+      "newsletter_head": "POUR ÊTRE TENU INFORMÉ DE L’OUVERTURE DE NOUVELLES ZONES DE LIVRAISON : ",
+      "subscribe": "S'inscrire",
+      "pickup_choice": "Je choisis un point de retrait :",
+      "CO2": "Pas de CO2",
+      "light_dlvy": "Livraison douce",
+      "cold_chain": "Chaîne du froid",
+      "temperature": "TEMPÉRATURE CONTROLÉE",
+      "secured_payments_html": "<b> 100% sécurisé<\/b>"
     }
   },
   "layout": {
@@ -392,7 +425,7 @@
       "cart_note": "Commentaire",
       "empty_cart": "Votre panier est vide",
       "subtotal": "Sous-total",
-      "savings": "Économisez",
+      "savings": "Vous avez économisé",
       "pick_a_currency": "Choisissez une devise",
       "social": "Partage",
       "close_window": "Fermer",
@@ -430,7 +463,7 @@
   "shopify": {
     "checkout": {
       "contact": {
-        "shipping_address_title": "Mon adresse de livraison :",
+        "shipping_address_title": "Lieu de livraison de ma commande :",
         "optional_company_label": "Entreprise \/ Point de retrait",
         "company_label": "Entreprise \/ Point de retrait"
       },

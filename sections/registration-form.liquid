@@ -1,38 +1,36 @@
 <a name="pagecontent" id="pagecontent"></a>
 
-<div class="sixteen columns clearfix collection_nav">
-  <h1>{{ 'customer.register.title' | t }}</h1>
-  <div class="feature_divider"></div>
-</div>
 
 <div class="section clearfix">
   <div class="six columns offset-by-five">
-    <br class="clear" />
+    <h1 class="new_head">{{ 'customer.register.title' | t }}</h1>
+    <p>Remplissez l’ensemble des champs</p>
+    <div class="feature_divider"></div>
+
     <div id="customer">
       <!-- Create Customer -->
       <div id="create-customer">
 
-        {% form 'create_customer' %}
+        {% form 'create_customer', class: "newform" %}
           {{ form.errors | default_errors }}
 
           <div id="first_name" class="clearfix large_form">
-            <label for="first_name" class="login">{{ 'customer.register.first_name' | t }}</label>
-            <input type="text" value="" name="customer[first_name]" id="first_name" class="large" size="30" />
+            <input type="text" value="" name="customer[first_name]" id="first_name" class="large first_input" size="30" placeholder="{{ 'customer.register.first_name' | t }}" />
           </div>
 
           <div id="last_name" class="clearfix large_form">
-            <label for="last_name" class="login">{{ 'customer.register.last_name' | t }}</label>
-            <input type="text" value="" name="customer[last_name]" id="last_name" class="large" size="30" />
+            <input type="text" value="" name="customer[last_name]" id="last_name" class="large" size="30" placeholder="{{ 'customer.register.last_name' | t }}" />
           </div>
 
           <div id="email" class="clearfix large_form">
-            <label for="email" class="login">{{ 'customer.register.email' | t }}</label>
-            <input type="email" value="" name="customer[email]" id="email" class="large" size="30" />
+            <input type="email" value="" name="customer[email]" id="email" class="large last_input" size="30" placeholder="{{ 'customer.register.email' | t }}" />
           </div>
 
           <div id="password" class="clearfix large_form">
-            <label for="password" class="login">{{ 'customer.register.password' | t }}</label>
-            <input type="password" value="" name="customer[password]" id="password" class="large password" size="30" />
+            <input type="password" value="" name="customer[password]" id="password_i" class="large password first_input" size="30" placeholder="{{ 'customer.register.password' | t }}" required />
+          </div>
+          <div id="confirm_password" class="clearfix large_form">
+            <input type="password" id="confirm_password_i" class="large password last_input" size="30" placeholder="{{ 'customer.register.password' | t }}" required />
           </div>
 
           {% if section.settings.text %}
@@ -40,16 +38,32 @@
           {% endif %}
 
           <div class="acceptsMarketing">
-            <input type="checkbox" id="customer[accepts_marketing]" name="customer[accepts_marketing]">
-            <label for="customer[accepts_marketing]">{{ 'customer.register.accepts_marketing' | t }}</label><br>
+            <!-- <input type="checkbox" id="customer[accepts_marketing]" name="customer[accepts_marketing]"> -->
+
+          <div class="group_toggle">
+              <label for="customer[accepts_marketing]">
+                <div class="switch">
+                  <input type="checkbox" id="customer[accepts_marketing]" name="customer[accepts_marketing]">
+                  <span class="toggle_check round"></span>
+                </div>
+
+                <div class="label">
+                {{ 'customer.register.accepts_marketing' | t }}</div></label><br>
+
+
+
+
+          </div>
+
+
             {% comment %}<a href="/pages/conditions-generales-de-vente">Voir nos CGV</a>{% endcomment %}
           </div>
 
           <div class="action_bottom">
             <input class="btn action_button" type="submit" value="{{ 'customer.register.sign_up' | t }}" />
-            <p class="right" style="padding-top: 8px">
-              {{ 'customer.register.returning_customer_label' | t }} <b>{{ 'customer.register.sign_in_html' | t | customer_login_link }}</b>
-            </p>
+            <a href="/account/login" class="action_button new_secondary_btn">M'IDENTIFIER</a>
+
+
           </div>
 
         {% endform %}
@@ -57,6 +71,22 @@
     </div>
   </div>
 </div>
+
+<script>
+  var password = document.getElementById("password_i")
+    , confirm_password = document.getElementById("confirm_password_i");
+
+  function validatePassword(){
+    if(password.value != confirm_password.value) {
+      confirm_password.setCustomValidity("Les mots de passe ne correspondent pas");
+    } else {
+      confirm_password.setCustomValidity('');
+    }
+  }
+
+  password.onchange = validatePassword;
+  confirm_password.onkeyup = validatePassword;
+</script>
 
 {% schema %}
   {

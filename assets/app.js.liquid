@@ -118,7 +118,7 @@ $(function() {
     $('meta[name=viewport]').attr('content', 'width=device-width,initial-scale=1,maximum-scale=' + (event.type == 'blur' ? 10 : 1));
   });
 
-    $('body').on('click touchstart', '.panier .js-change-quantity', function(e) {
+    $('body').on('click', '.panier .js-change-quantity', function(e) {
       console.log('click on js change quantity -stop ');
         e.preventDefault()
         e.stopPropagation()
@@ -157,26 +157,40 @@ $(function() {
             );
 
         } else {
+          var newQuantity = $this_item.quantity - 1;
+
+          if (CartJS.cart.item_count == 1) {
+              console.log('CARTJS egal et 1 et jai cliqué sur moins')
+              CartJS.updateItem(index, newQuantity,{},{"success": function(data, textStatus, jqXHR) {
+                   window.location.href = "/cart"
+                }
+               });
+
+
+
+          }else {
             $this.css("opacity", 0.6).addClass('disabled')
 
             var newQuantity = $this_item.quantity - 1;
             CartJS.updateItem(index, newQuantity,{},
                 {"success": function(data, textStatus, jqXHR) {
+                   console.log(data)
                    refreshCart(data)
                    $this.css("opacity", 1).removeClass('disabled')
+                   if (jqXHR.responseText.indexOf($this.attr('data-variant_id')) == -1) {
+                    $this.closest('.cart_item').addClass('animated fadeOutUp')
+                    $this.parents('.cart_item_cart').addClass('animated fadeOutUp').remove()
+
+                   }
 
                 }});
 
 
             if(val > valMin) $input.val(val - 1);
-            if($this.parents(".cart_item_cart").length) {
-              if (val - 1 == 0) {
 
-                $this.closest('.cart_item').addClass('animated fadeOutUp')
-                $this.parents('.cart_item_cart').addClass('animated fadeOutUp').remove()
 
-              }
-            }
+          }
+
         }
         $input.trigger('change');
 
@@ -509,15 +523,33 @@ $(function() {
     var discounted_price_total = 0;
     var total_savings = 0;
     $cartBtn.attr('data-count', value.replace(/[0-9]+/, cart.item_count));
+    if (location.href.includes('/cart')) {
+      $('.add_to_cart .money').text((cart.total_price / 100).toFixed(2).replace('.',',') + ' €')
+      $('.buy_more').text(( ( 8000 - cart.total_price ) / 100 ).toFixed(2).replace('.',',') + ' €')
+    }
+    if (cart.total_price < 8000) {
+      $('.free_dlvy_amount').show()
+    } else {
+      $('.free_dlvy_amount').hide()
+    }
 
     if (cart.item_count == 0) {
+
+	    $('.decrement').hide();
       $('.js-empty-cart__message').removeClass('hidden');
       $('.js-cart_content__form').addClass('hidden');
+
     } else {
+
+            $('.decrement').hide();
+            $('.js-empty-cart__message').removeClass('hidden');
+            $('.js-cart_content__form').addClass('hidden');
       $('.js-empty-cart__message').addClass('hidden');
       $('.js-cart_content__form').removeClass('hidden');
 
       $.each(cart.items, function(index, item) {
+
+        $('.decrement[data-product-id=' + item.variant_id + ']').fadeIn();
 
         $('.product-wrap[data-product-id='+item.variant_id+'] .image-element__wrap').addClass('inbasket');
         $('.product-wrap[data-product-id='+item.variant_id+'] .inbasket').append('<div class="sentence"><div><span>'+item.quantity+'</span><br>dans votre panier</div></div>')
@@ -587,10 +619,9 @@ $(function() {
       } else {
         cart_savings_html = "";
       }
-    if (location.href.includes('/cart')) {
-      // $('.cart_subtotal .money').text((CartJS.cart.total_price / 100) + ' €')
+
     }
-    }
+    $('.header_price').html(Shopify.formatMoney(CartJS.cart.total_price, $('body').data('money-format')))
 
     $('.js-cart_items').html(cart_items_html);
     $('.js-cart_subtotal').html(cart_action_html);

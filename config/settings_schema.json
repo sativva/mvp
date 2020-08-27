@@ -116,6 +116,12 @@
       },
       {
         "type": "color",
+        "id": "cart_background",
+        "label": "Cart background",
+        "default": "#F7F7F7"
+      },
+      {
+        "type": "color",
         "id": "headline_color",
         "label": "Headings",
         "default": "#333333"

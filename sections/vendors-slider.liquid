@@ -1,0 +1,276 @@
+{% include 'include-vendors-slider', type: 'section' %}
+
+
+{% schema %}
+   {
+    "name": "Featured vendors",
+    "class": "featured_vendors",
+
+    "settings": [
+      {
+        "type": "text",
+        "id": "slider_title",
+        "label": "Titre du slider",
+        "default": "Découvrez nos producteurs"
+        },
+       {
+         "type": "range",
+         "id": "slider_width",
+         "label": "Largeur du slider",
+         "min": 70,
+         "max": 90,
+         "step": 5,
+         "default": 90
+       },
+      {
+        "type": "text",
+        "id": "slider_speed",
+        "label": "Vitesse du slider (en ms)",
+        "default": "2700"
+        },
+       {
+         "type": "text",
+         "id": "button_text",
+         "label": "Texte du bouton",
+         "default": "Voir tous nos producteurs"
+       },
+       {
+         "type": "url",
+         "id": "button_link",
+         "label": "Lien du bouton"
+       },
+      {
+        "type": "text",
+        "id" : "productor1",
+        "label" : "Nom du producteur 1",
+        "default" : "Producteur 1"
+      },
+
+      {
+        "type": "image_picker",
+        "id" : "productor_image1",
+        "label" : "Photo du producteur 1"
+      },
+        {
+        "type": "image_picker",
+        "id" : "logo_image1",
+        "label" : "Logo de la catégorie 1"
+      },
+       {
+        "type": "url",
+        "id" : "productor_link1",
+        "label" : "Lien du producteur 1"
+      },
+            {
+        "type": "text",
+        "id" : "productor_local1",
+        "label" : "Localisation du producteur 1",
+        "default": "Localisation du producteur 1"
+      },
+
+      {
+        "type": "text",
+        "id" : "productor2",
+        "label" : "Nom du producteur 2",
+        "default" : "Producteur 2"
+      },
+        {
+        "type": "image_picker",
+        "id" : "productor_image2",
+        "label" : "Photo du producteur 2"
+      },
+          {
+        "type": "image_picker",
+        "id" : "logo_image2",
+        "label" : "Logo de la catégorie 2"
+      },
+        {
+        "type": "url",
+        "id" : "productor_link2",
+        "label" : "Lien du producteur 2"
+      },
+              {
+        "type": "text",
+        "id" : "productor_local2",
+        "label" : "Localisation du producteur 2",
+        "default": "Localisation du producteur 2"
+      },
+      {
+        "type": "text",
+        "id" : "productor3",
+        "label" : "Nom du producteur 3",
+        "default" : "Producteur 3"
+      },
+        {
+        "type": "image_picker",
+        "id" : "productor_image3",
+        "label" : "Photo du producteur 3"
+      },
+          {
+        "type": "image_picker",
+        "id" : "logo_image3",
+        "label" : "Logo de la catégorie 3"
+      },
+          {
+        "type": "url",
+        "id" : "productor_link3",
+        "label" : "Lien du producteur 3"
+      },
+              {
+        "type": "text",
+        "id" : "productor_local3",
+        "label" : "Localisation du producteur 3",
+        "default": "Localisation du producteur 3"
+      },
+      {
+        "type": "text",
+        "id" : "productor4",
+        "label" : "Nom du producteur 4",
+        "default" : "Producteur 4"
+      },
+        {
+        "type": "image_picker",
+        "id" : "productor_image4",
+        "label" : "Photo du producteur 4"
+      },
+          {
+        "type": "image_picker",
+        "id" : "logo_image4",
+        "label" : "Logo de la catégorie 4"
+      },
+          {
+        "type": "url",
+        "id" : "productor_link4",
+        "label" : "Lien du producteur 4"
+      },
+           {
+        "type": "text",
+        "id" : "productor_local4",
+        "label" : "Localisation du producteur 4",
+        "default": "Localisation du producteur 4"
+      },
+      {
+        "type": "text",
+        "id" : "productor5",
+        "label" : "Nom du producteur 5",
+        "default" : "Producteur"
+      },
+        {
+        "type": "image_picker",
+        "id" : "productor_image5",
+        "label" : "Photo du producteur 5"
+      },
+          {
+        "type": "image_picker",
+        "id" : "logo_image5",
+        "label" : "Logo de la catégorie 5"
+      },
+          {
+        "type": "url",
+        "id" : "productor_link5",
+        "label" : "Lien du producteur 5"
+      },
+            {
+        "type": "text",
+        "id" : "productor_local5",
+        "label" : "Localisation du producteur 5",
+        "default": "Localisation du producteur 5"
+      },
+      {
+        "type": "text",
+        "id" : "productor6",
+        "label" : "Nom du producteur 6",
+        "default" : "Producteur"
+      },
+        {
+        "type": "image_picker",
+        "id" : "productor_image6",
+        "label" : "Photo du producteur 6"
+      },
+        {
+        "type": "image_picker",
+        "id" : "logo_image6",
+        "label" : "Logo de la catégorie 6"
+      },
+
+          {
+        "type": "url",
+        "id" : "productor_link6",
+        "label" : "Lien du producteur 6"
+      },
+              {
+        "type": "text",
+        "id" : "productor_local6",
+        "label" : "Localisation du producteur 6",
+        "default": "Localisation du producteur 6"
+      },
+      {
+        "type": "text",
+        "id" : "productor7",
+        "label" : "Nom du producteur 7",
+        "default" : "Producteur"
+      },
+        {
+        "type": "image_picker",
+        "id" : "productor_image7",
+        "label" : "Photo du producteur 7"
+      },
+          {
+        "type": "image_picker",
+        "id" : "logo_image7",
+        "label" : "Logo de la catégorie 7"
+      },
+          {
+        "type": "url",
+        "id" : "productor_link7",
+        "label" : "Lien du producteur 7"
+      },
+              {
+        "type": "text",
+        "id" : "productor_local7",
+        "label" : "Localisation du producteur 7",
+        "default": "Localisation du producteur 7"
+      },
+      {
+        "type": "text",
+        "id" : "productor8",
+        "label" : "Nom du producteur 8",
+        "default" : "Producteur"
+      },
+        {
+        "type": "image_picker",
+        "id" : "productor_image8",
+        "label" : "Photo du producteur 8"
+      },
+          {
+        "type": "image_picker",
+        "id" : "logo_image8",
+        "label" : "Logo de la catégorie 8"
+      },
+          {
+        "type": "url",
+        "id" : "productor_link8",
+        "label" : "Lien du producteur 8"
+      },
+           {
+        "type": "text",
+        "id" : "productor_local8",
+        "label" : "Localisation du producteur 8",
+        "default": "Localisation du producteur 8"
+      }
+
+
+      ],
+  "presets": [
+    {
+      "name": "Vendors Slider",
+      "category": "Image",
+      "settings": {
+
+      }
+    }
+  ]
+    }
+
+{% endschema %}
+

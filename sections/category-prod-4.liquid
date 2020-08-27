@@ -1,0 +1,351 @@
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+<h2 id="{{ section.settings.category-id }}">{{ section.settings.category-name }}</h2>
+<div class="prod-grid-columns-{{ section.settings.prod-row-nb }}">
+	{% for block in section.blocks %}
+
+  	<!-- Début du block Producteur -->
+      <div class="block-producteur" style="background-color: {{ block.settings.bck-color }}; border-bottom: 3px solid {{section.settings.category-color }}">
+        <!-- Photo du producteur -->
+        <div class="photo-prod">
+
+          <a aria-label="Lien vers le producteur" href="{{ block.settings.prod_entr }}"><img alt="Photo du producteur" src="{{ block.settings.prod-image | img_url : "500x500", crop: 'center', format: 'pjpg' }}" /></a>
+
+        </div>
+        <!-- Fin de la photo du producteur -->
+
+        <!-- Logo de la catégorie du producteur -->
+         <div class="logo-prod">
+
+           <a aria-label="Lien vers le producteur" href="{{ block.settings.prod_entr }}"><img alt="Logo de la catégorie" src="{{ section.settings.icon-prod | img_url: "x50" }}"/></a>
+
+        </div>
+        <!-- Fin du logo de la catégorie du producteur -->
+
+        <!-- Informations sur le producteur -->
+        <div class="meta-producteur">
+          <!-- Nom du producteur -->
+          <p class="nom-producteur" style="margin-bottom: 0; font-size : {{ section.settings.name-size }}px">
+
+            <a href="{{ block.settings.prod_entr }}">{{ block.settings.name }}</a>
+
+          </p>
+          <!-- Fin du nom du producteur -->
+
+          <!-- Localisation du producteur -->
+          <p style="font-size : {{ section.settings.entr-size }}px; font-family: 'Montserrat'; font-weight: 500">
+            {{ block.settings.prod-localisation }}
+          </p>
+          <!-- Fin de la localisation du producteur -->
+
+          <!-- Tags du producteur -->
+          <div class="tags-prod">
+            <!-- Tag Ultra-local -->
+            {% if block.settings.ultra-local == true and section.settings.prod-row-nb == "trois" %}
+          		<img alt="Producteur ultra local" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-ultra-local.png?v=1592403599"/>
+            {% endif %}
+            {% if block.settings.ultra-local == true and section.settings.prod-row-nb == "deux" %}
+          		<img alt="Producteur ultra local" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-ultra-local.png?v=1592403599"/>
+            {% endif %}
+            <!-- Fin du tag Ultra-local-->
+
+            <!-- Tag Local -->
+            {% if block.settings.local == true and section.settings.prod-row-nb == "trois" %}
+            	<img alt="Producteur local" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-local.png?v=1592403598"/>
+            {% endif %}
+            {% if block.settings.local == true and section.settings.prod-row-nb == "deux" %}
+            <img alt="Producteur local" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-local.png?v=1592403598"/>
+            {% endif %}
+            <!-- Fin du tag Local -->
+
+            <!-- Tag En conversion bio -->
+            {% if block.settings.conversion-bio == true  and section.settings.prod-row-nb == "trois" %}
+            	<img alt="Producteur en conversion bio" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-en-conversion-bio_480.png?v=1592403599"/>
+            {% endif %}
+            {% if block.settings.conversion-bio == true  and section.settings.prod-row-nb == "deux" %}
+            	<img alt="Producteur en conversion bio" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-en-conversion-bio_480.png?v=1592403599"/>
+            {% endif %}
+            <!-- Fin du tag en Conversion bio -->
+
+            <!-- Tag Bio -->
+            {% if block.settings.bio == true and section.settings.prod-row-nb == "trois" %}
+            	<img alt="Producteur bio" style="height:23px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-bio.png?v=1592403598"/>
+          	{% endif %}
+            {% if block.settings.bio == true and section.settings.prod-row-nb == "deux" %}
+            	<img alt="Producteur bio" style="height:25px!important" src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/tag-bio.png?v=1592403598"/>
+          	{% endif %}
+            <!-- Fin du tag Bio -->
+          </div>
+          <!-- Fin des tags du producteur -->
+        </div>
+        <!-- Fin des informations sur le producteur -->
+
+
+      </div>
+  <!-- Fin du block Producteur -->
+
+
+  {% endfor %}
+</div>
+
+
+{% schema %}
+  {
+	"name": "Producteurs Catégorie 4",
+	"settings":  [
+	{
+		"type": "text",
+		"id": "category-name",
+		"label": "Nom de la catégorie"
+	},
+
+
+    {
+        "type": "text",
+		"id": "category-id",
+		"info": "Doit être identique à l'ancre de la catégorie",
+        "label": "Identifiant de la catégorie"
+      },
+
+	{
+		"type": "select",
+		"id": "prod-row-nb",
+		"label": "Nombre de producteurs par ligne",
+		"default": "trois",
+		"options": [
+			{
+				"value": "deux",
+				"label": "Deux"
+			},
+			{
+				"value": "trois",
+				"label": "Trois"
+			}
+		]
+	},
+
+		{
+			"type": "color",
+			"id": "category-color",
+			"label": "Couleur de la catégorie",
+			"default": "#ffffff"
+		},
+
+		{
+          "type": "range",
+          "id": "name-size",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Taille des noms",
+          "default": 14
+      },
+
+		{
+          "type": "range",
+          "id": "entr-size",
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Taille des localisations",
+          "default": 13
+      },
+
+       {
+          "type": "image_picker",
+          "id": "icon-prod",
+          "label": "Logo de la catégorie",
+          "info": "50 x 50px recommandé"
+        }
+],
+
+    "blocks": [
+
+      {
+        "name": "Producteur",
+		"type": "text",
+        "settings": [
+
+		{
+			"type": "color",
+			"id": "bck-color",
+			"label": "Couleur de fond",
+			"default": "#ffffff"
+		},
+
+       {
+          "type": "image_picker",
+          "id": "prod-image",
+          "label": "Image du producteur",
+          "info": "316 x 176px pour trois cartes, 490 x 242px pour deux cartes"
+        },
+
+		{
+          "type": "checkbox",
+          "id": "ultra-local",
+          "label": "Ultra-local",
+		  "default": false
+     	},
+		{
+          "type": "checkbox",
+          "id": "local",
+          "label": "Local",
+		  "default": false
+     	},
+		{
+          "type": "checkbox",
+          "id": "conversion-bio",
+          "label": "Conversion bio",
+		  "default": false
+     	},
+		{
+          "type": "checkbox",
+          "id": "bio",
+          "label": "Bio",
+		  "default": false
+     	},
+          {
+            "type": "text",
+			"id": "name",
+			"default": "Nom",
+            "label": "Nom du producteur"
+          },
+
+        {
+          "id": "prod-localisation",
+          "type": "text",
+          "label": "Localisation",
+			"default": "Localisation"
+        },
+
+        {
+          "id": "prod_entr",
+          "type": "url",
+          "label": "Lien vers le producteur"
+        }
+
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+
+{% stylesheet %}
+
+html, body {
+	scroll-behavior: smooth;
+}
+
+.prod-grid-columns-deux {
+	display: grid;
+	grid-template-columns: 35% 35%;
+	justify-content: center;
+	grid-gap: 3em;
+}
+
+.prod-grid-columns-trois {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 1em;
+}
+
+.block-producteur {
+	display: flex;
+	flex-direction : column;
+	align-items : center!important;
+	margin-top: 20px;
+	margin-bottom: 25px;
+	box-shadow: rgba(105, 125, 156, 0.3) 1px 1px 8px 0px;
+}
+
+.prod-grid-columns-trois .block-producteur {
+	width: 100%;
+	height: 300px;
+}
+
+.prod-grid-columns-deux .block-producteur {
+	width: 100%;
+	height: 400px;
+}
+
+
+.prod-grid-columns-trois .logo-prod {
+	position : absolute;
+	transform: translate(0%, 245%);
+}
+
+.prod-grid-columns-deux .logo-prod {
+	position : absolute;
+	transform: translate(0%, 385%);
+}
+
+.block-producteur .photo-prod {
+	height: 70%;
+	width: 100%;
+	background-color: white;
+	overflow: hidden;
+}
+
+.meta-producteur {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items : center;
+	height: 44%;
+	width: 100%;
+	padding: 5px;
+	padding-top: 15px;
+}
+
+.meta-producteur .nom-producteur {
+	font-family : 'Montserrat';
+	font-weight: 600;
+	margin-top: 15px;
+	display: flex;
+	align-items: flex-end;
+}
+
+.prod-grid-columns-trois .nom-producteur {
+	height: 45px;
+}
+
+.meta-producteur p {
+	text-align : center;
+	box-sizing: border-box;
+}
+
+.tags-prod {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	width: 100%;
+	min-height: 25px;
+	image-rendering: -webkit-optimize-contrast;
+}
+
+
+@media screen and (max-width: 950px) {
+	.photo-prod > a > img { width: 100% }
+}
+
+@media screen and (max-width: 600px) {
+  .prod-grid-columns-deux,  .prod-grid-columns-trois {
+		grid-template-columns: repeat(1, 1fr);
+		grid-gap: 1em;
+	}
+}
+
+@media screen and (min-width: 600px) and (max-width: 950px) {
+  .prod-grid-columns-trois {
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 1em;
+	}
+}
+
+
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

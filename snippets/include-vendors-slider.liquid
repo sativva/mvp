@@ -1,0 +1,484 @@
+  {% if type == 'block' %}
+
+  {% assign slider_width = block.settings.slider_width %}
+  {% assign productor_name1 = block.settings.productor1 %}
+  {% assign productor_name2 = block.settings.productor2 %}
+  {% assign productor_name3 = block.settings.productor3 %}
+  {% assign productor_name4 = block.settings.productor4 %}
+  {% assign productor_name5 = block.settings.productor5 %}
+  {% assign productor_name6 = block.settings.productor6 %}
+  {% assign productor_name7 = block.settings.productor7 %}
+  {% assign productor_name8 = block.settings.productor8 %}
+
+  {% assign productor_image1 = block.settings.productor_image1 %}
+  {% assign productor_image2 = block.settings.productor_image2 %}
+  {% assign productor_image3 = block.settings.productor_image3 %}
+  {% assign productor_image4 = block.settings.productor_image4 %}
+  {% assign productor_image5 = block.settings.productor_image5 %}
+  {% assign productor_image6 = block.settings.productor_image6 %}
+  {% assign productor_image7 = block.settings.productor_image7 %}
+  {% assign productor_image8 = block.settings.productor_image8 %}
+
+  {% assign productor_local1 = block.settings.productor_local1 %}
+  {% assign productor_local2 = block.settings.productor_local2 %}
+  {% assign productor_local3 = block.settings.productor_local3 %}
+  {% assign productor_local4 = block.settings.productor_local4 %}
+  {% assign productor_local5 = block.settings.productor_local5 %}
+  {% assign productor_local6 = block.settings.productor_local6 %}
+  {% assign productor_local7 = block.settings.productor_local7 %}
+  {% assign productor_local8 = block.settings.productor_local8 %}
+  {% assign slider_title = block.settings.slider_title %}
+  {% assign button_text = block.settings.button_text %}
+  {% assign slider_speed  = block.settings.slider_speed  %}
+
+
+{% else %}
+{% assign slider_width = section.settings.slider_width %}
+{% assign productor_name1 = section.settings.productor1 %}
+{% assign productor_name2 = section.settings.productor2 %}
+{% assign productor_name3 = section.settings.productor3 %}
+{% assign productor_name4 = section.settings.productor4 %}
+{% assign productor_name5 = section.settings.productor5 %}
+{% assign productor_name6 = section.settings.productor6 %}
+{% assign productor_name7 = section.settings.productor7 %}
+{% assign productor_name8 = section.settings.productor8 %}
+
+{% assign productor_image1 = section.settings.productor_image1 %}
+{% assign productor_image2 = section.settings.productor_image2 %}
+{% assign productor_image3 = section.settings.productor_image3 %}
+{% assign productor_image4 = section.settings.productor_image4 %}
+{% assign productor_image5 = section.settings.productor_image5 %}
+{% assign productor_image6 = section.settings.productor_image6 %}
+{% assign productor_image7 = section.settings.productor_image7 %}
+{% assign productor_image8 = section.settings.productor_image8 %}
+
+{% assign productor_local1 = section.settings.productor_local1 %}
+{% assign productor_local2 = section.settings.productor_local2 %}
+{% assign productor_local3 = section.settings.productor_local3 %}
+{% assign productor_local4 = section.settings.productor_local4 %}
+{% assign productor_local5 = section.settings.productor_local5 %}
+{% assign productor_local6 = section.settings.productor_local6 %}
+{% assign productor_local7 = section.settings.productor_local7 %}
+{% assign productor_local8 = section.settings.productor_local8 %}
+  {% assign slider_title = section.settings.slider_title %}
+  {% assign button_text = section.settings.button_text %}
+  {% assign slider_speed  = section.settings.slider_speed  %}
+
+
+
+
+{% endif %}
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+
+<style>
+    #slideshow-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 70px;
+        margin-bottom: 70px;
+    }
+
+    #slideshow {
+        display: flex;
+        flex-direction: row;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-bottom: 30px;
+    }
+
+    #slideshow .slideshow-panel {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .slick-prev::before,
+    .slick-next::before {
+        color: grey
+    }
+
+    .slick-prev {
+        left: -35px
+    }
+
+    .slick-initialized .slick-slide {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .slick-next:before {
+        content: '〉';
+        font-size: 35px
+    }
+
+    .slick-prev:before {
+        content: '〈';
+        font-size: 35px
+    }
+
+    .block-producteur {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center !important;
+        height: 300px;
+        width: 316px;
+        box-shadow: rgba(105, 125, 156, 0.3) 1px 1px 8px 0px;
+        border-bottom: 3px solid #59b252;
+    }
+
+    .block-producteur .photo-prod {
+        height: 55%;
+        width: 100%;
+        background-color: white;
+        overflow: hidden;
+    }
+
+
+    .logo-prod {
+        position: absolute;
+        transform: translate(0%, 290%);
+    }
+
+    .photo-prod img {
+        width: 100%;
+    }
+
+    .meta-producteur {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 44%;
+        width: 100%;
+        padding: 5px;
+        padding-top: 15px;
+    }
+
+    .meta-producteur .nom-producteur {
+        font-family: 'Montserrat';
+        font-weight: 600;
+        margin-top: 15px;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .prod-grid-columns-trois .nom-producteur {
+        height: 45px;
+    }
+
+    .meta-producteur p {
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    @media screen and (min-width: 469px) and (max-width: 850px) {
+        .block-producteur {
+            height: 200px !important;
+        }
+
+        .nom-producteur a {
+            font-size: 1.8vw
+        }
+
+        .meta-producteur {
+            padding-top: 0px
+        }
+    }
+
+    @media screen and (max-width: 468px) {
+        .block-producteur {
+            height: 250px !important;
+        }
+
+        .block-producteur .photo-prod {
+            height: auto
+        }
+
+        .meta-producteur {
+            height: 60%;
+        }
+
+        .logo-prod {
+            transform: translate(0%, 150%);
+        }
+
+        .slick-prev {
+            left: -15px
+        }
+
+        .slick-next {
+            right: -10px
+        }
+
+        .slick-next::before {
+            font-size: 25px
+        }
+
+        .slick-prev::before {
+            font-size: 25px
+        }
+
+        .nom-producteur a {
+            font-size: 3.5vw
+        }
+    }
+</style>
+
+<div id="slideshow-content">
+  {% if block.settings.slider_title != blank %}
+      <div class="">
+        <h2 class="title center">{{ block.settings.slider_title }}</h2>
+      </div>
+    {% endif %}
+
+  <div id="slideshow" style="width: {{ slider_width }}%">
+
+      {% if productor_name1 != blank %}
+
+      	<div class="block-producteur">
+          <!-- Photo du producteur -->
+          <div class="photo-prod">
+            <a aria-label="Lien du producteur" href="{{ productor_link1 }}"><img alt="Photo du producteur" src="{{ productor_image1 | img_url : "x110", crop: 'center', format: 'pjpg' }}" /></a>
+          </div>
+
+          <div class="meta-producteur">
+            <!-- Nom du producteur -->
+            <p class="nom-producteur" style="margin-bottom: 0; font-size : 16px">
+              <a href="{{ productor_link1 }}">{{ productor_name1 }}</a>
+            </p>
+            <!-- Fin du nom du producteur -->
+
+            <!-- Localisation du producteur -->
+            <p style="font-size : 12px; font-family: 'Montserrat'; font-weight: 500">
+              {{ productor_local1 }}
+            </p>
+            <!-- Fin de la localisation du producteur -->
+          </div>
+          <!-- Fin des informations sur le producteur -->
+        </div>
+
+      {% endif %}
+
+      {% if productor_name2 != blank %}
+
+  		  <div class="block-producteur">
+          <!-- Photo du producteur -->
+          <div class="photo-prod">
+            <a aria-label="Lien du producteur" href="{{ productor_link2 }}"><img alt="Photo du producteur" src="{{ productor_image2 | img_url : "500x500", crop: 'center', format: 'pjpg' }}" /></a>
+          </div>
+
+          <div class="meta-producteur">
+            <!-- Nom du producteur -->
+            <p class="nom-producteur" style="margin-bottom: 0; font-size : 16px">
+              <a href="{{ productor_link2  }}">{{ productor_name2 }}</a>
+            </p>
+            <!-- Fin du nom du producteur -->
+
+            <!-- Localisation du producteur -->
+            <p style="font-size : 12px; font-family: 'Montserrat'; font-weight: 500">
+              {{ productor_local2 }}
+            </p>
+            <!-- Fin de la localisation du producteur -->
+          </div>
+          <!-- Fin des informations sur le producteur -->
+        </div>
+      {% endif %}
+
+      {% if productor_name3 != blank %}
+        <div class="block-producteur">
+            <!-- Photo du producteur -->
+            <div class="photo-prod">
+              <a aria-label="Lien du producteur" href="{{ productor_link3 }}"><img alt="Photo du producteur" src="{{ productor_image3 | img_url : "500x500", crop: 'center', format: 'pjpg' }}" /></a>
+            </div>
+
+            <div class="meta-producteur">
+              <!-- Nom du producteur -->
+              <p class="nom-producteur" style="margin-bottom: 0; font-size : 16px">
+                <a href="{{ productor_link3  }}">{{ productor_name3 }}</a>
+              </p>
+              <!-- Fin du nom du producteur -->
+
+              <!-- Localisation du producteur -->
+              <p style="font-size : 12px; font-family: 'Montserrat'; font-weight: 500">
+                {{ productor_local3 }}
+              </p>
+              <!-- Fin de la localisation du producteur -->
+            </div>
+            <!-- Fin des informations sur le producteur -->
+        </div>
+      {% endif %}
+
+      {% if productor_name4 != blank %}
+             	<div class="block-producteur">
+              <!-- Photo du producteur -->
+              <div class="photo-prod">
+                <a aria-label="Lien du producteur" href="{{productor_link4 }}"><img alt="Photo du producteur" src="{{ productor_image4 | img_url : "500x500", crop: 'center', format: 'pjpg' }}" /></a>
+              </div>
+
+              <div class="meta-producteur">
+                <!-- Nom du producteur -->
+                <p class="nom-producteur" style="margin-bottom: 0; font-size : 16px">
+                  <a href="{{ productor_link4  }}">{{ productor_name4 }}</a>
+                </p>
+                <!-- Fin du nom du producteur -->
+
+                <!-- Localisation du producteur -->
+                <p style="font-size : 12px; font-family: 'Montserrat'; font-weight: 500">
+                  {{ productor_local4 }}
+                </p>
+                <!-- Fin de la localisation du producteur -->
+              </div>
+              <!-- Fin des informations sur le producteur -->
+        </div>
+      {% endif %}
+
+      {% if productor_name5 != blank %}
+            	<div class="block-producteur">
+                <!-- Photo du producteur -->
+                <div class="photo-prod">
+                  <a aria-label="Lien du producteur" href="{{productor_link5 }}"><img alt="Photo du producteur" src="{{ productor_image5 | img_url : "500x500", crop: 'center', format: 'pjpg' }}" /></a>
+                </div>
+
+                <div class="meta-producteur">
+                  <!-- Nom du producteur -->
+                  <p class="nom-producteur" style="margin-bottom: 0; font-size : 16px">
+                    <a href="{{ productor_link5 }}">{{ productor_name5 }}</a>
+                  </p>
+                  <!-- Fin du nom du producteur -->
+
+                  <!-- Localisation du producteur -->
+                  <p style="font-size : 12px; font-family: 'Montserrat'; font-weight: 500">
+                    {{ productor_local5 }}
+                  </p>
+                  <!-- Fin de la localisation du producteur -->
+                </div>
+                <!-- Fin des informations sur le producteur -->
+              </div>
+
+      {% endif %}
+
+      {% if productor_name6 != blank %}
+          	<div class="block-producteur">
+                <!-- Photo du producteur -->
+                <div class="photo-prod">
+                  <a  aria-label="Lien du producteur" href="{{ productor_link6 }}"><img alt="Photo du producteur" src="{{ productor_image6 | img_url : "500x500", crop: 'center', format: 'pjpg' }}" /></a>
+                </div>
+
+                <div class="meta-producteur">
+                  <!-- Nom du producteur -->
+                  <p class="nom-producteur" style="margin-bottom: 0; font-size : 16px">
+                    <a href="{{ productor_link6 }}">{{ productor_name6 }}</a>
+                  </p>
+                  <!-- Fin du nom du producteur -->
+
+                  <!-- Localisation du producteur -->
+                  <p style="font-size : 12px; font-family: 'Montserrat'; font-weight: 500">
+                    {{ productor_local6 }}
+                  </p>
+                  <!-- Fin de la localisation du producteur -->
+                </div>
+                <!-- Fin des informations sur le producteur -->
+              </div>
+      {% endif %}
+
+      {% if productor_name7 != blank %}
+           	<div class="block-producteur">
+                <!-- Photo du producteur -->
+                <div class="photo-prod">
+                  <a aria-label="Lien du producteur" href="{{ productor_link7 }}"><img alt="Photo du producteur" src="{{ productor_image7 | img_url : "500x500", crop: 'center', format: 'pjpg' }}" /></a>
+                </div>
+
+                <div class="meta-producteur">
+                  <!-- Nom du producteur -->
+                  <p class="nom-producteur" style="margin-bottom: 0; font-size : 16px">
+                    <a href="{{ productor_link7 }}">{{ productor_name7 }}</a>
+                  </p>
+                  <!-- Fin du nom du producteur -->
+
+                  <!-- Localisation du producteur -->
+                  <p style="font-size : 12px; font-family: 'Montserrat'; font-weight: 500">
+                    {{ productor_local7 }}
+                  </p>
+                  <!-- Fin de la localisation du producteur -->
+                </div>
+                <!-- Fin des informations sur le producteur -->
+              </div>
+      {% endif %}
+
+      {% if productor_name8 != blank %}
+            	<div class="block-producteur">
+                <!-- Photo du producteur -->
+                <div class="photo-prod">
+                  <a aria-label="Lien du producteur" href="{{ productor_link8 }}"><img alt="Photo du producteur" src="{{ productor_image8 | img_url : "500x500", crop: 'center', format: 'pjpg' }}" /></a>
+                </div>
+
+                <div class="meta-producteur">
+                  <!-- Nom du producteur -->
+                  <p class="nom-producteur" style="margin-bottom: 0; font-size : 16px">
+                    <a href="{{ productor_link8 }}">{{ productor_name8 }}</a>
+                  </p>
+                  <!-- Fin du nom du producteur -->
+
+                  <!-- Localisation du producteur -->
+                  <p style="font-size : 12px; font-family: 'Montserrat'; font-weight: 500">
+                    {{ productor_local8 }}
+                  </p>
+                  <!-- Fin de la localisation du producteur -->
+                </div>
+                <!-- Fin des informations sur le producteur -->
+              </div>
+      {% endif %}
+
+  </div>
+
+  <a class="action_button" href="{{ button_link }}">{{ button_text }}</a>
+</div>
+
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script> -->
+
+
+  <script type="text/javascript">
+    setTimeout(function() {
+    $(document).ready(function(){
+      var $sliderSpeed = {{slider_speed }}
+      $('#slideshow').slick({
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: $sliderSpeed,
+        responsive: [
+    {
+      breakpoint: 468,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplaySpeed: 3000,
+        centerMode: false,
+        infinite: true
+      }
+    },
+    {
+      breakpoint: 1050,
+      settings: {
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      centerMode: true,
+      infinite: true
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+      });
+});
+    }, 3000);
+  </script>

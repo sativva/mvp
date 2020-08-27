@@ -3,6 +3,88 @@
 - Product template
 {% endcomment %}
 
+<style>
+
+  .card-title {
+    font-family: Montserrat, sans-serif!important;
+    font-size: 17px ;
+    font-weight: 400;
+    margin-top: 70px;
+  }
+
+   #vendor-card {
+      width: 100%;
+      box-shadow : rgba(0,0,0,10%) 1px 1px 8px;
+      padding: 25px;
+     padding-bottom: 17px;
+      box-sizing: border-box;
+      border-bottom:3px solid #3eab37;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 100px;
+      align-items: center;
+      justify-content: center;
+      max-height: 450px;
+  }
+
+  #vendor-card h3 { margin-bottom: 10px ; font-size : 2vw; font-weight: 700; }
+
+  #vendor-card .vendor-details {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+  }
+
+  #vendor-card .vendor-details div, #vendor-card .vendor-details img {
+      padding: 5px;
+      box-sizing: border-box;
+  }
+
+  #vendor-card .vendor-details .image-element__wrap {
+
+    width: 100%;
+
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  #vendor-card .vendor-details .image-element__wrap img { width: 100%; }
+  #to-vendor { min-width: 25%!important;  margin-top: 17px }
+
+  #vendor-card .vendor-details {
+      max-height: 400px;
+      overflow: auto;
+  }
+
+
+  .vendor-description h3 { display: none }
+
+  .vendor-description p { font-size: 15px; }
+
+
+  @media screen and (min-width: 840px) {
+      .sticky-product-image {position: sticky; top: 150px; }
+  }
+
+
+  @media screen and (max-width: 468px) {
+    #vendor-card {
+    	padding: 15px ;
+    	margin-top: 0px;
+      	margin-bottom : 70px;
+    }
+
+    #vendor-card h3 { font-size : 4vw; margin-bottom: 5px!important; }
+      #vendor-card .vendor-details { width: 80% ; }
+      #vendor-card .vendor-details .image-element__wrap  { width: 100%; }
+      .vendor-description { display : none ; }
+      #to-vendor { min-width: 75%!important;  margin-top: 10px ; }
+    .card-title { font-size: 15px; }
+  }
+</style>
+
 <a name="pagecontent" id="pagecontent"></a>
 
 <div class="container main content product-name--{{ product.handle }}">
@@ -78,7 +160,7 @@
           >
       <div class="section product_section clearfix js-product_section {% if section.settings.product_images_position == 'right' %}align_right--images{% endif %}" itemscope itemtype="http://schema.org/Product" data-rv-handle="{{ product.handle }}">
 
-        <div class="nine columns medium-down--one-whole {% if section.settings.product_images_position == 'left' %}alpha{% else %}omega{% endif %}">
+        <div class="sticky-product-image nine columns medium-down--one-whole {% if section.settings.product_images_position == 'left' %}alpha{% else %}omega{% endif %}">
           {% include 'product-images' %}
           <div class="labels desktop">
             {% if section.settings.display_labels %}
@@ -305,6 +387,35 @@
         </div>
       </div>
 
+      <h2 class="card-title">{{ section.settings.card-title }}</h2>
+      <div id="vendor-card">
+        <center><h3 style="font-family: 'Montserrat'; {% if collections[vendorHandle].description == blank %}display: none; {% endif %}">{{ collections[vendorHandle].title }}</h3></center>
+		<div class="vendor-details">
+          {% assign vendor_image = collections[vendorHandle].image %}
+
+          {% if collections[vendorHandle].image != blank %}
+          	{% include 'image-element', image: vendor_image, alt: collection.title, stretch_width: true, progressive: true %}
+          {% endif %}
+
+
+          {% if collections[vendorHandle].description != blank %}
+            {% assign vendorDescription = collections[vendorHandle].description %}
+          {% endif %}
+
+          {% if vendorDescription %}
+            <div class="vendor-description" style="{% comment %}{% if collections[vendorHandle].image %}max-width: 65%;{% endif %}{% endcomment %}">{{ vendorDescription }}</div>
+          {% endif %}
+          {% if collections[vendorHandle].description == blank %}
+          <span style="text-align: center">{{ section.settings.no-description }}</span>
+          {% endif %}
+        </div>
+
+        {% assign vendorHandle = product.vendor | handle %}
+        {% if collections[vendorHandle].products.size > 0 %}
+        <a class="action_button" id="to-vendor" href="{{ collections[vendorHandle].url }}">{{section.settings.text-button }}</a>
+      	{% else %}
+       {% endif %}
+      </div>
 
 
       {% if product.description contains "<!-- split -->"  %}
@@ -674,7 +785,25 @@
       "id": "toggle",
       "label": "Toggle sidebar content",
       "default": false
-    }
+    },
+	{
+	 "type": "text",
+	 "id": "card-title",
+	 "label": "Titre de la carte du producteur",
+	 "default": "A propos du producteur de ce produit :"
+	},
+	{
+	 "type": "text",
+	 "id": "no-description",
+	 "label": "Texte pour les producteurs sans description",
+	 "default": "Ce producteur n'a pas encore de description."
+	},
+	{
+	 "type": "text",
+	 "id": "text-button",
+	 "label": "Texte sur le bouton",
+	 "default": "Découvrir le producteur"
+	}
   ],
   "blocks": [
     {
