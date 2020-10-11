@@ -28,7 +28,7 @@
         <p><b>{{ 'cart.new_form.address_check' | t }}</b></p>
         <form action="" id="address_check_form">
           <span class="fields"></span>
-        <input type="text" class="first_input" name="address"  placeholder="Numéro, nom de la rue" value="{% if customer %}{{customer.default_address.street }}{% endif %}" required>
+        <input type="text" class="first_input" name="address"  placeholder="Numéro, nom de la rue" value="{% if customer %}{{customer.default_address.address1 }}{% endif %}" required>
         <input type="text" class="" name="city"   placeholder="Ville"  value="{% if customer %}{{customer.default_address.city}} {% endif %}" required>
         <input type="text" class="last_input" pattern="[0-9]{5}" name="zip"  placeholder="Code Postal"  value="{% if customer %}{{customer.default_address.zip}}{% endif %}">
         <input type="hidden" class="" name="mail"  placeholder="mail"  value="{% if customer %}{{ customer.email }}{% endif %}" required>

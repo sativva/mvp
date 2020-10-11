@@ -907,6 +907,8 @@ $(document).ready(function() {
       $('.method button').removeClass('selected');
       $(this).addClass('selected');
       $('.dynamic_content .address_check').show();
+      $('.address_check_btn .content').show()
+      $('.address_check_btn .loader').hide()
       $('.dynamic_content .pickup').hide()
       $('.dynamic_content .wrong_address').hide()
       $('#method').val('delivery')

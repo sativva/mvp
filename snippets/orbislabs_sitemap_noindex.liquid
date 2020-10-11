@@ -46,6 +46,28 @@
         {%- elsif product.metafields.seo.orbislabsRobots == 4 -%}
             <meta name="robots" content="nofollow" />
             {%- assign metarobots_found = true -%}
+        {%- elsif shop.metafields.ninja_seo_collection.allproducts != blank and shop.metafields.ninja_seo_collection.allproducts > 0 -%}
+            {%- if shop.metafields.ninja_seo_collection.allproducts == 1 or shop.metafields.ninja_seo_collection.allproducts == 2 -%}
+                <meta name="robots" content="noindex,nofollow" />
+                {%- assign metarobots_found = true -%}
+            {%- elsif shop.metafields.ninja_seo_collection.allproducts == 3 -%}
+                <meta name="robots" content="noindex" />
+                {%- assign metarobots_found = true -%}
+            {%- elsif shop.metafields.ninja_seo_collection.allproducts == 4 -%}
+                <meta name="robots" content="nofollow" />
+                {%- assign metarobots_found = true -%}
+            {%- endif -%}
+        {%- elsif shop.metafields.ninja_seo_collection.productvariants != blank and shop.metafields.ninja_seo_collection.productvariants > 0 and product.has_only_default_variant == false and product.selected_variant.id != blank -%}
+            {%- if shop.metafields.ninja_seo_collection.productvariants == 1 or shop.metafields.ninja_seo_collection.productvariants == 2 -%}
+                <meta name="robots" content="noindex,nofollow" />
+                {%- assign metarobots_found = true -%}
+            {%- elsif shop.metafields.ninja_seo_collection.productvariants == 3 -%}
+                <meta name="robots" content="noindex" />
+                {%- assign metarobots_found = true -%}
+            {%- elsif shop.metafields.ninja_seo_collection.productvariants == 4 -%}
+                <meta name="robots" content="nofollow" />
+                {%- assign metarobots_found = true -%}
+            {%- endif -%}
         {%- elsif shop.metafields.ninja_seo_collection.zeroqty != blank and shop.metafields.ninja_seo_collection.zeroqty > 0 -%}
             {%- if product.available == false -%}
                 {%- if shop.metafields.ninja_seo_collection.zeroqty == 1 or shop.metafields.ninja_seo_collection.zeroqty == 2 -%}

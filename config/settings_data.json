@@ -4444,7 +4444,7 @@
       "header": {
         "type": "header",
         "settings": {
-          "promo_text": "<p><strong>5&euro; OFFERTS<\/strong>&nbsp;avec le code <strong>RENTR&Eacute;E<\/strong> <span style=\"text-decoration: none;\">pour toute commande sup&eacute;rieure &agrave; 40&euro;, fin de l'offre le jeudi 28&nbsp;ao&ucirc;t&nbsp;&agrave; minuit.<\/span><\/p>",
+          "promo_text": "",
           "social_icons_header": false,
           "phone_number": "",
           "top_bar_menu": "top-bar-menu",
@@ -5710,27 +5710,6 @@
               "richtext_bottom": ""
             }
           },
-          "1588841314063": {
-            "type": "column",
-            "settings": {
-              "richtext_top": "",
-              "image_top": "",
-              "image_caption_top": "",
-              "image_link_top": "",
-              "menu_1": "nettoyage-entretien",
-              "menu_1_link": "shopify:\/\/collections\/cuisine",
-              "menu_2": "",
-              "menu_2_link": "",
-              "menu_3": "",
-              "menu_3_link": "",
-              "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
-              "image_caption_bottom": "",
-              "image_link_bottom": "",
-              "richtext_bottom": ""
-            }
-          },
           "1588843158097": {
             "type": "column",
             "settings": {
@@ -5755,7 +5734,6 @@
         },
         "block_order": [
           "mega-menu-6-0",
-          "1588841314063",
           "1588843158097"
         ],
         "settings": {
@@ -6405,6 +6383,20 @@
               "prod-localisation": "Arieux",
               "prod_entr": "shopify:\/\/collections\/michel-delille-ferme-des-blancs-moutons-arieux"
             }
+          },
+          "1601451158929": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/benoit-outters-vergers-bio.jpg",
+              "ultra-local": false,
+              "local": true,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Benoit Outters - vergers biologiques",
+              "prod-localisation": "Wallon-Cappel",
+              "prod_entr": "shopify:\/\/collections\/benoit-outters-vergers-biologiques-wallon-cappel"
+            }
           }
         },
         "block_order": [
@@ -6418,7 +6410,8 @@
           "1595491825910",
           "1595492399836",
           "1595492455053",
-          "1595492504751"
+          "1595492504751",
+          "1601451158929"
         ],
         "settings": {
           "category-name": "Fruits & légumes",
@@ -6794,20 +6787,6 @@
               "prod_entr": "shopify:\/\/collections\/cecilia-autrement-biere-weppes"
             }
           },
-          "1595411754489": {
-            "type": "text",
-            "settings": {
-              "bck-color": "#ffffff",
-              "prod-image": "shopify:\/\/shop_images\/royaume-abeilles.jpg",
-              "ultra-local": false,
-              "local": true,
-              "conversion-bio": false,
-              "bio": false,
-              "name": "Marc - Le Royaume des abeilles",
-              "prod-localisation": "Cagnongles",
-              "prod_entr": "shopify:\/\/collections\/marc-le-royaume-des-abeilles-cagnongles"
-            }
-          },
           "1595411807216": {
             "type": "text",
             "settings": {
@@ -6849,6 +6828,20 @@
               "prod-localisation": "Revel",
               "prod_entr": "shopify:\/\/collections\/karine-jeff-revel"
             }
+          },
+          "1600943209487": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/lorena-gilberto.jpg",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Lorena et Gilberto - La Bottega",
+              "prod-localisation": "Lille",
+              "prod_entr": "shopify:\/\/collections\/lorena-et-gilberto-la-bottega-lille"
+            }
           }
         },
         "block_order": [
@@ -6856,10 +6849,10 @@
           "1595411601964",
           "1595411647277",
           "1595411697732",
-          "1595411754489",
           "1595411807216",
           "1595411835178",
-          "1595411866972"
+          "1595411866972",
+          "1600943209487"
         ],
         "settings": {
           "category-name": "Epicerie salée",
@@ -6957,6 +6950,20 @@
               "prod-localisation": "Lille",
               "prod_entr": ""
             }
+          },
+          "1601295357617": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/Bernard-miel.jpg",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Bernard Hennebique - Apiculteur",
+              "prod-localisation": "Avesnois",
+              "prod_entr": "shopify:\/\/collections\/bernard-hennebique-apiculteur-avesnois"
+            }
           }
         },
         "block_order": [
@@ -6965,7 +6972,8 @@
           "1595412513136",
           "1595412550398",
           "1595492006126",
-          "1595492100551"
+          "1595492100551",
+          "1601295357617"
         ],
         "settings": {
           "category-name": "Epicerie sucrée",
@@ -7049,7 +7057,7 @@
               "local": false,
               "conversion-bio": false,
               "bio": false,
-              "name": "Aymeric et Pierre-André - Brasserie Tandam",
+              "name": "Aymeric et Pierre-André - Brasserie Tandem",
               "prod-localisation": "Wambrechies",
               "prod_entr": "shopify:\/\/collections\/aymeric-pierre-andre-brasserie-tandem-wambrechies"
             }
@@ -7081,13 +7089,28 @@
               "prod-localisation": "Lille Centre",
               "prod_entr": "shopify:\/\/collections\/cyrille-jiyun-biovino-lille-centre"
             }
+          },
+          "1601024036284": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/Capture_cb6654c4-efd6-41b6-97cd-a4b8aa4b37ce.PNG",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": true,
+              "name": "Maxime & Romain - Cider Mauret",
+              "prod-localisation": "Lille",
+              "prod_entr": ""
+            }
           }
         },
         "block_order": [
           "1595412733054",
           "1595413102461",
           "1595413142380",
-          "1595413180862"
+          "1595413180862",
+          "1601024036284"
         ],
         "settings": {
           "category-name": "Boissons alcoolisées",
@@ -7239,21 +7262,21 @@
               "bio": false,
               "name": "Fabien, Elodie et Maxence - Youpaï",
               "prod-localisation": "Bondues",
-              "prod_entr": ""
+              "prod_entr": "shopify:\/\/collections\/fabien-elodie-et-maxence-youpai-bondues"
             }
           },
-          "1595492356882": {
+          "1601016301218": {
             "type": "text",
             "settings": {
               "bck-color": "#ffffff",
-              "prod-image": "shopify:\/\/shop_images\/gecco.jpg",
-              "ultra-local": true,
-              "local": false,
+              "prod-image": "shopify:\/\/shop_images\/mana-mani-horizontal.jpg",
+              "ultra-local": false,
+              "local": true,
               "conversion-bio": false,
               "bio": false,
-              "name": "Julien et Michel - Gecco",
-              "prod-localisation": "Avelin",
-              "prod_entr": "shopify:\/\/collections\/julien-michel-gecco-avelin"
+              "name": "Maud - Mana Mani",
+              "prod-localisation": "Lille",
+              "prod_entr": "shopify:\/\/collections\/maud-mana-mani-lille"
             }
           }
         },
@@ -7268,7 +7291,7 @@
           "1595491058460",
           "1595491111753",
           "1595491239585",
-          "1595492356882"
+          "1601016301218"
         ],
         "settings": {
           "category-name": "Hygiène & Zéro déchet",
@@ -7348,23 +7371,23 @@
       "1597104744768": {
         "type": "featured-collection",
         "settings": {
-          "title": "Je me régale en mangeant de saison !",
-          "collection_description": true,
-          "collection": "fruits-et-legumes-de-saison",
+          "title": "Yaourts, beurre, lait, découvrez les produits de la ferme des anneaux !",
+          "collection_description": false,
+          "collection": "marie-anne-la-ferme-des-anneaux-avelin",
           "collection_style": "grid",
-          "products_per": 3,
-          "products_limit": 6
+          "products_per": 4,
+          "products_limit": 8
         }
       },
       "1597104835694": {
         "type": "featured-collection",
         "settings": {
-          "title": "Grand nettoyage de rentrée !",
+          "title": "Tout pour une délicieuse pizza maison !",
           "collection_description": false,
-          "collection": "ghizlaine-et-romain-mutyne-villeneuve-dascq",
+          "collection": "tout-pour-realiser-une-delicieuse-pizza-maison",
           "collection_style": "grid",
-          "products_per": 3,
-          "products_limit": 3
+          "products_per": 4,
+          "products_limit": 8
         }
       },
       "1597233492115": {
@@ -7378,7 +7401,7 @@
               "image_crop": "none",
               "title": "",
               "subtitle": "Votre marché en circuit court. Sans courir.",
-              "text": "<p>Vos produits <strong>bio<\/strong> et <strong>locaux<\/strong>, livr&eacute;s &agrave; v&eacute;lo sur la <strong>m&eacute;tropole lilloise<\/strong>. Faites votre march&eacute; en ligne et en direct de <a href=\"https:\/\/www.mesvoisinsproducteurs.com\/pages\/nos-producteurs-et-artisans\" title=\"https:\/\/www.mesvoisinsproducteurs.com\/pages\/nos-producteurs-et-artisans\"><strong>plus de 50 producteurs locaux<\/strong><\/a>&nbsp;de&nbsp;Lille et de la r&eacute;gion.<\/p>\n<p><\/p>\n<p>D&egrave;s septembre, <strong>11 nouvelles communes seront desservies&nbsp;<\/strong>en livraison &agrave; v&eacute;lo&nbsp;: Villeneuve d'Ascq, Haubourdin, Saint-Andr&eacute;-lez-Lille, Marquette-lez-Lille, Bondues, Mouvaux, Tourcoing, Roubaix, Croix, Wasquehal et Hem.<\/p>",
+              "text": "<p>Vos produits <strong>bio<\/strong> et <strong>locaux<\/strong>, livr&eacute;s &agrave; v&eacute;lo sur la <strong>m&eacute;tropole lilloise<\/strong>. Faites votre march&eacute; en ligne et en direct de <a href=\"https:\/\/www.mesvoisinsproducteurs.com\/pages\/nos-producteurs-et-artisans\" title=\"https:\/\/www.mesvoisinsproducteurs.com\/pages\/nos-producteurs-et-artisans\"><strong>plus de 60 producteurs locaux<\/strong><\/a>&nbsp;de&nbsp;Lille et de la r&eacute;gion.<\/p>",
               "button_label": "Comment ça marche ?",
               "link": "shopify:\/\/pages\/livraison-de-produits-locaux",
               "bg_color": "#f7f4e3",
@@ -7518,11 +7541,23 @@
           "frontpage_text_align": "left",
           "frontpage_image_position": "left"
         }
+      },
+      "1600241107722": {
+        "type": "featured-collection",
+        "settings": {
+          "title": "Les paniers tout prêt, tout frais !",
+          "collection_description": false,
+          "collection": "panier-de-fruits-et-legumes-bio",
+          "collection_style": "grid",
+          "products_per": 4,
+          "products_limit": 6
+        }
       }
     },
     "content_for_index": [
       "1597233492115",
       "1597104744768",
+      "1600241107722",
       "1597104637530",
       "1489283389016",
       "1597416003339",
