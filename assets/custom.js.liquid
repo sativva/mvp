@@ -694,6 +694,10 @@ $(document).ready(function() {
           console.log(Cookies.getJSON('sent_to_checkout')['token'])
           console.log(data.token)
           if (data.token == Cookies.getJSON('sent_to_checkout')['token']) {
+              $('#checkout').css('pointer-events', 'none')
+              $('#checkout .loader').show()
+              $('#checkout .content').hide()
+
               var old_cart;
               console.log('GET NEW CART TOKEN')
               console.log(data);
@@ -715,6 +719,9 @@ $(document).ready(function() {
                 success: function(data) {
                   CartJS.getCart()
                   console.log('done');
+                  $('#checkout').css('pointer-events', 'auto');
+                  $('#checkout .loader').hide()
+                  $('#checkout .content').show()
                 }
               })
           }

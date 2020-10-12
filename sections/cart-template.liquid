@@ -304,7 +304,8 @@
               <textarea id="note" name="note" rows="2" maxlength="150" placeholder="Vous avez un petit commentaire à laisser, une demande spécifique ? C’est par ici. " >{{ cart.note }}</textarea>
 
             {% endif %}
-            <button type="submit" class="action_button add_to_cart desktop checkout" id="checkout" name="checkout">Passer ma commande</button>
+            <button type="submit" class="action_button add_to_cart desktop checkout" id="checkout" name="checkout">  <span class="content">Passer ma commande </span>
+            <span class="loader"><img src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/Spinner-1s-200px.gif?v=1584009133" alt="loader"></span></button>
 
 
             {% if section.settings.display_savings %}
