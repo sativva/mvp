@@ -874,12 +874,17 @@ $(document).ready(function() {
 
       $('.container.main.content, .newsletter-section, .recommatic').hide()
 
-      if (CartJS.cart.total_price > 8000) {
-        $('.method .dlvy .conditions').text('Livraison offerte')
-      } else if (CartJS.cart.total_price < 4500) {
-        $('.method .dlvy .conditions').text('5,90 €')
+      if("{{settings.free_dlvy}}" != "true") {
+        if (CartJS.cart.total_price > 8000) {
+          $('.method .dlvy .conditions').text("{{'cart.new_form.free_dlvy' | t }}")
+        } else if (CartJS.cart.total_price < 4500) {
+          $('.method .dlvy .conditions').text("{{'cart.new_form.high_delivery_rate' | t }}")
+        } else {
+          $('.method .dlvy .conditions').text("{{'cart.new_form.low_delivery_rate' | t }}")
+        }
       } else {
-        $('.method .dlvy .conditions').text('3,90 €')
+        $('.method .dlvy .conditions').text("{{'cart.new_form.free_dlvy' | t }}")
+
       }
       if (CartJS.cart.total_price < 3000) {
         $('.method .pickup').css('pointer-events', 'none')
@@ -1015,5 +1020,57 @@ $(document).ready(function() {
     })
 
   })
+
+
+
+  var autocomplete;
+
+
+  function initAutocomplete() {
+    // Create the autocomplete object, restricting the search predictions to
+    // geographical location types.
+
+    var defaultBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(50.5478944,2.7895773),
+      new google.maps.LatLng(50.743956,3.1906307)
+
+    )
+    autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById("autocomplete2"),
+      { types: ["geocode"],
+       bounds:defaultBounds
+      }
+    );
+    // Avoid paying for data that you don't need by restricting the set of
+    // place fields that are returned to just the address components.
+    autocomplete.setFields(["address_component"]);
+    // When the user selects an address from the drop-down, populate the
+    // address fields in the form.
+    autocomplete.addListener("place_changed", fillInAddress);
+
+
+  }
+
+  function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    const place = autocomplete.getPlace();
+
+
+    document.getElementById("address").value = place.address_components[0]["long_name"] + " " + place.address_components[1]["long_name"];
+    document.getElementById("postal_code").value = place.address_components[6]["long_name"];
+    document.getElementById("locality").value = place.address_components[2]["long_name"];
+
+    $('.address_check_btn').removeAttr('disabled')
+
+  }
+
+  // Bias the autocomplete object to the user's geographical location,
+  // as supplied by the browser's 'navigator.geolocation' object.
+
+  initAutocomplete()
+  $("#autocomplete2").on('focus', function() {
+  $('#address_check_form').append($('.pac-container'))
+  })
+
 })
 

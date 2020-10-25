@@ -391,6 +391,9 @@
     },
     "new_form": {
       "delivery_on": "Vous serez livré(e) le ",
+      "free_delivery": "Livraison offerte",
+      "low_delivery_rate": "3,90 €",
+      "high_delivery_rate": "5,90 €",
       "method_dlvy_html": "livraison à<br> domicile",
       "method_pickup_html": "Retrait <br>en boutique ",
       "conditions_pickup": "Dès 30 € d'achat",

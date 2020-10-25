@@ -2,6 +2,11 @@
 ** Cart page - default view **
 - Template section
 {% endcomment %}
+
+<script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBiHAxffykOs4c2bXBCYq_YnYaAV-5wnQ&libraries=places">
+</script>
+
 <div class="container main content">
 <a name="pagecontent" id="pagecontent"></a>
 
@@ -352,9 +357,9 @@
 
            {% if cart.item_count > 0 %}
 
-              <div class="free_dlvy_amount">
+             <!-- <div class="free_dlvy_amount">
                 <p>Plus que <b><span class="buy_more">{{ 8000 | minus: cart.total_price | money }}</span></b>  d’achat pour bénéficier de la <b>livraison offerte</b> !</p>
-              </div>
+              </div>-->
 
               <div class="featured-links">
                 <a href="{% if cart.items.first.product.collections != blank %}{{ cart.items.first.product.collections.last.url }}{% else %}/collections/all{% endif %}" class="arrow_before">{{ 'cart.general.continue_shopping_link_html' | t }}</a>

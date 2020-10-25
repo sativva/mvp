@@ -26,14 +26,17 @@
     <div class="dynamic_content">
       <div class="address_check newform">
         <p><b>{{ 'cart.new_form.address_check' | t }}</b></p>
-        <form action="" id="address_check_form">
+        <form action="" id="address_check_form" autocomplete="off">
           <span class="fields"></span>
-        <input type="text" class="first_input" name="address"  placeholder="Numéro, nom de la rue" required>
-        <input type="text" class="" name="city"   placeholder="Ville" required>
-        <input type="text" class="last_input" pattern="[0-9]{5}" name="zip"  placeholder="Code Postal" >
-        <input type="hidden" class="" name="mail"  placeholder="mail"  value="{% if customer %}{{ customer.email }}{% endif %}" required>
+        
+        
+        <input id="address" autocomplete="chrome-off" type="hidden" name="address"  placeholder="Numéro, nom de la rue" required disabled>
+        <input id="locality" type="hidden" class="" name="city"   placeholder="Ville" required disabled>
+        <input id="postal_code" type="hidden" class="last_input" pattern="[0-9]{5}" name="zip"  placeholder="Code Postal" >
+        <input type="hidden" class="" name="mail"  placeholder="mail"  value="{% if customer %}{{ customer.email }}{% endif %}" required disabled>
+        <input id="autocomplete2" autocomplete="chrome-off" type="text" class="first_input last_input" name="address"  placeholder="Numéro, nom de la rue" required>
         </form>
-        <button class="action_button address_check_btn"><span class="content">{{ 'cart.new_form.address_check_btn' | t }}</span> <span class="loader"><img src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/Spinner-1s-200px.gif?v=1584009133" alt="loader"></span></button>
+        <button class="action_button address_check_btn" disabled><span class="content">{{ 'cart.new_form.address_check_btn' | t }}</span> <span class="loader"><img src="https://cdn.shopify.com/s/files/1/0095/0986/3479/files/Spinner-1s-200px.gif?v=1584009133" alt="loader"></span></button>
       </div>
 
       <div class="slots_cont">

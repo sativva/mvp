@@ -2021,6 +2021,15 @@
     "name": "Formulaire de livraison",
     "settings": [
       {
+
+        "type": "checkbox",
+        "id": "free_dlvy",
+        "label": "Enable Free Dlvy",
+        "info": "Display free delivery on cart page"
+
+
+      },
+      {
         "type": "text",
         "id": "change_day_hour",
         "label": "Heure limite pour livraison le jour même",

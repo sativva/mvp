@@ -4452,7 +4452,6 @@
           "cart_icon": "cart",
           "logo_display_width": 140,
           "logo": "shopify:\/\/shop_images\/logo-blanc_4x.png",
-          "logo_home": "",
           "logo_mobile": "shopify:\/\/shop_images\/logomobile2.png",
           "main_linklist": "main-menu",
           "main_linklist2": "",
@@ -4489,7 +4488,7 @@
             "type": "text",
             "settings": {
               "title": "<b>BESOIN D'AIDE<\/b>",
-              "content": "<p><\/p>\n<p>06 27 05 22 74<\/p>\n<p>bonjour@mesvoisinsproducteurs.com<\/p>",
+              "content": "<p><\/p><p>06 27 05 22 74<\/p><p>bonjour@mesvoisinsproducteurs.com<\/p>",
               "social_icons_footer": false
             }
           }
@@ -4517,10 +4516,8 @@
           "caption_background": false,
           "caption_background_transparency": false,
           "button1": "",
-          "button1_link": "",
           "button1_highlight": false,
           "button2": "",
-          "button2_link": "",
           "button2_highlight": false,
           "text_position": "center",
           "text_align": "center"
@@ -4529,11 +4526,9 @@
       "1489283660007": {
         "type": "featured-text",
         "settings": {
-          "image": "",
           "title": "Nos clients vous le disent",
           "content": "",
           "button_label": "",
-          "button_link": "",
           "text_size": "featured_text",
           "text_alignment": "center"
         }
@@ -4565,7 +4560,7 @@
           "display_first_name": false,
           "display_last_name": false,
           "newsletter_title": "",
-          "newsletter_text": "<p>Envie d'inspirations et de conseils sur nos produits ? <br><strong>Abonnez-vous &agrave; notre newsletter. :)<\/strong><\/p>",
+          "newsletter_text": "<p>Envie d&#x27;inspirations et de conseils sur nos produits ? <br\/><strong>Abonnez-vous à notre newsletter. :)<\/strong><\/p>",
           "newsletter_section_text_align": "center",
           "image": "shopify:\/\/shop_images\/Image-newsletter.jpg"
         }
@@ -5001,13 +4996,11 @@
             "settings": {
               "title": "",
               "stars": 5,
-              "testimonial": "<p>&laquo; J'ai une enti&egrave;re confiance en vous, j'appr&eacute;cie le service et les produits sont tr&egrave;s bons&nbsp;&raquo;<\/p>",
+              "testimonial": "<p>« J&#x27;ai une entière confiance en vous, j&#x27;apprécie le service et les produits sont très bons »<\/p>",
               "name": "Yvette, Lezennes,<br> Cliente depuis 2017",
               "store_name": "",
-              "link": "",
               "text_position": "center",
               "text_align": "center",
-              "image": "",
               "darken_bg": false
             }
           },
@@ -5016,13 +5009,11 @@
             "settings": {
               "title": "",
               "stars": 5,
-              "testimonial": "<p>&laquo; Je n'ai pas le temps d'aller faire le march&eacute;, c'est&nbsp;bien plus simple que les produits soient livr&eacute;s chez moi. &raquo;<\/p>",
+              "testimonial": "<p>« Je n&#x27;ai pas le temps d&#x27;aller faire le marché, c&#x27;est bien plus simple que les produits soient livrés chez moi. »<\/p>",
               "name": "Laurette, Lomme, <br>  Cliente depuis 1 an",
               "store_name": "",
-              "link": "",
               "text_position": "center",
               "text_align": "center",
-              "image": "",
               "darken_bg": false
             }
           },
@@ -5031,13 +5022,11 @@
             "settings": {
               "title": "",
               "stars": 5,
-              "testimonial": "<p>&laquo; Les produits sont de qualit&eacute; et la livraison &agrave; v&eacute;lo va dans le sens de notre d&eacute;marche &eacute;cologique.&nbsp;&raquo;<\/p>",
+              "testimonial": "<p>« Les produits sont de qualité et la livraison à vélo va dans le sens de notre démarche écologique. »<\/p>",
               "name": "Robin, Marcq-en-Baroeul,<br> Client depuis 9 mois",
               "store_name": "",
-              "link": "",
               "text_position": "center",
               "text_align": "center",
-              "image": "",
               "darken_bg": false
             }
           }
@@ -5060,7 +5049,7 @@
           "display_first_name": false,
           "display_last_name": false,
           "newsletter_title": "",
-          "newsletter_text": "<p><strong>B&eacute;n&eacute;ficiez de 5&euro;<\/strong> <strong>de r&eacute;duction<\/strong> sur votre prochaine commande en vous&nbsp;<strong>abonnant&nbsp;&agrave; notre newsletter. :)<\/strong><\/p>",
+          "newsletter_text": "<p><strong>Bénéficiez de 5€<\/strong> <strong>de réduction<\/strong> sur votre prochaine commande en vous <strong>abonnant à notre newsletter. :)<\/strong><\/p>",
           "newsletter_section_text_align": "left",
           "image": "shopify:\/\/shop_images\/couleur.jpg"
         }
@@ -5077,9 +5066,8 @@
               "image_crop": "none",
               "title": "Notre mission",
               "subtitle": "Vous rapprocher de l'essentiel...",
-              "text": "<p>...en vous permettant de faire votre march&eacute; en quelques clics.&nbsp;Nous vous livrons &agrave; v&eacute;lo des produits frais, bio et locaux, cultiv&eacute;s et pr&eacute;par&eacute;s &agrave; quelques kilom&egrave;tres de chez vous ou dans la r&eacute;gion tout en minimisant notre empreinte carbone.<\/p>\n<p>Nous vous garantissons une fra&icirc;cheur unique&nbsp;avec une ramasse chaque matin des l&eacute;gumes cueillis par nos maraichers, des viandes et poissons mis sous vide et du pain frais.<\/p>",
+              "text": "<p>...en vous permettant de faire votre marché en quelques clics. Nous vous livrons à vélo des produits frais, bio et locaux, cultivés et préparés à quelques kilomètres de chez vous ou dans la région tout en minimisant notre empreinte carbone.<\/p><p>Nous vous garantissons une fraîcheur unique avec une ramasse chaque matin des légumes cueillis par nos maraichers, des viandes et poissons mis sous vide et du pain frais.<\/p>",
               "button_label": "",
-              "link": "",
               "bg_color": "",
               "text_color": ""
             }
@@ -5092,9 +5080,8 @@
               "image_crop": "none",
               "title": "Où nous trouver ?",
               "subtitle": "Tout près & tout prêt",
-              "text": "<p>Nous livrons vos commandes pr&eacute;par&eacute;es le matin m&ecirc;me dans la m&eacute;tropole lilloise &agrave; travers 3 modes de livraison :&nbsp;<strong>&agrave; domicile &agrave; v&eacute;lo<\/strong>,<strong><span style=\"text-decoration: none;\">&nbsp;en point de retrait<\/span><\/strong>&nbsp;et&nbsp;<strong>en entreprise.<\/strong><\/p>\n<p><strong>ATTENTION : durant le confinement, nous n'assurons que les livraisons &agrave; domicile.<\/strong><\/p>\n<p>Votre&nbsp;adresse n'est pas encore desservie par notre service de livraison ou par un point de retrait ?&nbsp;Nous nous d&eacute;veloppons progressivement dans la M&eacute;tropole, alors n&rsquo;h&eacute;sitez pas &agrave; vous inscrire &agrave; notre newsletter pour &ecirc;tre tenus inform&eacute;s.<\/p>",
+              "text": "<p>Nous livrons vos commandes préparées le matin même dans la métropole lilloise à travers 3 modes de livraison : <strong>à domicile à vélo<\/strong>,<strong> en point de retrait<\/strong> et <strong>en entreprise.<\/strong><\/p><p><strong>ATTENTION : durant le confinement, nous n&#x27;assurons que les livraisons à domicile.<\/strong><\/p><p>Votre adresse n&#x27;est pas encore desservie par notre service de livraison ou par un point de retrait ? Nous nous développons progressivement dans la Métropole, alors n’hésitez pas à vous inscrire à notre newsletter pour être tenus informés.<\/p>",
               "button_label": "",
-              "link": "",
               "bg_color": "",
               "text_color": ""
             }
@@ -5107,9 +5094,8 @@
               "image_crop": "none",
               "title": "Producteurs & Artisans",
               "subtitle": "Si près, si proches !",
-              "text": "<p>Les b&eacute;n&eacute;fices du &laquo; local &raquo; ne se r&eacute;sument pas &agrave; la proximit&eacute; g&eacute;ographique, c'est aussi un vrai rapport journalier avec nos producteurs qui permet d&rsquo;adapter au mieux leur offre &agrave; vos demandes.&nbsp; C'est &eacute;galement une juste r&eacute;tribution qui est favoris&eacute;e par le circuit-court.<\/p>\n<p><\/p>\n<p>Nos fruits et l&eacute;gumes sont exclusivement issus de l&rsquo;agriculture biologique, comme une bonne partie de nos autres produits (pains, &eacute;picerie, &oelig;ufs...). Nous privil&eacute;gions le Bio dans le choix des autres produits, en tenant compte des contraintes de notre territoire (par exemple, il n'existe que tr&egrave;s peu d'&eacute;levages bio en R&eacute;gion pour l'instant).<\/p>\n<p>Globalement nos produits sont issus d&rsquo;une agriculture respectueuse de la terre, des hommes et des animaux.<\/p>",
+              "text": "<p>Les bénéfices du « local » ne se résument pas à la proximité géographique, c&#x27;est aussi un vrai rapport journalier avec nos producteurs qui permet d’adapter au mieux leur offre à vos demandes.  C&#x27;est également une juste rétribution qui est favorisée par le circuit-court.<\/p><p><\/p><p>Nos fruits et légumes sont exclusivement issus de l’agriculture biologique, comme une bonne partie de nos autres produits (pains, épicerie, œufs...). Nous privilégions le Bio dans le choix des autres produits, en tenant compte des contraintes de notre territoire (par exemple, il n&#x27;existe que très peu d&#x27;élevages bio en Région pour l&#x27;instant).<\/p><p>Globalement nos produits sont issus d’une agriculture respectueuse de la terre, des hommes et des animaux.<\/p>",
               "button_label": "",
-              "link": "",
               "bg_color": "",
               "text_color": ""
             }
@@ -5122,9 +5108,8 @@
               "image_crop": "none",
               "title": "Au rythme des saisons",
               "subtitle": "MANGER mieux & manger meilleur",
-              "text": "<p>Ce que l'on d&eacute;fend aussi, c&rsquo;est le go&ucirc;t des bons produits et le retour &agrave; la cuisine. Faire d&eacute;couvrir et red&eacute;couvrir le plaisir de cuisiner, de partager et de d&eacute;guster.<\/p>",
+              "text": "<p>Ce que l&#x27;on défend aussi, c’est le goût des bons produits et le retour à la cuisine. Faire découvrir et redécouvrir le plaisir de cuisiner, de partager et de déguster.<\/p>",
               "button_label": "",
-              "link": "",
               "bg_color": "",
               "text_color": ""
             }
@@ -5401,20 +5386,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "fruits-legumes-frais",
               "menu_1_link": "https:\/\/www.mesvoisinsproducteurs.com\/collections\/fruits-legumes-frais",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           },
@@ -5422,20 +5400,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "legumes-prepares",
               "menu_1_link": "https:\/\/www.mesvoisinsproducteurs.com\/collections\/legumes-prepares",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           }
@@ -5455,20 +5426,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "boucherie",
               "menu_1_link": "shopify:\/\/collections\/boucherie",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           },
@@ -5476,20 +5440,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "poissonneire",
               "menu_1_link": "shopify:\/\/collections\/poissonnerie",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           },
@@ -5497,20 +5454,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "cremerie",
               "menu_1_link": "shopify:\/\/collections\/cremerie",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           }
@@ -5531,20 +5481,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "boulangerie",
               "menu_1_link": "shopify:\/\/collections\/boulangerie",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           }
@@ -5563,20 +5506,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "epicerie-salee",
               "menu_1_link": "shopify:\/\/collections\/l-epicerie-salee",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           },
@@ -5584,20 +5520,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "epicerie-sucree",
               "menu_1_link": "shopify:\/\/collections\/epicerie-sucree",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           }
@@ -5617,20 +5546,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "jus-sans-alcool",
               "menu_1_link": "shopify:\/\/collections\/jus-sans-alcool",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           },
@@ -5638,20 +5560,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "bieres-cidres-hydromel",
               "menu_1_link": "shopify:\/\/collections\/bieres-cidres-hydromel",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           },
@@ -5659,20 +5574,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "vins-bio-nature",
               "menu_1_link": "shopify:\/\/collections\/vins",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           }
@@ -5693,20 +5601,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "salle-de-bain",
               "menu_1_link": "shopify:\/\/collections\/salle-de-bain",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           },
@@ -5714,20 +5615,13 @@
             "type": "column",
             "settings": {
               "richtext_top": "",
-              "image_top": "",
               "image_caption_top": "",
-              "image_link_top": "",
               "menu_1": "zero-dechet",
               "menu_1_link": "shopify:\/\/collections\/maison",
               "menu_2": "",
-              "menu_2_link": "",
               "menu_3": "",
-              "menu_3_link": "",
               "menu_4": "",
-              "menu_4_link": "",
-              "image_bottom": "",
               "image_caption_bottom": "",
-              "image_link_bottom": "",
               "richtext_bottom": ""
             }
           }
@@ -5881,58 +5775,48 @@
           "1577527577291-0": {
             "type": "collection",
             "settings": {
-              "feature_collection": "legumes-bio",
-              "image": ""
+              "feature_collection": "legumes-bio"
             }
           },
           "1577527577291-1": {
             "type": "collection",
             "settings": {
-              "feature_collection": "fruits-bio",
-              "image": ""
+              "feature_collection": "fruits-bio"
             }
           },
           "1577527577291-2": {
             "type": "collection",
             "settings": {
-              "feature_collection": "boucherie",
-              "image": ""
+              "feature_collection": "boucherie"
             }
           },
           "1577527715752": {
             "type": "collection",
             "settings": {
-              "feature_collection": "cremerie",
-              "image": ""
+              "feature_collection": "cremerie"
             }
           },
           "1577527741569": {
             "type": "collection",
             "settings": {
-              "feature_collection": "poissonnerie",
-              "image": ""
+              "feature_collection": "poissonnerie"
             }
           },
           "1577527811357": {
             "type": "collection",
             "settings": {
-              "feature_collection": "epicerie",
-              "image": ""
+              "feature_collection": "epicerie"
             }
           },
           "1577527850128": {
             "type": "collection",
             "settings": {
-              "feature_collection": "toutes-les-boissons",
-              "image": ""
+              "feature_collection": "toutes-les-boissons"
             }
           },
           "1577527870391": {
             "type": "collection",
-            "settings": {
-              "feature_collection": "",
-              "image": ""
-            }
+            "settings": {}
           }
         },
         "block_order": [
@@ -6663,6 +6547,20 @@
               "prod-localisation": "Avesnois",
               "prod_entr": "shopify:\/\/collections\/jean-laiterie-bio-jeanjean-avesnois"
             }
+          },
+          "1602572957428": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/ferme-des-anneauw-horizontal.jpg",
+              "ultra-local": true,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Marie-Anne - La ferme des Anneaux",
+              "prod-localisation": "Avelin",
+              "prod_entr": "shopify:\/\/collections\/marie-anne-la-ferme-des-anneaux-avelin"
+            }
           }
         },
         "block_order": [
@@ -6670,7 +6568,8 @@
           "1595408865441",
           "1595408950412",
           "1595409520610",
-          "1595492246521"
+          "1595492246521",
+          "1602572957428"
         ],
         "settings": {
           "category-name": "Crèmerie",
@@ -6933,8 +6832,7 @@
               "conversion-bio": false,
               "bio": true,
               "name": "Candice et Antoine - Encuentro",
-              "prod-localisation": "Lomme",
-              "prod_entr": ""
+              "prod-localisation": "Lomme"
             }
           },
           "1595492100551": {
@@ -6947,8 +6845,7 @@
               "conversion-bio": false,
               "bio": false,
               "name": "Coffee Makers",
-              "prod-localisation": "Lille",
-              "prod_entr": ""
+              "prod-localisation": "Lille"
             }
           },
           "1601295357617": {
@@ -7044,8 +6941,7 @@
               "conversion-bio": false,
               "bio": false,
               "name": "Pierre, Guillaume & Valentin - Brasserie Le Singe Savant",
-              "prod-localisation": "Lille Moulins",
-              "prod_entr": ""
+              "prod-localisation": "Lille Moulins"
             }
           },
           "1595413102461": {
@@ -7100,8 +6996,7 @@
               "conversion-bio": false,
               "bio": true,
               "name": "Maxime & Romain - Cider Mauret",
-              "prod-localisation": "Lille",
-              "prod_entr": ""
+              "prod-localisation": "Lille"
             }
           }
         },
@@ -7278,6 +7173,19 @@
               "prod-localisation": "Lille",
               "prod_entr": "shopify:\/\/collections\/maud-mana-mani-lille"
             }
+          },
+          "ca3010c4-fc7b-4917-a912-5cd31a250733": {
+            "type": "text",
+            "settings": {
+              "bck-color": "#ffffff",
+              "prod-image": "shopify:\/\/shop_images\/Patcha-horizontal.jpg",
+              "ultra-local": false,
+              "local": false,
+              "conversion-bio": false,
+              "bio": false,
+              "name": "Patcha - Panapoï Paris",
+              "prod-localisation": "Sables d'Olonne"
+            }
           }
         },
         "block_order": [
@@ -7291,7 +7199,8 @@
           "1595491058460",
           "1595491111753",
           "1595491239585",
-          "1601016301218"
+          "1601016301218",
+          "ca3010c4-fc7b-4917-a912-5cd31a250733"
         ],
         "settings": {
           "category-name": "Hygiène & Zéro déchet",
@@ -7331,8 +7240,7 @@
           "prod-row-nb": "trois",
           "category-color": "#ffffff",
           "name-size": 14,
-          "entr-size": 13,
-          "icon-prod": ""
+          "entr-size": 13
         }
       },
       "category-prod-13": {
@@ -7343,8 +7251,7 @@
           "prod-row-nb": "trois",
           "category-color": "#ffffff",
           "name-size": 14,
-          "entr-size": 13,
-          "icon-prod": ""
+          "entr-size": 13
         }
       },
       "1597104637530": {
@@ -7359,10 +7266,8 @@
           "caption_background": false,
           "caption_background_transparency": false,
           "button1": "",
-          "button1_link": "",
           "button1_highlight": false,
           "button2": "",
-          "button2_link": "",
           "button2_highlight": false,
           "text_position": "center",
           "text_align": "center"
@@ -7371,20 +7276,20 @@
       "1597104744768": {
         "type": "featured-collection",
         "settings": {
-          "title": "Yaourts, beurre, lait, découvrez les produits de la ferme des anneaux !",
+          "title": "Préparez Halloween dès maintenant !",
           "collection_description": false,
-          "collection": "marie-anne-la-ferme-des-anneaux-avelin",
+          "collection": "les-courges-bio",
           "collection_style": "grid",
-          "products_per": 4,
-          "products_limit": 8
+          "products_per": 3,
+          "products_limit": 3
         }
       },
       "1597104835694": {
         "type": "featured-collection",
         "settings": {
-          "title": "Tout pour une délicieuse pizza maison !",
+          "title": "Soirée pasta à la maison 🇮🇹",
           "collection_description": false,
-          "collection": "tout-pour-realiser-une-delicieuse-pizza-maison",
+          "collection": "soiree-pasta-a-la-maison",
           "collection_style": "grid",
           "products_per": 4,
           "products_limit": 8
@@ -7400,8 +7305,8 @@
               "image": "shopify:\/\/shop_images\/Photo-Home-new.jpg",
               "image_crop": "none",
               "title": "",
-              "subtitle": "Votre marché en circuit court. Sans courir.",
-              "text": "<p>Vos produits <strong>bio<\/strong> et <strong>locaux<\/strong>, livr&eacute;s &agrave; v&eacute;lo sur la <strong>m&eacute;tropole lilloise<\/strong>. Faites votre march&eacute; en ligne et en direct de <a href=\"https:\/\/www.mesvoisinsproducteurs.com\/pages\/nos-producteurs-et-artisans\" title=\"https:\/\/www.mesvoisinsproducteurs.com\/pages\/nos-producteurs-et-artisans\"><strong>plus de 60 producteurs locaux<\/strong><\/a>&nbsp;de&nbsp;Lille et de la r&eacute;gion.<\/p>",
+              "subtitle": "LIVRAISON OFFERTE dès 30€ d'achat !",
+              "text": "<p>Vos produits <strong>bio<\/strong> et <strong>locaux<\/strong>, livrés à vélo sur la <strong>métropole lilloise<\/strong>. Faites votre marché en ligne et en direct de <a href=\"https:\/\/www.mesvoisinsproducteurs.com\/pages\/nos-producteurs-et-artisans\" title=\"https:\/\/www.mesvoisinsproducteurs.com\/pages\/nos-producteurs-et-artisans\"><strong>plus de 60 producteurs locaux<\/strong><\/a> de Lille et de la région.<\/p>",
               "button_label": "Comment ça marche ?",
               "link": "shopify:\/\/pages\/livraison-de-produits-locaux",
               "bg_color": "#f7f4e3",
@@ -7431,11 +7336,9 @@
       "1597236346204": {
         "type": "featured-text",
         "settings": {
-          "image": "",
           "title": "Découvrez les coulisses...",
           "content": "",
           "button_label": "",
-          "button_link": "",
           "text_size": "featured_text",
           "text_alignment": "center"
         }
@@ -7451,42 +7354,33 @@
           "button_link": "https:\/\/www.mesvoisinsproducteurs.com\/pages\/nos-producteurs-et-artisans",
           "productor1": "Nicolas - La Ferme des 4 vents",
           "productor_image1": "shopify:\/\/shop_images\/nico.jpg",
-          "logo_image1": "",
           "productor_link1": "shopify:\/\/collections\/felix-et-florian-ferme-des-limuchons-comines",
           "productor_local1": "📍 Hem (15km de Lille)",
           "productor2": "Jean - Laiterie artisanale biologique",
           "productor_image2": "shopify:\/\/shop_images\/jean-jean.jpg",
-          "logo_image2": "",
           "productor_link2": "shopify:\/\/collections\/jean-laiterie-bio-jeanjean-avesnois",
           "productor_local2": "📍 Fourmies (100km de Lille)",
           "productor3": "Claire - Le comptoir végétal",
           "productor_image3": "shopify:\/\/shop_images\/claire.jpg",
-          "logo_image3": "",
           "productor_link3": "shopify:\/\/collections\/claire-le-comptoir-vegetal-lambersart",
           "productor_local3": "📍 Lambersart",
           "productor4": "Ghizlaine & Romain - Nettoyants écologiques",
           "productor_image4": "shopify:\/\/shop_images\/mutyne.jpg",
-          "logo_image4": "",
           "productor_link4": "shopify:\/\/collections\/ghizlaine-et-romain-mutyne-villeneuve-dascq",
           "productor_local4": "📍 Villeneuve d'Ascq",
           "productor5": "Maxime & Stéphane - Soutien à la conversion bio",
           "productor_image5": "shopify:\/\/shop_images\/biodemain.jpg",
-          "logo_image5": "",
           "productor_link5": "shopify:\/\/collections\/maxime-et-stephane-biodemain-lomme",
           "productor_local5": "📍 Lomme",
           "productor6": "Bérénice - Créatrice de savons",
           "productor_image6": "shopify:\/\/shop_images\/berenice.jpg",
-          "logo_image6": "",
-          "productor_link6": "",
           "productor_local6": "📍 Beuvry-La-Fôret (30km de Lille)",
           "productor7": "Quentin - Créateurs de tartinables",
           "productor_image7": "shopify:\/\/shop_images\/quentin-vertuchou.jpg",
-          "logo_image7": "",
           "productor_link7": "shopify:\/\/collections\/quentin-vertuchou-marcq-en-baroeul",
           "productor_local7": "📍 Marcq en Baroeul",
           "productor8": "Basile & Octave - Ferme du recueil",
           "productor_image8": "shopify:\/\/shop_images\/basile-octave.jpg",
-          "logo_image8": "",
           "productor_link8": "shopify:\/\/collections\/basile-et-octave-la-ferme-du-recueil-villeneuve-dascq",
           "productor_local8": "📍 Villeneuve d'Ascq"
         }
@@ -7524,7 +7418,7 @@
               "image_crop": "none",
               "title": "Les producteurs et artisans",
               "subtitle": "",
-              "text": "<p>Les b&eacute;n&eacute;fices du &laquo; local &raquo; ne se r&eacute;sument pas seulement &agrave; la proximit&eacute; g&eacute;ographique, c'est aussi un vrai rapport journalier avec nos producteurs.&nbsp; C'est &eacute;galement une juste r&eacute;tribution qui est favoris&eacute;e par le circuit-court.<\/p>",
+              "text": "<p>Les bénéfices du « local » ne se résument pas seulement à la proximité géographique, c&#x27;est aussi un vrai rapport journalier avec nos producteurs.  C&#x27;est également une juste rétribution qui est favorisée par le circuit-court.<\/p>",
               "button_label": "DÉCOUVRIR TOUS LES PRODUCTEURS",
               "link": "shopify:\/\/pages\/nos-producteurs-et-artisans",
               "bg_color": "",
@@ -7549,8 +7443,8 @@
           "collection_description": false,
           "collection": "panier-de-fruits-et-legumes-bio",
           "collection_style": "grid",
-          "products_per": 4,
-          "products_limit": 6
+          "products_per": 3,
+          "products_limit": 3
         }
       }
     },
